@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSRS Herblore Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0d0b08;
+    --bg2: #13100c;
+    --surface: #1c1710;
+    --surface2: #251e14;
+    --border: #3a3020;
+    --border2: #4a3e28;
+    --gold: #c8a84b;
+    --gold2: #e8c96a;
+    --gold3: #f5e09a;
+    --green: #4a7c3f;
+    --green2: #6aad5e;
+    --green3: #8fd480;
+    --text: #e8dfc8;
+    --text2: #b8a888;
+    --text3: #7a6e58;
+    --red: #c0392b;
+    --blue: #3a7abf;
+    --blue2: #5a9adf;
+    --herb-color: #5a8c4a;
+    --secondary-color: #7a5a3a;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgba(74,124,63,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 0% 100%, rgba(200,168,75,0.05) 0%, transparent 40%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8a84b' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 40px 20px 30px;
+    position: relative;
+    border-bottom: 2px solid var(--border2);
+    background: linear-gradient(180deg, rgba(74,124,63,0.1) 0%, transparent 100%);
+  }
+
+  .header::before {
+    content: '⚗';
+    position: absolute;
+    left: 40px;
+    top: 30px;
+    font-size: 2.5rem;
+    opacity: 0.3;
+    color: var(--green2);
+  }
+
+  .header::after {
+    content: '🌿';
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    font-size: 2rem;
+    opacity: 0.4;
+  }
+
+  .header-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--gold2);
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 30px rgba(200,168,75,0.3), 0 2px 4px rgba(0,0,0,0.8);
+    line-height: 1.1;
+  }
+
+  .header-sub {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    color: var(--text3);
+    font-size: 1rem;
+    margin-top: 6px;
+    letter-spacing: 0.1em;
+  }
+
+  .header-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .header-divider::before,
+  .header-divider::after {
+    content: '';
+    height: 1px;
+    width: 80px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+
+  .header-divider::after {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .header-divider span {
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  /* CONTROLS */
+  .controls {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .search-wrap {
+    flex: 1;
+    min-width: 220px;
+    position: relative;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text3);
+    font-size: 0.85rem;
+  }
+
+  .search-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    padding: 10px 12px 10px 34px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--text3); font-style: italic; }
+
+  .filter-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text2);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--bg); font-weight: 600; }
+
+  .sort-select {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--text2);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    padding: 9px 12px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .sort-select:focus { border-color: var(--gold); }
+
+  /* STATS BAR */
+  .stats-bar {
+    max-width: 1100px;
+    margin: 16px auto 0;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .stat-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    color: var(--text3);
+  }
+
+  .stat-pill strong { color: var(--gold2); }
+
+  /* GRID */
+  .grid {
+    max-width: 1100px;
+    margin: 24px auto 40px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.2s;
+    animation: fadeUp 0.25s ease both;
+    position: relative;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .card:hover { border-color: var(--border2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .card:hover::before { opacity: 1; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--gold2);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .card-type {
+    font-size: 0.7rem;
+    color: var(--text3);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .level-badge {
+    background: var(--green);
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+
+  .card-body {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ingredients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .ingredient {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    color: var(--text2);
+  }
+
+  .ingredient .emoji { font-size: 0.9rem; }
+
+  .ingredient.herb { border-color: var(--green); color: var(--green3); }
+  .ingredient.secondary { border-color: var(--secondary-color); color: #c8a070; }
+
+  .plus {
+    color: var(--text3);
+    font-size: 1.1rem;
+    align-self: center;
+    line-height: 1;
+  }
+
+  .arrow {
+    color: var(--gold);
+    font-size: 1rem;
+    align-self: center;
+  }
+
+  .result {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(200,168,75,0.08);
+    border: 1px solid rgba(200,168,75,0.2);
+    border-radius: 3px;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    color: var(--gold3);
+    font-weight: 600;
+  }
+
+  .card-stats {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .stat-label {
+    font-size: 0.62rem;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .stat-value {
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .stat-value.xp { color: var(--blue2); }
+  .stat-value.level { color: var(--green3); }
+  .stat-value.effect { color: var(--text2); font-size: 0.78rem; font-weight: 400; font-style: italic; }
+
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text3);
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  .section-divider {
+    max-width: 1100px;
+    margin: 8px auto 0;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--text3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-title">OSRS Herblore</div>
+  <div class="header-sub">Old School RuneScape · Potion & Unfinished Potion Reference</div>
+  <div class="header-divider"><span>⚗</span></div>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" placeholder="Search potions or herbs..." oninput="render()">
+  </div>
+  <div class="filter-group" id="filterGroup">
+    <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+    <button class="filter-btn" onclick="setFilter('combat', this)">⚔ Combat</button>
+    <button class="filter-btn" onclick="setFilter('skilling', this)">🔨 Skilling</button>
+    <button class="filter-btn" onclick="setFilter('prayer', this)">🙏 Prayer</button>
+    <button class="filter-btn" onclick="setFilter('cure', this)">💊 Cure/Anti</button>
+    <button class="filter-btn" onclick="setFilter('other', this)">✨ Other</button>
+  </div>
+  <select class="sort-select" id="sortSelect" onchange="render()">
+    <option value="level">Sort: Level</option>
+    <option value="xp">Sort: XP</option>
+    <option value="name">Sort: Name</option>
+  </select>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-pill">Showing <strong id="countDisplay">0</strong> potions</div>
+  <div class="stat-pill">Highest XP: <strong id="maxXp">-</strong></div>
+  <div class="stat-pill">Level range: <strong id="levelRange">-</strong></div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const POTIONS = [
+  // COMBAT
+  { name: "Attack Potion", level: 3, xp: 25, herb: "Guam leaf", secondary: "Eye of newt", effect: "+10% + 3 Attack boost", type: "combat", herbEmoji: "🌿", secEmoji: "👁" },
+  { name: "Strength Potion", level: 12, xp: 50, herb: "Tarromin", secondary: "Limpwurt root", effect: "+10% + 3 Strength boost", type: "combat", herbEmoji: "🌿", secEmoji: "🌱" },
+  { name: "Defence Potion", level: 15, xp: 67.5, herb: "Ranarr weed", secondary: "White berries", effect: "+10% + 3 Defence boost", type: "combat", herbEmoji: "🌿", secEmoji: "🫐" },
+  { name: "Ranging Potion", level: 30, xp: 87.5, herb: "Dwarf weed", secondary: "Wine of zamorak", effect: "+10% + 4 Ranged boost", type: "combat", herbEmoji: "🌿", secEmoji: "🍷" },
+  { name: "Magic Potion", level: 76, xp: 172.5, herb: "Irit leaf", secondary: "Bathtub of liquid", effect: "+4 Magic boost", type: "combat", herbEmoji: "🌿", secEmoji: "🦇" },
+  { name: "Super Attack", level: 45, xp: 100, herb: "Irit leaf", secondary: "Eye of newt", effect: "+15% + 5 Attack boost", type: "combat", herbEmoji: "🌿", secEmoji: "👁" },
+  { name: "Super Strength", level: 55, xp: 125, herb: "Kwuarm", secondary: "Limpwurt root", effect: "+15% + 5 Strength boost", type: "combat", herbEmoji: "🌿", secEmoji: "🌱" },
+  { name: "Super Defence", level: 66, xp: 150, herb: "Cadantine", secondary: "White berries", effect: "+15% + 5 Defence boost", type: "combat", herbEmoji: "🌿", secEmoji: "🫐" },
+  { name: "Super Combat Potion", level: 90, xp: 150, herb: "Torstol", secondary: "Super Attack/Str/Def mix", effect: "+15% + 5 to Attack, Str & Def", type: "combat", herbEmoji: "🌿", secEmoji: "⚗" },
+  { name: "Ranging Potion (4)", level: 30, xp: 87.5, herb: "Dwarf weed", secondary: "Wine of zamorak", effect: "+10% + 4 Ranged boost", type: "combat", herbEmoji: "🌿", secEmoji: "🍷" },
+  { name: "Bastion Potion", level: 80, xp: 155, herb: "Cadantine", secondary: "Wine of zamorak", effect: "+10% + 4 Ranged & +15% +5 Defence", type: "combat", herbEmoji: "🌿", secEmoji: "🍷" },
+  { name: "Battlemage Potion", level: 80, xp: 155, herb: "Cadantine", secondary: "Potato cactus", effect: "+4 Magic & +15% +5 Defence", type: "combat", herbEmoji: "🌿", secEmoji: "🌵" },
+
+  // PRAYER
+  { name: "Prayer Potion", level: 38, xp: 87.5, herb: "Ranarr weed", secondary: "Snape grass", effect: "Restores 7 + 25% Prayer points", type: "prayer", herbEmoji: "🌿", secEmoji: "🌾" },
+  { name: "Super Restore", level: 63, xp: 142.5, herb: "Snapdragon", secondary: "Red spiders' eggs", effect: "Restores 8 + 25% of all stats", type: "prayer", herbEmoji: "🌿", secEmoji: "🥚" },
+  { name: "Sanfew Serum", level: 65, xp: 160, herb: "Super restore", secondary: "Unicorn horn dust + snake weed + nail beast nails", effect: "Restores Prayer, cures poison/venom", type: "prayer", herbEmoji: "⚗", secEmoji: "🦄" },
+
+  // SKILLING
+  { name: "Fishing Potion", level: 50, xp: 112.5, herb: "Avantoe", secondary: "Snape grass", effect: "+3 Fishing boost", type: "skilling", herbEmoji: "🌿", secEmoji: "🌾" },
+  { name: "Hunter Potion", level: 53, xp: 120, herb: "Avantoe", secondary: "Kebbit teeth dust", effect: "+3 Hunter boost", type: "skilling", herbEmoji: "🌿", secEmoji: "🦷" },
+  { name: "Agility Potion", level: 34, xp: 80, herb: "Toadflax", secondary: "Toad's legs", effect: "+3 Agility boost", type: "skilling", herbEmoji: "🌿", secEmoji: "🐸" },
+  { name: "Mining Potion", level: 14, xp: 60, herb: "Kodai-weed", secondary: "Liquid crystal", effect: "+2-4 Mining boost", type: "skilling", herbEmoji: "🌿", secEmoji: "💎" },
+  { name: "Stamina Potion", level: 77, xp: 102, herb: "Super energy", secondary: "Amylase crystal", effect: "Restores run energy, reduces drain rate", type: "skilling", herbEmoji: "⚗", secEmoji: "💎" },
+  { name: "Super Energy", level: 52, xp: 117.5, herb: "Avantoe", secondary: "Mort myre fungus", effect: "Restores 40% run energy", type: "skilling", herbEmoji: "🌿", secEmoji: "🍄" },
+  { name: "Energy Potion", level: 26, xp: 67.5, herb: "Harralander", secondary: "Chocolate dust", effect: "Restores 20% run energy", type: "skilling", herbEmoji: "🌿", secEmoji: "🍫" },
+  { name: "Fletching Potion", level: 58, xp: 132.5, herb: "Wergali", secondary: "Wimpy feather", effect: "+3 Fletching boost", type: "skilling", herbEmoji: "🌿", secEmoji: "🪶" },
+  { name: "Crafting Potion", level: 42, xp: 95, herb: "Wergali", secondary: "Frog spawn", effect: "+3 Crafting boost", type: "skilling", herbEmoji: "🌿", secEmoji: "🐸" },
+  { name: "Herblore Potion", level: 9, xp: 40, herb: "Guam leaf", secondary: "Marrentill", effect: "+2-3 Herblore boost", type: "skilling", herbEmoji: "🌿", secEmoji: "🌿" },
+
+  // CURE / ANTI
+  { name: "Antipoison", level: 5, xp: 37.5, herb: "Marrentill", secondary: "Unicorn horn dust", effect: "Cures & prevents poison for ~90s", type: "cure", herbEmoji: "🌿", secEmoji: "🦄" },
+  { name: "Superantipoison", level: 48, xp: 106.3, herb: "Irit leaf", secondary: "Unicorn horn dust", effect: "Cures & prevents poison for ~6 min", type: "cure", herbEmoji: "🌿", secEmoji: "🦄" },
+  { name: "Antidote+", level: 68, xp: 155, herb: "Toadflax", secondary: "Yew roots", effect: "Cures venom, prevents for ~9 min", type: "cure", herbEmoji: "🌿", secEmoji: "🌳" },
+  { name: "Antidote++", level: 79, xp: 177.5, herb: "Irit leaf", secondary: "Magic roots", effect: "Cures venom, prevents for ~12 min", type: "cure", herbEmoji: "🌿", secEmoji: "✨" },
+  { name: "Relicym's Balm", level: 8, xp: 40, herb: "Rogue's purse", secondary: "Snake weed", effect: "Cures disease", type: "cure", herbEmoji: "🌿", secEmoji: "🐍" },
+  { name: "Antifire Potion", level: 69, xp: 157.5, herb: "Lantadyme", secondary: "Dragon scale dust", effect: "Partial dragonfire protection", type: "cure", herbEmoji: "🌿", secEmoji: "🐉" },
+  { name: "Extended Antifire", level: 69, xp: 110, herb: "Antifire potion", secondary: "Lava scale shard", effect: "Extended dragonfire protection", type: "cure", herbEmoji: "⚗", secEmoji: "🐉" },
+  { name: "Super Antifire", level: 85, xp: 130, herb: "Antifire potion", secondary: "Crushed superior dragon bones", effect: "Full dragonfire protection", type: "cure", herbEmoji: "⚗", secEmoji: "🔥" },
+
+  // OTHER / SPECIAL
+  { name: "Zamorak Brew", level: 60, xp: 175, herb: "Torstol", secondary: "Jangerberries", effect: "+2-20% Attack/Str, -10-12% Defence/HP", type: "other", herbEmoji: "🌿", secEmoji: "🫐" },
+  { name: "Saradomin Brew", level: 81, xp: 180, herb: "Toadflax", secondary: "Crushed bird nest", effect: "+15% HP (above max), -10% all combat", type: "other", herbEmoji: "🌿", secEmoji: "🥚" },
+  { name: "Guthix Rest", level: 18, xp: 59.5, herb: "Harralander", secondary: "Swamp tar + marrentill + water", effect: "Heals 5 HP, mild antipoison", type: "other", herbEmoji: "🌿", secEmoji: "🌾" },
+  { name: "Compost Potion", level: 22, xp: 60, herb: "Harralander", secondary: "Volcanic ash", effect: "Turns compost to supercompost", type: "other", herbEmoji: "🌿", secEmoji: "🌋" },
+  { name: "Blamish Oil", level: 25, xp: 80, herb: "Harralander", secondary: "Blamish snail slime", effect: "Used for Barbarian Fishing rod", type: "other", herbEmoji: "🌿", secEmoji: "🐌" },
+  { name: "Serum 207", level: 15, xp: 50, herb: "Tarromin", secondary: "Ashes", effect: "Temporarily cures Afflicted villagers", type: "other", herbEmoji: "🌿", secEmoji: "💀" },
+  { name: "Shrink-me-quick", level: 38, xp: 59.5, herb: "Shrunk Ogleroot", secondary: "Water-filled bowl", effect: "Shrinks player (cosmetic)", type: "other", herbEmoji: "🌿", secEmoji: "💧" },
+  { name: "Antivenom", level: 87, xp: 120, herb: "Zulrah's scales x20", secondary: "Antidote++", effect: "Cures venom, prevents for ~12 min", type: "cure", herbEmoji: "🐍", secEmoji: "⚗" },
+  { name: "Antivenom+", level: 94, xp: 125, herb: "Antivenom", secondary: "Torstol", effect: "Cures venom, prevents ~15 min", type: "cure", herbEmoji: "⚗", secEmoji: "🌿" },
+  { name: "Ancient Brew", level: 85, xp: 190, herb: "Dwarf weed", secondary: "Nihil dust", effect: "+3-6 Magic, restores Prayer, lowers melee", type: "combat", herbEmoji: "🌿", secEmoji: "✨" },
+  { name: "Forgotten Brew", level: 91, xp: 190, herb: "Ancient brew", secondary: "Ancient essence", effect: "+3-6 Magic, enhanced Prayer restore", type: "combat", herbEmoji: "⚗", secEmoji: "💎" },
+];
+
+let currentFilter = 'all';
+
+function setFilter(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function render() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const sort = document.getElementById('sortSelect').value;
+
+  let filtered = POTIONS.filter(p => {
+    const matchFilter = currentFilter === 'all' || p.type === currentFilter;
+    const matchSearch = !query ||
+      p.name.toLowerCase().includes(query) ||
+      p.herb.toLowerCase().includes(query) ||
+      p.secondary.toLowerCase().includes(query) ||
+      p.effect.toLowerCase().includes(query);
+    return matchFilter && matchSearch;
+  });
+
+  filtered.sort((a, b) => {
+    if (sort === 'level') return a.level - b.level;
+    if (sort === 'xp') return b.xp - a.xp;
+    if (sort === 'name') return a.name.localeCompare(b.name);
+    return 0;
+  });
+
+  // Stats bar
+  document.getElementById('countDisplay').textContent = filtered.length;
+  if (filtered.length) {
+    document.getElementById('maxXp').textContent = Math.max(...filtered.map(p => p.xp)) + ' XP';
+    const levels = filtered.map(p => p.level);
+    document.getElementById('levelRange').textContent = `${Math.min(...levels)} – ${Math.max(...levels)}`;
+  } else {
+    document.getElementById('maxXp').textContent = '-';
+    document.getElementById('levelRange').textContent = '-';
+  }
+
+  const grid = document.getElementById('grid');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="no-results">No potions found matching your search.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((p, i) => `
+    <div class="card" style="animation-delay:${Math.min(i*0.03, 0.4)}s">
+      <div class="card-header">
+        <div>
+          <div class="card-name">${p.name}</div>
+          <div class="card-type">${typeName(p.type)}</div>
+        </div>
+        <div class="level-badge">Lvl ${p.level}</div>
+      </div>
+      <div class="card-body">
+        <div class="ingredients">
+          <div class="ingredient herb"><span class="emoji">${p.herbEmoji}</span> ${p.herb}</div>
+          <span class="plus">+</span>
+          <div class="ingredient secondary"><span class="emoji">${p.secEmoji}</span> ${p.secondary}</div>
+          <span class="arrow">→</span>
+          <div class="result">🧪 ${p.name}</div>
+        </div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-label">XP gained</span>
+            <span class="stat-value xp">${p.xp} xp</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Req. level</span>
+            <span class="stat-value level">${p.level}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Effect</span>
+            <span class="stat-value effect">${p.effect}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function typeName(t) {
+  return { combat: '⚔ Combat', skilling: '🔨 Skilling', prayer: '🙏 Prayer', cure: '💊 Cure / Anti', other: '✨ Other' }[t] || t;
+}
+
+render();
+</script>
+</body>
+</html>

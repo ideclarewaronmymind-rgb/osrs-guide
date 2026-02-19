@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSRS Skilling Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0c0a07;
+    --bg2: #131009;
+    --surface: #1a1510;
+    --surface2: #221c12;
+    --border: #352c1a;
+    --border2: #4a3e22;
+    --gold: #c8a84b;
+    --gold2: #e8c96a;
+    --gold3: #f5e09a;
+    --text: #e8dfc8;
+    --text2: #b8a880;
+    --text3: #7a6e50;
+    --green: #27ae60;
+    --green2: #50d080;
+    --blue: #2980b9;
+    --blue2: #5ab0e8;
+    --orange: #e67e22;
+    --orange2: #f0a050;
+    --red: #c0392b;
+    --red2: #e05040;
+    --purple: #8e44ad;
+    --purple2: #b070d0;
+    --teal: #1abc9c;
+    --teal2: #4ae0b8;
+    --yellow: #f39c12;
+    --yellow2: #f8c84a;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(200,168,75,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(39,174,96,0.04) 0%, transparent 40%),
+      url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c8a84b' fill-opacity='0.015'%3E%3Cpath d='M40 0L0 40 40 80 80 40z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 44px 20px 32px;
+    border-bottom: 1px solid var(--border2);
+    background: linear-gradient(180deg, rgba(200,168,75,0.07) 0%, transparent 100%);
+  }
+
+  .header-icon { font-size: 2.4rem; display: block; margin-bottom: 10px; }
+
+  .header-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--gold2);
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 40px rgba(200,168,75,0.25);
+  }
+
+  .header-sub {
+    font-style: italic;
+    color: var(--text3);
+    font-size: 1rem;
+    margin-top: 6px;
+    letter-spacing: 0.08em;
+  }
+
+  .header-rule {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 16px auto 0;
+  }
+
+  /* CONTROLS */
+  .controls {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .search-wrap { flex: 1; min-width: 200px; position: relative; }
+  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 0.85rem; }
+
+  .search-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    padding: 9px 12px 9px 32px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--text3); font-style: italic; }
+
+  .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .filter-btn {
+    padding: 8px 13px;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text2);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--bg); font-weight: 600; }
+
+  /* STATS BAR */
+  .stats-bar {
+    max-width: 1200px;
+    margin: 14px auto 0;
+    padding: 0 20px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .stat-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    color: var(--text3);
+  }
+  .stat-pill strong { color: var(--gold2); }
+
+  /* GRID */
+  .grid {
+    max-width: 1200px;
+    margin: 22px auto 50px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.2s;
+    animation: fadeUp 0.22s ease both;
+  }
+  .card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-accent { height: 3px; }
+
+  /* Skill category accent colours */
+  .accent-combat    { background: linear-gradient(90deg, #c0392b, #e05040); }
+  .accent-gathering { background: linear-gradient(90deg, #27ae60, #50d080); }
+  .accent-artisan   { background: linear-gradient(90deg, #e67e22, #f0a050); }
+  .accent-support   { background: linear-gradient(90deg, #2980b9, #5ab0e8); }
+  .accent-misc      { background: linear-gradient(90deg, #8e44ad, #b070d0); }
+
+  .card-header {
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-icon { font-size: 1.9rem; flex-shrink: 0; }
+
+  .card-title-wrap { flex: 1; }
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold2);
+    line-height: 1.2;
+  }
+  .card-category { font-size: 0.72rem; color: var(--text3); font-style: italic; margin-top: 2px; }
+
+  .max-xp-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 3px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+    background: rgba(41,128,185,0.2);
+    color: var(--blue2);
+    border: 1px solid rgba(41,128,185,0.3);
+  }
+
+  .card-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 11px; }
+
+  /* TAG ROW */
+  .tag-row { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tag {
+    font-size: 0.67rem;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: 1px solid;
+  }
+  .tag-profit   { background: rgba(39,174,96,0.15);  color: var(--green2);   border-color: rgba(39,174,96,0.3); }
+  .tag-afk      { background: rgba(90,176,232,0.15); color: var(--blue2);    border-color: rgba(90,176,232,0.3); }
+  .tag-fast     { background: rgba(230,126,34,0.15); color: var(--orange2);  border-color: rgba(230,126,34,0.3); }
+  .tag-expensive{ background: rgba(192,57,43,0.15);  color: var(--red2);     border-color: rgba(192,57,43,0.3); }
+  .tag-f2p      { background: rgba(200,168,75,0.15); color: var(--gold2);    border-color: rgba(200,168,75,0.3); }
+  .tag-quest    { background: rgba(142,68,173,0.15); color: var(--purple2);  border-color: rgba(142,68,173,0.3); }
+  .tag-tick     { background: rgba(26,188,156,0.15); color: var(--teal2);    border-color: rgba(26,188,156,0.3); }
+
+  /* METHODS TABLE */
+  .methods-label {
+    font-size: 0.62rem;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .method-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 8px 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+
+  .method-row:first-of-type { margin-top: 0; }
+
+  .method-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .method-name {
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .method-xp {
+    font-size: 0.72rem;
+    color: var(--blue2);
+    font-weight: 600;
+    white-space: nowrap;
+    background: rgba(41,128,185,0.1);
+    border: 1px solid rgba(41,128,185,0.2);
+    border-radius: 3px;
+    padding: 1px 6px;
+  }
+
+  .method-level {
+    font-size: 0.68rem;
+    color: var(--green2);
+    background: rgba(39,174,96,0.1);
+    border: 1px solid rgba(39,174,96,0.2);
+    border-radius: 3px;
+    padding: 1px 6px;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  .method-desc {
+    font-size: 0.75rem;
+    color: var(--text2);
+    font-style: italic;
+    line-height: 1.45;
+  }
+
+  /* REQUIRED ITEMS */
+  .req-list { display: flex; flex-wrap: wrap; gap: 4px; }
+  .req-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 2px 7px;
+    font-size: 0.72rem;
+    color: var(--text2);
+  }
+
+  /* TIPS */
+  .tips-section {
+    background: rgba(200,168,75,0.05);
+    border: 1px solid rgba(200,168,75,0.12);
+    border-radius: 4px;
+    padding: 10px 12px;
+  }
+  .tips-label { font-size: 0.62rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+  .tips-text { font-size: 0.78rem; color: var(--text2); line-height: 1.55; font-style: italic; }
+
+  .no-results {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 60px;
+    color: var(--text3);
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-icon">📜</span>
+  <div class="header-title">OSRS Skilling Guide</div>
+  <div class="header-sub">Old School RuneScape · Training methods, XP rates & tips for all 23 skills</div>
+  <div class="header-rule"></div>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" placeholder="Search skill, method, or item..." oninput="render()">
+  </div>
+  <div class="filter-group">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('combat',this)">⚔ Combat</button>
+    <button class="filter-btn" onclick="setFilter('gathering',this)">⛏ Gathering</button>
+    <button class="filter-btn" onclick="setFilter('artisan',this)">🔨 Artisan</button>
+    <button class="filter-btn" onclick="setFilter('support',this)">✨ Support</button>
+    <button class="filter-btn" onclick="setFilter('misc',this)">🎲 Other</button>
+    <button class="filter-btn" onclick="setFilter('profit',this)">💰 Profit</button>
+    <button class="filter-btn" onclick="setFilter('afk',this)">😴 AFK</button>
+    <button class="filter-btn" onclick="setFilter('f2p',this)">🆓 F2P</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-pill">Showing <strong id="countDisplay">0</strong> skills</div>
+  <div class="stat-pill">23 skills total · Members & F2P covered</div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const SKILLS = [
+  // ===================== COMBAT =====================
+  {
+    name: "Attack",
+    icon: "⚔️",
+    category: "combat",
+    accent: "combat",
+    maxXp: "~120k XP/hr",
+    tags: ["fast","expensive"],
+    tip: "Train Attack to unlock higher tier weapons. Slash weapons like the Abyssal Whip are used most. Nightmare Zone is great for AFK training at higher levels using Dharok's + absorption potions.",
+    required: ["Combat gear","Potions"],
+    methods: [
+      { level: 1, name: "Questing (early)", xp: "Varies", desc: "Complete quests like Vampire Slayer, Fight Arena and Waterfall for large early XP dumps. Can skip to 30+ without touching combat." },
+      { level: 30, name: "Crabs (Sand/Rock/Ammonite)", xp: "30k/hr", desc: "AFK-friendly, low attention required. Great for early accounts. Ammonite crabs are best — 480 HP and aggressive." },
+      { level: 60, name: "Nightmare Zone (Dharok's)", xp: "90–110k/hr", desc: "Use Dharok's full set with absorption potions and overloads. Stay at 1 HP to maximise damage output. Very AFK." },
+      { level: 75, name: "Slayer tasks", xp: "50–80k/hr", desc: "Best long-term method — earn Slayer XP alongside Attack. Imbued Slayer Helm gives +15% bonus." },
+    ]
+  },
+  {
+    name: "Strength",
+    icon: "💪",
+    category: "combat",
+    accent: "combat",
+    maxXp: "~130k XP/hr",
+    tags: ["fast","expensive"],
+    tip: "Strength is trained the same way as Attack — Nightmare Zone with Dharok's is the fastest practical method. Scythe of Vitur and Soulreaper Axe are best in slot weapons for Strength XP.",
+    required: ["Dharok's set (NMZ)","Absorption potions","Overloads"],
+    methods: [
+      { level: 1, name: "Questing (early)", xp: "Varies", desc: "Waterfall Quest gives 13,750 Strength XP at level 1 — takes you straight to level 30. Highly recommended." },
+      { level: 30, name: "Ammonite Crabs", xp: "30k/hr", desc: "AFK and low-cost. Good for early accounts building up combat." },
+      { level: 70, name: "Nightmare Zone (Dharok's)", xp: "100–130k/hr", desc: "Stay at 1 HP with Dharok's set bonus. Use overloads and absorption potions. Best AFK method by far." },
+      { level: 85, name: "Bandos GWD / Raids", xp: "60–80k/hr", desc: "Great passive Strength XP while bossing. Scythe of Vitur in ToB gives exceptional Strength XP." },
+    ]
+  },
+  {
+    name: "Defence",
+    icon: "🛡️",
+    category: "combat",
+    accent: "combat",
+    maxXp: "~400k XP/hr",
+    tags: ["fast","tick","expensive"],
+    tip: "Black chinchompas on Maniacal Monkeys (post-MM2) give around 400k Defence XP/hr alongside Ranged XP. For standard training, Nightmare Zone and slayer are the go-to methods.",
+    required: ["Black chinchompas (fast)","Void range gear","MM2 quest (fast method)"],
+    methods: [
+      { level: 1, name: "Questing", xp: "Varies", desc: "Dragon Slayer I, Horror from the Deep and other quests give solid Defence XP early." },
+      { level: 40, name: "Ammonite Crabs / NMZ", xp: "30–90k/hr", desc: "Same methods as Attack/Strength — Defence is trained on the same hits so pick your XP split." },
+      { level: 80, name: "Black chins (Maniacal Monkeys)", xp: "~400k/hr", desc: "Post Monkey Madness II. Fastest Defence XP in the game alongside Ranged. Very expensive." },
+    ]
+  },
+  {
+    name: "Hitpoints",
+    icon: "❤️",
+    category: "combat",
+    accent: "combat",
+    maxXp: "~85k XP/hr",
+    tags: ["afk"],
+    tip: "Hitpoints XP is earned automatically alongside combat skills — you can't directly train it. Every hit gives 1.33 HP XP. Fastest passive HP gains come from AoE methods like chinning.",
+    required: ["Any combat gear"],
+    methods: [
+      { level: 1, name: "Passive (all combat)", xp: "Automatic", desc: "You earn HP XP on every hit, 1.33x the combat XP. No separate training needed." },
+      { level: 70, name: "Nightmare Zone", xp: "~50k/hr", desc: "HP XP naturally stacks up while AFK training melee here." },
+      { level: 80, name: "Chinning (MM2 tunnels)", xp: "~85k/hr", desc: "AoE from chinchompas hits multiple targets — great passive HP gains." },
+    ]
+  },
+  {
+    name: "Ranged",
+    icon: "🏹",
+    category: "combat",
+    accent: "combat",
+    maxXp: "~1M+ XP/hr",
+    tags: ["fast","expensive"],
+    tip: "Chinchompas at Maniacal Monkeys is the fastest Ranged XP. Red chins are more affordable; black chins are faster but cost more. Void Range gear maximises XP at chins. Blowpipe is great for slayer and bossing.",
+    required: ["Chinchompas","Void Range gear","MM2 completed","Ava's device"],
+    methods: [
+      { level: 1, name: "Questing", xp: "Varies", desc: "Temple of Ikov and other quests give early Ranged XP jumps." },
+      { level: 1, name: "Crabs (Ranged)", xp: "30–50k/hr", desc: "AFK method using any bow/crossbow. Good for lower levels or budget training." },
+      { level: 55, name: "Chinchompas (Red) — MM2", xp: "200–400k/hr", desc: "Multi-target hits with AoE. Use in the tunnels after Monkey Madness 2. Stack monkeys for best results." },
+      { level: 70, name: "Black Chinchompas — MM2", xp: "800k–1M+/hr", desc: "Fastest Ranged XP available. Extremely expensive but incredibly fast. Void Range + Rigour recommended." },
+    ]
+  },
+  {
+    name: "Magic",
+    icon: "🔮",
+    category: "combat",
+    accent: "combat",
+    maxXp: "~250k XP/hr",
+    tags: ["fast","profit","afk"],
+    tip: "Alching is very AFK and profitable — Nature Rune cost is offset by alch value. Splashing gives low XP but is extremely AFK. High-level players use bolt enchanting for fast XP. Slayer with Trident is great passive Magic XP.",
+    required: ["Runes","Staff","God Cape (imbued)"],
+    methods: [
+      { level: 1, name: "Questing / Low-level spells", xp: "Varies", desc: "Curse, Confuse, Teleports all give decent early XP. Do quests like Imp Catcher early." },
+      { level: 55, name: "High Alchemy", xp: "~78k/hr", desc: "Very AFK. Cast on Nature Runes + items bought from shops. Profit varies — check GE prices first." },
+      { level: 43, name: "Splashing (AFK)", xp: "~7k/hr", desc: "Wear -65 magic bonus gear to always splash. Very slow but completely AFK. Useful overnight." },
+      { level: 55, name: "Enchanting Bolts", xp: "~250k/hr", desc: "One-tick enchant method at high levels. Very click-intensive but fastest Magic XP in the game." },
+      { level: 94, name: "Tan Leather", xp: "~150k/hr + profit", desc: "Lunar spellbook spell. Tans dragonhide for profit and solid Magic XP." },
+    ]
+  },
+  {
+    name: "Prayer",
+    icon: "🙏",
+    category: "combat",
+    accent: "combat",
+    maxXp: "~2M XP/hr",
+    tags: ["expensive"],
+    tip: "Prayer is almost purely a money sink. Wilderness Altar (POH Chaos Altar) gives 3.5x XP per bone. Dragon Bones → 252 XP each at altar. Ensouled Heads are more cost-effective but slower. Bury bones only as a last resort — very slow.",
+    required: ["Bones / Ensouled Heads","POH with Gilded Altar (2 lit incense)","Chaos Altar access (Wilderness)"],
+    methods: [
+      { level: 1, name: "Ensouled Heads (budget)", xp: "~280k/hr", desc: "Reanimate heads using Arceuus Spellbook. Roughly half the cost of altar bones. Requires 60+ Magic." },
+      { level: 1, name: "Gilded Altar (POH)", xp: "~400k/hr", desc: "Dragon Bones give 252 XP each with 2 incense lit. Host world services available (Yanille W330)." },
+      { level: 1, name: "Chaos Altar (Wilderness)", xp: "~500k–2M/hr", desc: "3.5x bone XP — the best rate possible. High PKer risk. Use single-click bones on the altar and be ready to teleport." },
+    ]
+  },
+  {
+    name: "Slayer",
+    icon: "💀",
+    category: "combat",
+    accent: "combat",
+    maxXp: "~90k XP/hr",
+    tags: ["profit"],
+    tip: "Slayer is one of the best skills in the game — profit, combat XP, and access to exclusive bosses. Use Turael skipping (getting a Turael task then a better master) to farm points faster. Konar tasks give bonus Brimstone keys.",
+    required: ["Slayer Helm (imbued)","Combat gear","Cannon (optional)","Superantipoison / Antifire"],
+    methods: [
+      { level: 1, name: "Turael/Spria (early)", xp: "5–15k/hr", desc: "Start with Turael for easy tasks. Very low XP but good for getting started." },
+      { level: 50, name: "Chaeldar tasks", xp: "30–50k/hr", desc: "Good mid-level tasks. Unlocks access to Zulrah-adjacent monsters." },
+      { level: 75, name: "Nieve / Steve tasks", xp: "50–70k/hr", desc: "Best for mid-game. Wide variety of tasks including profitable ones like Gargoyles, Abyssal Demons." },
+      { level: 85, name: "Duradel tasks (best points)", xp: "60–90k/hr", desc: "Highest point rewards. Skip bad tasks (Kraken, Brine Rats) and prioritise Hydra, Cerberus, Abyssal Demons." },
+    ]
+  },
+
+  // ===================== GATHERING =====================
+  {
+    name: "Mining",
+    icon: "⛏️",
+    category: "gathering",
+    accent: "gathering",
+    maxXp: "~90k XP/hr",
+    tags: ["profit","f2p"],
+    tip: "3-tick Granite at Bandit Camp Quarry is the absolute fastest but extremely click-intensive. Motherlode Mine is the best AFK option. Blast Mine gives great XP and profit. Amethyst at level 92 is relaxed and profitable.",
+    required: ["Crystal Pickaxe (best)","Dragon Pickaxe (budget)","Varrock Armour (XP bonus)","Expert Mining Gloves (MLM)"],
+    methods: [
+      { level: 1, name: "Questing / Copper-Tin", xp: "~15k/hr", desc: "Mine Copper and Tin to level 15. Power-mine by dropping ores." },
+      { level: 15, name: "Powermine Iron", xp: "~45k/hr", desc: "Best F2P XP. Mine iron and drop immediately. 3-tick iron is faster but click-heavy." },
+      { level: 55, name: "Motherlode Mine", xp: "~25k/hr", desc: "AFK-friendly. Mine pay-dirt and collect ores. Unlock upper level at 72 for more rocks." },
+      { level: 75, name: "Blast Mine (Lovakengj)", xp: "~55k/hr", desc: "Use dynamite to blast ore chunks. Great XP + profit up to 550k GP/hr." },
+      { level: 85, name: "3-tick 4 Granite", xp: "~85–90k/hr", desc: "Fastest Mining XP. Requires tick manipulation at Bandit Camp Quarry. Very click-intensive." },
+      { level: 92, name: "Amethyst (AFK)", xp: "~19–27k/hr", desc: "Very relaxed. Profitable — 300–500k GP/hr crafting into javelins. Great for passive income." },
+    ]
+  },
+  {
+    name: "Fishing",
+    icon: "🎣",
+    category: "gathering",
+    accent: "gathering",
+    maxXp: "~100k XP/hr",
+    tags: ["afk","profit","f2p"],
+    tip: "Barbarian Fishing is the best XP from level 58+. Karambwans at 65 are very click-intensive but fast. Anglerfish at 82 are relaxed and profitable. Infernal Harpoon and Fishing Cape perks increase catch rates.",
+    required: ["Barbarian rod + feathers (fast)","Harpoon","Fishing Outfit (5% XP bonus)"],
+    methods: [
+      { level: 1, name: "Questing / Shrimps-Sardines", xp: "~10k/hr", desc: "Do Fishing Contest quest for early XP jump to level 24." },
+      { level: 20, name: "Fly Fishing (Barbarian)", xp: "~30k/hr", desc: "F2P viable. Fish trout and salmon at Barbarian Village. Power-fish for best XP." },
+      { level: 58, name: "Barbarian Fishing (Herblore/Agility XP)", xp: "~60k/hr", desc: "Best balanced method. Gives Strength and Agility XP too. Use Otto's rod at Barbarian Outpost." },
+      { level: 65, name: "1-tick Karambwans", xp: "~100k/hr", desc: "Fastest Fishing XP but extremely click-intensive. Requires Tai Bwo Wannai Trio quest." },
+      { level: 82, name: "Anglerfish (Piscarilius)", xp: "~25–35k/hr", desc: "Relaxed and profitable — Anglerfish sell well. Requires 100% Piscarilius favor." },
+    ]
+  },
+  {
+    name: "Woodcutting",
+    icon: "🪓",
+    category: "gathering",
+    accent: "gathering",
+    maxXp: "~70k XP/hr",
+    tags: ["afk","f2p","profit"],
+    tip: "Teaks at Ape Atoll are the fastest XP from level 60. 2-tick teaks is extremely fast but click-heavy. Redwoods at 90 are very AFK. Forestry events boost XP and add profit via leaves/events. Dragon Axe spec boosts XP temporarily.",
+    required: ["Dragon Axe or Crystal Axe","Woodcutting Outfit (5% XP)","Forestry Kit (optional)"],
+    methods: [
+      { level: 1, name: "Regular-Oak Trees", xp: "~10–20k/hr", desc: "Train at any trees until level 30+. Oak trees near a bank are efficient early on." },
+      { level: 30, name: "Willow Trees", xp: "~30k/hr", desc: "Good F2P XP. Willows near water are easy to find. Draynor Village is a great spot." },
+      { level: 60, name: "Teak Trees (Ape Atoll/Fossil Island)", xp: "~60k/hr", desc: "Best mid-level XP. Fossil Island teaks are safe; Ape Atoll requires Monkey Madness I." },
+      { level: 60, name: "2-tick Teaks", xp: "~160k/hr", desc: "One of the fastest Woodcutting methods using tick manipulation. Very click-intensive." },
+      { level: 75, name: "Forestry Events (any trees)", xp: "+30% boost", desc: "Participate in Forestry events while cutting for extra XP and profitable drops like leaves." },
+      { level: 90, name: "Redwood Trees", xp: "~50–60k/hr", desc: "AFK-friendly. Located at the Woodcutting Guild. Good passive XP." },
+    ]
+  },
+  {
+    name: "Hunter",
+    icon: "🦎",
+    category: "gathering",
+    accent: "gathering",
+    maxXp: "~250k XP/hr",
+    tags: ["profit","fast"],
+    tip: "Black Chinchompas in the Wilderness are the most profitable Hunter method but risky due to PKers. Herbiboar at Fossil Island gives great XP and Herblore secondaries. Catching chins requires Red or Black Chinchompa spots.",
+    required: ["Hunter gear (none required)","Graceful for running","Looting bag (Wildy chins)"],
+    methods: [
+      { level: 1, name: "Polar Kebbits / Birds", xp: "~5k/hr", desc: "Start with basic traps. Follow the method progression — never stay on lower traps too long." },
+      { level: 43, name: "Red Salamanders", xp: "~90k/hr", desc: "Very fast XP in a small area. Great for rushing to 60+. Located in Ourania." },
+      { level: 53, name: "Red Chinchompas", xp: "~100–140k/hr", desc: "Profitable and decent XP. Box traps in the Feldip Hills hunting area." },
+      { level: 77, name: "Herbiboar (Fossil Island)", xp: "~150k/hr", desc: "Great XP and drops Herblore secondaries passively. Requires 80 Herblore to harvest." },
+      { level: 80, name: "Black Chinchompas (Wildy)", xp: "~230–250k/hr", desc: "Best XP and profit. High-risk due to PKers — bring minimal gear. Very lucrative." },
+    ]
+  },
+  {
+    name: "Farming",
+    icon: "🌱",
+    category: "gathering",
+    accent: "gathering",
+    maxXp: "~Runs-based",
+    tags: ["profit","afk"],
+    tip: "Farming is run-based, not time-based. Tree runs every ~80 minutes give most XP. Herb runs are the best passive GP in the game — do them every 80 minutes while doing other skills. Magic Secateurs and Farming Cape are key upgrades.",
+    required: ["Magic Secateurs (herb yield)","Bottomless Compost Bucket","Explorer's Ring (teleports)","Farming Guild access (45+)"],
+    methods: [
+      { level: 1, name: "Allotment Patches", xp: "Low", desc: "Cabbage → Potato → Onion. Not worth much XP but good for early levels and Farming contracts." },
+      { level: 15, name: "Herb Runs (profit)", xp: "~10–50k/run", desc: "Best money per click in the game — ~300k–1M GP per herb run with Magic Secateurs and supercompost. Run every 80 mins." },
+      { level: 15, name: "Oak/Willow Tree Runs", xp: "~10–50k/run", desc: "Tree patches are the primary way to train Farming XP. Always use Sapling (pay-to-protect) for guaranteed harvest." },
+      { level: 57, name: "Spirit Tree runs", xp: "~35k/run", desc: "Slow growth but large XP. Spirit trees also serve as teleport hubs." },
+      { level: 63, name: "Mahogany Tree Runs", xp: "~50k/run", desc: "Fast XP runs — Mahogany Trees at Fossil Island patch (Hardwood Grove)." },
+      { level: 75, name: "Redwood / Magic Tree runs", xp: "~60–80k/run", desc: "Largest tree XP. Long growth times but massive rewards when they mature." },
+    ]
+  },
+
+  // ===================== ARTISAN =====================
+  {
+    name: "Herblore",
+    icon: "🧪",
+    category: "artisan",
+    accent: "artisan",
+    maxXp: "~650k XP/hr",
+    tags: ["fast","expensive"],
+    tip: "Herblore is purely a bankstanding money sink. Make the highest-level potion you can. Super Combat Potions at 90 are often the best XP-per-gp. Saradomin Brews to 99 is fastest but very expensive. Check the OSRS Herblore tab for full recipes!",
+    required: ["Vials of Water","Herbs","Secondary ingredients","GP for supplies"],
+    methods: [
+      { level: 1, name: "Attack Potions (early)", xp: "25 XP ea", desc: "Use Guam + Eye of Newt. Fast to do, cheap to buy supplies." },
+      { level: 38, name: "Prayer Potions", xp: "87.5 XP ea", desc: "Good mid-game XP and always useful. Ranarr + Snape Grass." },
+      { level: 63, name: "Super Restores", xp: "142 XP ea", desc: "Snapdragon + Red Spider Eggs. Efficient XP and strong potions for personal use." },
+      { level: 81, name: "Saradomin Brews", xp: "180 XP ea", desc: "Toadflax + Crushed Bird Nest. Very fast XP but expensive. Great for rushing to 90+." },
+      { level: 90, name: "Super Combat Potions", xp: "150 XP ea", desc: "Best XP per cost at high levels. Combine 3 super potions + Torstol. Very efficient." },
+    ]
+  },
+  {
+    name: "Smithing",
+    icon: "🔨",
+    category: "artisan",
+    accent: "artisan",
+    maxXp: "~380k XP/hr",
+    tags: ["fast","profit","f2p"],
+    tip: "Blast Furnace with Gold Bars and Goldsmith Gauntlets is the fastest viable method from level 40. The gauntlets double Gold Bar XP. Blast Furnace requires 300 coins per hour (or Ring of Endurance). Dart Tips at Blast Furnace are the absolute fastest method.",
+    required: ["Goldsmith Gauntlets (Family Crest quest)","Coal Bag (MLM nuggets)","Stamina Potions","Ice Gloves (for speed)"],
+    methods: [
+      { level: 1, name: "Quest XP dumps", xp: "Varies", desc: "The Knight's Sword quest gives 12,725 XP — instantly takes you to level 29." },
+      { level: 30, name: "Iron/Steel Bars (F2P)", xp: "~40k/hr", desc: "F2P option. Less efficient than Blast Furnace but accessible." },
+      { level: 40, name: "Gold Bars at Blast Furnace", xp: "~350k/hr", desc: "With Goldsmith Gauntlets, Gold Bars give 56 XP each instead of 22. Best XP-to-cost ratio. Requires access to Keldagrim." },
+      { level: 60, name: "Adamant Dart Tips (Blast Furnace)", xp: "~300k/hr + profit", desc: "Can be profitable depending on GE prices. Fast and low input." },
+      { level: 74, name: "Rune Bars (Blast Furnace)", xp: "~380k/hr", desc: "Fastest Smithing XP but most expensive method at the Blast Furnace." },
+    ]
+  },
+  {
+    name: "Crafting",
+    icon: "💎",
+    category: "artisan",
+    accent: "artisan",
+    maxXp: "~440k XP/hr",
+    tags: ["fast","expensive"],
+    tip: "Crafting is expensive to train fast. Battlestaves are click-intensive but cheap. Black Dragonhide Bodies at 84 are the fastest viable method. Glassblowing is slower but cheaper. Completing the Death on the Isle quest removes thread requirements for leatherwork.",
+    required: ["Needle and Thread","Crafting Outfit (5% XP bonus)","GP for supplies"],
+    methods: [
+      { level: 1, name: "Leather Items (early)", xp: "~20k/hr", desc: "Craft leather gloves, boots, bodies. Cheap and fast for early levels." },
+      { level: 54, name: "Battlestaves", xp: "~250k/hr", desc: "Attach orbs to battlestaves. Best XP-per-cost ratio. Air Battlestaves (Air Orb + Battlestaff) are most popular." },
+      { level: 63, name: "Green Dragonhide Bodies", xp: "~150k/hr", desc: "Decent XP, low cost. Body crafting is fast with a needle." },
+      { level: 84, name: "Black Dragonhide Bodies", xp: "~440k/hr", desc: "Fastest crafting XP. With Death on the Isle quest, no thread needed — saves one inventory slot." },
+    ]
+  },
+  {
+    name: "Fletching",
+    icon: "🪶",
+    category: "artisan",
+    accent: "artisan",
+    maxXp: "~9M XP/hr",
+    tags: ["fast","expensive"],
+    tip: "Fletching is one of the fastest 99s in the game. Dragon Darts are the fastest method but costly. Cutting bows is much cheaper but slower. Bolt-making is a middleground. Very click-intensive for the fastest methods.",
+    required: ["Dart tips + Feathers","Logs (for bows)","Knife"],
+    methods: [
+      { level: 1, name: "Headless Arrows (budget)", xp: "~30k/hr", desc: "Attach feathers to arrow shafts. Very cheap, decent early XP." },
+      { level: 10, name: "Shortbows / Longbows", xp: "~50–100k/hr", desc: "Cut and string bows from logs. Slower but very cheap — good for ironmen." },
+      { level: 52, name: "Steel Darts", xp: "~500k/hr", desc: "Good mid-level XP. Attach steel dart tips to feathers — fast clicking." },
+      { level: 81, name: "Dragon Darts", xp: "~1–9M/hr", desc: "Fastest Fletching XP in the game. Very expensive. Use mouse keys for maximum efficiency." },
+    ]
+  },
+  {
+    name: "Cooking",
+    icon: "🍖",
+    category: "artisan",
+    accent: "artisan",
+    maxXp: "~480k XP/hr",
+    tags: ["fast","profit","f2p"],
+    tip: "Cooking is one of the easiest 99s. At 74+ with Cooking Gauntlets you stop burning Lobsters. Karambwans with 1-tick cooking is the fastest method but extremely click-intensive. Rogues' Den or Myth's Guild have fires next to banks for zero running.",
+    required: ["Cooking Gauntlets (Family Crest)","Close-to-bank fire/range","Raw fish or meat"],
+    methods: [
+      { level: 1, name: "Shrimps → Trout → Salmon", xp: "~30–80k/hr", desc: "Cook progressively better fish as you level. Rogues' Den range is best location." },
+      { level: 65, name: "Monkfish", xp: "~200k/hr", desc: "Good XP and stop burning at 92 (90 with Gauntlets). Profitable to cook." },
+      { level: 80, name: "Shark", xp: "~210k/hr", desc: "Popular method. Sharks stop burning at 99 (94 with Gauntlets). AFK-friendly." },
+      { level: 30, name: "1-tick Karambwans", xp: "~950k/hr", desc: "Fastest Cooking XP. Extremely click-intensive one-tick method. Requires Tai Bwo Wannai Trio quest." },
+    ]
+  },
+  {
+    name: "Construction",
+    icon: "🏠",
+    category: "artisan",
+    accent: "artisan",
+    maxXp: "~14M XP/hr",
+    tags: ["fast","expensive"],
+    tip: "Construction is expensive but fast. Always use a Butler (Demon Butler at 50 Con) to fetch planks. Mahogany Homes minigame is great for cheaper XP. Tick manipulation with benches is the fastest method. Gilded Altar at 75 gives massive utility for training Prayer.",
+    required: ["Demon Butler (50 Con required)","Mahogany / Teak / Oak Planks","POH with workshop / chapel","GP — very expensive"],
+    methods: [
+      { level: 1, name: "Crude Wooden Chairs → Flatpack", xp: "~30k/hr", desc: "Early levels — build and remove cheap furniture. Oak at 20+ is much better." },
+      { level: 20, name: "Oak Larders / Tables", xp: "~100k/hr", desc: "Good early XP. Oak planks are affordable. Use Demon Butler to fetch planks." },
+      { level: 52, name: "Mahogany Tables", xp: "~600k/hr", desc: "Excellent XP. Build and remove in the Dining Room. Demon Butler brings planks." },
+      { level: 77, name: "Mahogany Homes (budget)", xp: "~200–400k/hr", desc: "Much cheaper than regular methods. Do contracts in Mahogany Homes for good XP at lower cost." },
+      { level: 95, name: "Demonic Thrones", xp: "~14M/hr", desc: "Fastest XP in OSRS — requires 25 Magic Stones each at ~500k GP each. Only for the ultra-wealthy." },
+    ]
+  },
+  {
+    name: "Firemaking",
+    icon: "🔥",
+    category: "artisan",
+    accent: "artisan",
+    maxXp: "~400k XP/hr",
+    tags: ["fast","f2p"],
+    tip: "Wintertodt is the recommended method from level 50 — it gives useful skilling supplies and XP for other skills. Redwood logs at 90 are the fastest standard Firemaking XP at a fire. Firemaking is one of the easiest and cheapest 99s.",
+    required: ["Tinderbox","Logs","Warm Clothing (Wintertodt)","Axe + Knife (Wintertodt)"],
+    methods: [
+      { level: 1, name: "Logs → Oak → Willow", xp: "~30–100k/hr", desc: "Light logs in a line across Varrock or Seers' Village. Use the best logs you can afford." },
+      { level: 50, name: "Wintertodt (recommended)", xp: "~250–300k/hr", desc: "Minigame-based training. Gives random supplies (seeds, herbs, gems). Great for Ironmen. Wear warm clothes." },
+      { level: 90, name: "Redwood Logs", xp: "~350–400k/hr", desc: "Fastest standard Firemaking XP. Light lines of redwood logs from Woodcutting Guild." },
+    ]
+  },
+  {
+    name: "Runecrafting",
+    icon: "🔵",
+    category: "artisan",
+    accent: "artisan",
+    maxXp: "~79k XP/hr",
+    tags: ["profit","slow"],
+    tip: "Runecrafting is OSRS's slowest and most painful skill. Lava Runes at the Fire Altar are the fastest XP at 65–79k XP/hr. Guardians of the Rift is fun and gives ~50–70k XP/hr. Blood Runes from level 77 are AFK and profitable. Raiments of the Eye outfit gives +60% rune yield.",
+    required: ["Essence Pouches (all sizes)","Ring of Dueling (Lavas)","Raiments of the Eye outfit","Binding Necklace (Lavas)","Lunar Diplomacy (Magic Imbue)"],
+    methods: [
+      { level: 1, name: "Air Runes (F2P)", xp: "~8k/hr", desc: "Very slow. Only do this if you have no other option. F2P runecrafting is painful." },
+      { level: 27, name: "Guardians of the Rift", xp: "~50–70k/hr", desc: "Fun minigame-based training. Rewards include the RC outfit and Catalytic Rune bag." },
+      { level: 23, name: "Lava Runes (Fastest XP)", xp: "~65–79k/hr", desc: "Use Ring of Dueling to Fire Altar, craft Lava Runes, teleport to Castle Wars to bank. Requires Lunar Diplomacy for Magic Imbue." },
+      { level: 77, name: "Blood Runes (AFK + profit)", xp: "~40–50k/hr", desc: "Very AFK. Mine and craft at the Arceuus Blood Altar. Consistently profitable — high demand for Blood Runes." },
+      { level: 90, name: "Soul Runes", xp: "~50–60k/hr", desc: "Slightly better XP than Blood Runes. Requires Arceuus spellbook and the Soul Altar." },
+    ]
+  },
+
+  // ===================== SUPPORT =====================
+  {
+    name: "Agility",
+    icon: "🏃",
+    category: "support",
+    accent: "support",
+    maxXp: "~80k XP/hr",
+    tags: ["afk","profit"],
+    tip: "Marks of Grace (from rooftop courses) are used to purchase Graceful Outfit — essential for all skillers. The Wilderness Agility Course at 52 is highly profitable with ~2.5M GP/hr after 60 laps. Seers' Village course with Kandarin Diary is best mid-level XP.",
+    required: ["Graceful Outfit (for run energy)","Summer Pie (boosts Agility 5 levels)"],
+    methods: [
+      { level: 1, name: "Gnome Stronghold Course", xp: "~10k/hr", desc: "Best starter course. Low fail rate, easy laps. Keep doing until level 30." },
+      { level: 30, name: "Varrock Rooftop Course", xp: "~18k/hr", desc: "Good Marks of Grace rate. Do all rooftop courses in sequence for Graceful outfit." },
+      { level: 40, name: "Canifis Rooftop Course", xp: "~22k/hr", desc: "Best Marks of Grace rate in the game. Do this one until Graceful is complete." },
+      { level: 52, name: "Wilderness Agility Course (profit)", xp: "~50–60k/hr", desc: "~2.5M GP/hr after 60 laps. PKer risk in Wilderness. Bring minimal gear." },
+      { level: 60, name: "Seers' Village Rooftop", xp: "~55k/hr", desc: "Great mid-level XP with Kandarin Medium Diary (teleport to course start)." },
+      { level: 80, name: "Ardougne Rooftop Course", xp: "~60–80k/hr", desc: "Best late-game rooftop course. Marks of Grace still drop here." },
+      { level: 85, name: "Hallowed Sepulchre", xp: "~80k/hr", desc: "Hardest Agility content — puzzle-based obstacle course. Great XP and unique rewards including Dark Graceful." },
+    ]
+  },
+  {
+    name: "Thieving",
+    icon: "🗝️",
+    category: "support",
+    accent: "support",
+    maxXp: "~400k XP/hr",
+    tags: ["profit","fast"],
+    tip: "Blackjacking at level 45+ is the fastest early-to-mid XP. Pickpocketing Elves at 85 (post Song of the Elves) is the best profit at ~4M GP/hr. Pyramid Plunder at 91 is highly AFK. Rogue's Outfit doubles pickpocket coin rewards.",
+    required: ["Rogue's Outfit (doubles coin pickpocket)","Dodgy Necklace (prevents stun)","Ardougne Cloak (bonus pickpocket chance)","Gloves of Silence (optional)"],
+    methods: [
+      { level: 1, name: "Men/Women → Farmers → Warriors", xp: "~10–20k/hr", desc: "Pickpocket NPCs in sequence. Always wear Rogue's Outfit once obtained." },
+      { level: 45, name: "Blackjacking (Bandits)", xp: "~200k/hr", desc: "Lure a Bandit into a building, knock them out, pickpocket twice. Fast XP but click-intensive." },
+      { level: 55, name: "Master Farmers", xp: "~80k/hr", desc: "Great for Ironmen — steal seeds. Requires Ardougne Cloak for best success rate." },
+      { level: 65, name: "Knights of Ardougne", xp: "~100–150k/hr", desc: "Good XP with Ardougne Medium Diary. Stackable target — always available." },
+      { level: 85, name: "Elves (Prifddinas)", xp: "~250k XP + 4M GP/hr", desc: "Best profit by far. Crystal Teleport Seeds are massive. Requires Song of the Elves." },
+      { level: 91, name: "Pyramid Plunder", xp: "~270k/hr", desc: "Very AFK. Open urns and sarcophagi in the Pyramid. Pharaoh's Sceptre drops here." },
+    ]
+  },
+  {
+    name: "Fletching",
+    icon: "🪶",
+    category: "artisan",
+    accent: "artisan",
+    maxXp: "~9M XP/hr",
+    tags: ["fast","expensive"],
+    tip: "Already covered above.",
+    required: [],
+    methods: [],
+    hidden: true
+  },
+
+  // ===================== MISC / SUPPORT =====================
+  {
+    name: "Runecrafting",
+    icon: "🔵",
+    category: "artisan",
+    hidden: true,
+    methods: []
+  },
+];
+
+// Remove hidden/duplicate entries
+const SKILLS_CLEAN = SKILLS.filter(s => !s.hidden);
+
+let currentFilter = 'all';
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function render() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+
+  let filtered = SKILLS_CLEAN.filter(s => {
+    const matchFilter =
+      currentFilter === 'all'      ? true :
+      currentFilter === 'profit'   ? s.tags?.includes('profit') :
+      currentFilter === 'afk'      ? s.tags?.includes('afk') :
+      currentFilter === 'f2p'      ? s.tags?.includes('f2p') :
+      s.category === currentFilter;
+
+    const searchStr = (s.name + ' ' + s.tip + ' ' + s.methods?.map(m => m.name + ' ' + m.desc).join(' ')).toLowerCase();
+    const matchSearch = !q || searchStr.includes(q);
+
+    return matchFilter && matchSearch;
+  });
+
+  document.getElementById('countDisplay').textContent = filtered.length;
+
+  const grid = document.getElementById('grid');
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="no-results">No skills found. Try a different search or filter.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((s, i) => {
+    const tagHtml = (s.tags || []).map(t => {
+      const map = {
+        profit: `<span class="tag tag-profit">💰 Profit</span>`,
+        afk: `<span class="tag tag-afk">😴 AFK</span>`,
+        fast: `<span class="tag tag-fast">⚡ Fast XP</span>`,
+        expensive: `<span class="tag tag-expensive">💸 Expensive</span>`,
+        f2p: `<span class="tag tag-f2p">🆓 F2P</span>`,
+        quest: `<span class="tag tag-quest">📜 Quest req.</span>`,
+        tick: `<span class="tag tag-tick">🖱 Tick Manip.</span>`,
+        slow: `<span class="tag tag-expensive">🐢 Slow</span>`,
+      };
+      return map[t] || '';
+    }).join('');
+
+    const methodsHtml = (s.methods || []).map(m => `
+      <div class="method-row">
+        <div class="method-top">
+          <span class="method-name">${m.name}</span>
+          <span class="method-level">Lv ${m.level}</span>
+          <span class="method-xp">${m.xp}</span>
+        </div>
+        <div class="method-desc">${m.desc}</div>
+      </div>
+    `).join('');
+
+    const reqHtml = s.required?.length ? `
+      <div>
+        <div class="methods-label" style="margin-bottom:6px;">Recommended Items</div>
+        <div class="req-list">
+          ${s.required.map(r => `<span class="req-item">${r}</span>`).join('')}
+        </div>
+      </div>
+    ` : '';
+
+    const categoryName = {
+      combat: '⚔ Combat Skill',
+      gathering: '⛏ Gathering Skill',
+      artisan: '🔨 Artisan Skill',
+      support: '✨ Support Skill',
+      misc: '🎲 Other'
+    }[s.category] || s.category;
+
+    return `
+      <div class="card" style="animation-delay:${Math.min(i*0.03,0.4)}s">
+        <div class="card-accent accent-${s.accent || s.category}"></div>
+        <div class="card-header">
+          <div class="card-icon">${s.icon}</div>
+          <div class="card-title-wrap">
+            <div class="card-name">${s.name}</div>
+            <div class="card-category">${categoryName}</div>
+          </div>
+          ${s.maxXp ? `<div class="max-xp-badge">Max ~${s.maxXp}</div>` : ''}
+        </div>
+        <div class="card-body">
+          ${tagHtml ? `<div class="tag-row">${tagHtml}</div>` : ''}
+          <div>
+            <div class="methods-label">Training Methods</div>
+            ${methodsHtml}
+          </div>
+          ${reqHtml}
+          <div class="tips-section">
+            <div class="tips-label">📜 Tips & Notes</div>
+            <div class="tips-text">${s.tip}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSRS Boss Gear Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0c0a07;
+    --bg2: #131009;
+    --surface: #1a1510;
+    --surface2: #221c12;
+    --border: #352c1a;
+    --border2: #4a3e22;
+    --gold: #c8a84b;
+    --gold2: #e8c96a;
+    --gold3: #f5e09a;
+    --text: #e8dfc8;
+    --text2: #b8a880;
+    --text3: #7a6e50;
+    --melee: #c0392b;
+    --melee2: #e05040;
+    --range: #27ae60;
+    --range2: #50d080;
+    --magic: #2980b9;
+    --magic2: #5ab0e8;
+    --prayer: #f39c12;
+    --prayer2: #f8c84a;
+    --red: #c0392b;
+    --green: #27ae60;
+    --blue: #2980b9;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 30% 10%, rgba(200,168,75,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 90%, rgba(192,57,43,0.05) 0%, transparent 40%),
+      url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c8a84b' fill-opacity='0.015'%3E%3Cpath d='M40 0L0 40 40 80 80 40z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 44px 20px 32px;
+    border-bottom: 1px solid var(--border2);
+    background: linear-gradient(180deg, rgba(200,168,75,0.07) 0%, transparent 100%);
+    position: relative;
+  }
+
+  .header-icon { font-size: 2.4rem; display: block; margin-bottom: 10px; }
+
+  .header-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--gold2);
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 40px rgba(200,168,75,0.25);
+  }
+
+  .header-sub {
+    font-style: italic;
+    color: var(--text3);
+    font-size: 1rem;
+    margin-top: 6px;
+    letter-spacing: 0.08em;
+  }
+
+  .header-rule {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 16px auto 0;
+  }
+
+  /* CONTROLS */
+  .controls {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .search-wrap { flex: 1; min-width: 200px; position: relative; }
+  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 0.85rem; }
+
+  .search-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    padding: 9px 12px 9px 32px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--text3); font-style: italic; }
+
+  .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .filter-btn {
+    padding: 8px 13px;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text2);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--bg); font-weight: 600; }
+
+  /* STATS BAR */
+  .stats-bar {
+    max-width: 1200px;
+    margin: 14px auto 0;
+    padding: 0 20px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .stat-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    color: var(--text3);
+  }
+  .stat-pill strong { color: var(--gold2); }
+
+  /* GRID */
+  .grid {
+    max-width: 1200px;
+    margin: 22px auto 50px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.2s;
+    animation: fadeUp 0.22s ease both;
+    position: relative;
+  }
+  .card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-accent {
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+  }
+  .card-accent.melee { background: linear-gradient(90deg, var(--melee), var(--melee2)); }
+  .card-accent.range { background: linear-gradient(90deg, var(--range), var(--range2)); }
+  .card-accent.magic { background: linear-gradient(90deg, var(--magic), var(--magic2)); }
+  .card-accent.multi { background: linear-gradient(90deg, var(--melee), var(--range), var(--magic)); }
+
+  .card-header {
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-boss-icon { font-size: 1.8rem; flex-shrink: 0; }
+
+  .card-title-wrap { flex: 1; }
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold2);
+    line-height: 1.2;
+  }
+  .card-location { font-size: 0.75rem; color: var(--text3); font-style: italic; margin-top: 2px; }
+
+  .diff-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+  .diff-easy { background: rgba(39,174,96,0.2); color: var(--range2); border: 1px solid rgba(39,174,96,0.3); }
+  .diff-medium { background: rgba(243,156,18,0.2); color: var(--prayer2); border: 1px solid rgba(243,156,18,0.3); }
+  .diff-hard { background: rgba(192,57,43,0.2); color: var(--melee2); border: 1px solid rgba(192,57,43,0.3); }
+  .diff-endgame { background: rgba(155,89,182,0.2); color: #c39bd3; border: 1px solid rgba(155,89,182,0.3); }
+
+  .card-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  /* STYLE TAGS */
+  .style-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .style-tag {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .tag-melee { background: rgba(192,57,43,0.2); color: var(--melee2); border: 1px solid rgba(192,57,43,0.25); }
+  .tag-range { background: rgba(39,174,96,0.2); color: var(--range2); border: 1px solid rgba(39,174,96,0.25); }
+  .tag-magic { background: rgba(41,128,185,0.2); color: var(--magic2); border: 1px solid rgba(41,128,185,0.25); }
+  .tag-prayer { background: rgba(243,156,18,0.2); color: var(--prayer2); border: 1px solid rgba(243,156,18,0.25); }
+
+  /* GEAR SECTIONS */
+  .gear-section { display: flex; flex-direction: column; gap: 6px; }
+
+  .gear-label {
+    font-size: 0.62rem;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .gear-tier {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tier-header {
+    font-size: 0.65rem;
+    color: var(--text3);
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .gear-list { display: flex; flex-wrap: wrap; gap: 4px; }
+
+  .gear-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    color: var(--text2);
+    white-space: nowrap;
+  }
+  .gear-item.bis { border-color: var(--gold); color: var(--gold3); }
+  .gear-item.special { border-color: var(--melee); color: var(--melee2); }
+
+  /* TIPS */
+  .tips-section { background: rgba(200,168,75,0.05); border: 1px solid rgba(200,168,75,0.12); border-radius: 4px; padding: 10px 12px; }
+  .tips-label { font-size: 0.62rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+  .tips-text { font-size: 0.78rem; color: var(--text2); line-height: 1.55; font-style: italic; }
+
+  /* PRAYER ROW */
+  .info-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .info-chip {
+    font-size: 0.72rem;
+    padding: 3px 9px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text2);
+  }
+  .info-chip span { color: var(--gold2); font-weight: 600; }
+
+  .no-results {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 60px;
+    color: var(--text3);
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-icon">⚔️</span>
+  <div class="header-title">OSRS Boss Gear Guide</div>
+  <div class="header-sub">Old School RuneScape · Recommended setups for bosses & popular PvM activities</div>
+  <div class="header-rule"></div>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" placeholder="Search boss, gear, or location..." oninput="render()">
+  </div>
+  <div class="filter-group" id="filterGroup">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('easy',this)">🟢 Beginner</button>
+    <button class="filter-btn" onclick="setFilter('medium',this)">🟡 Mid-Game</button>
+    <button class="filter-btn" onclick="setFilter('hard',this)">🔴 Hard</button>
+    <button class="filter-btn" onclick="setFilter('endgame',this)">💀 Endgame</button>
+    <button class="filter-btn" onclick="setFilter('melee',this)">⚔ Melee</button>
+    <button class="filter-btn" onclick="setFilter('range',this)">🏹 Ranged</button>
+    <button class="filter-btn" onclick="setFilter('magic',this)">🔮 Magic</button>
+    <button class="filter-btn" onclick="setFilter('money',this)">💰 Money</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-pill">Showing <strong id="countDisplay">0</strong> bosses / activities</div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const BOSSES = [
+  // ===================== BEGINNER =====================
+  {
+    name: "Giant Mole",
+    icon: "🦔",
+    location: "Falador Mole Lair",
+    difficulty: "easy",
+    styles: ["melee","range"],
+    moneyMaker: false,
+    accentStyle: "melee",
+    combatReq: "60+ Melee",
+    prayerRec: "Protect from Melee",
+    tips: "Bring a spade and a light source. Use a falconer's glove or orb to track her when she burrows. Cannon is great here. She burrows frequently so stay mobile.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Rune Scimitar / Dragon Dagger","Fighter Torso / Rune Platebody","Rune Platelegs","Helm of Neitiznot","Amulet of Glory","Barrows Gloves","Dragon Boots","Berserker Ring"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Abyssal Whip","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Fury","Barrows Gloves","Dragon Boots","Berserker Ring (i)"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Dagger (p++)","BGS"] }
+    }
+  },
+  {
+    name: "Barrows",
+    icon: "⚰️",
+    location: "Barrows, Morytania",
+    difficulty: "easy",
+    styles: ["magic","range"],
+    moneyMaker: false,
+    accentStyle: "multi",
+    combatReq: "70+ Magic/Range",
+    prayerRec: "Protect from relevant brother",
+    tips: "Use Iban's Blast or Trident on the brothers. Salve Amulet (e) gives a massive bonus as they are undead. Complete tunnels efficiently by doing them in a set order. Bring ~15 prayer potions.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Iban's Staff / Trident of the Seas","Ahrim's Robes / Mystic Robes","Amulet of the Damned","Occult Necklace","God Cape (i)","Barrows Gloves","Eternal Boots"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Trident of the Swamp","Ahrim's Robes","Occult Necklace","Imbued God Cape","Barrows Gloves","Eternal Boots","Salve Amulet (e)"]
+      },
+      special: { label: "Special Attack", items: ["N/A"] }
+    }
+  },
+  {
+    name: "King Black Dragon",
+    icon: "🐉",
+    location: "Wilderness, KBD Lair",
+    difficulty: "easy",
+    styles: ["range","melee"],
+    moneyMaker: false,
+    accentStyle: "range",
+    combatReq: "60+ Ranged",
+    prayerRec: "Protect from Magic",
+    tips: "MUST bring Anti-dragon Shield or Antifire Potion. He uses dragonfire, melee and magic. Salve Amulet (ei) is huge. Beware PKers in wilderness. Ranging is safest.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Rune Crossbow + Broad/Adamant Bolts","Anti-dragon Shield","Void Range / D'hide","Salve Amulet (ei)","Ava's Accumulator","Barrows Gloves"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Dragon Hunter Crossbow + Ruby Bolts (e)","Anti-dragon Shield / Twisted Buckler","Armadyl Armour","Salve Amulet (ei)","Ava's Assembler","Zaryte Vambraces","Pegasian Boots"]
+      },
+      special: { label: "Special Attack", items: ["Zaryte Crossbow"] }
+    }
+  },
+  {
+    name: "Dagannoth Kings",
+    icon: "🦈",
+    location: "Waterbirth Island Dungeon",
+    difficulty: "easy",
+    styles: ["melee","range","magic"],
+    moneyMaker: false,
+    accentStyle: "multi",
+    combatReq: "70+ all combat",
+    prayerRec: "Switch per king: Prime=Mage, Rex=Melee, Supreme=Range",
+    tips: "Rex is melee only and can be safespotted. Prime and Supreme require style switching. Bring all 3 combat setups. Berserker, Archers, and Seers rings drop here.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Whip (Rex)","Trident of Seas (Prime)","Rune Crossbow (Supreme)","Guthan's for healing","Amulet of Glory"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Abyssal Tentacle (Rex)","Trident of Swamp (Prime)","Armadyl Crossbow (Supreme)","Armadyl Armour","Ancestral Robes","Bandos Armour"]
+      },
+      special: { label: "Special Attack", items: ["BGS or DWH for Rex"] }
+    }
+  },
+
+  // ===================== MID-GAME =====================
+  {
+    name: "God Wars Dungeon — Bandos (GGD)",
+    icon: "🪖",
+    location: "God Wars Dungeon, NW",
+    difficulty: "medium",
+    styles: ["melee"],
+    moneyMaker: true,
+    accentStyle: "melee",
+    combatReq: "70+ Melee, 75 Str recommended",
+    prayerRec: "Protect from Melee, Piety",
+    tips: "Bring a Bandos/Zamorakian item for the dungeon. Graardor uses Melee and his minions range — Protect from Melee is most important. DWH or BGS specs on Graardor to lower his defence massively.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Abyssal Whip","Rune Platebody / Fighter Torso","Rune Platelegs","Helm of Neitiznot","Amulet of Fury","Barrows Gloves","Dragon Boots"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Abyssal Tentacle / Rapier","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots","Berserker Ring (i)","Avernic Defender"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Warhammer","Bandos Godsword"] }
+    }
+  },
+  {
+    name: "God Wars Dungeon — Armadyl (Kree'arra)",
+    icon: "🦅",
+    location: "God Wars Dungeon, SW",
+    difficulty: "medium",
+    styles: ["range"],
+    moneyMaker: true,
+    accentStyle: "range",
+    combatReq: "70+ Ranged, cannot use Melee",
+    prayerRec: "Protect from Ranged, Rigour",
+    tips: "Cannot use Melee at Kree'arra. Range only. Kree'arra has a high ranged attack that pushes you back — stand to the side of the room. Armadyl Crossbow and Ranged gear BiS. Bring an Armadyl item for access.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Rune Crossbow + Diamond Bolts (e)","Void Range / D'hide","Ava's Accumulator","Amulet of Glory","Barrows Gloves"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Armadyl Crossbow / Bowfa","Armadyl Armour / Crystal Armour","Ava's Assembler","Necklace of Anguish","Zaryte Vambraces","Pegasian Boots","Archers Ring (i)"]
+      },
+      special: { label: "Special Attack", items: ["Zaryte Crossbow"] }
+    }
+  },
+  {
+    name: "God Wars Dungeon — Saradomin (Zilyana)",
+    icon: "✨",
+    location: "God Wars Dungeon, SE",
+    difficulty: "medium",
+    styles: ["range","melee"],
+    moneyMaker: true,
+    accentStyle: "range",
+    combatReq: "75+ Ranged or Melee",
+    prayerRec: "Protect from Melee (she switches), Piety/Rigour",
+    tips: "Range from a distance to avoid her high melee damage. She teleports around the room. Saradomin Sword and Hilt drop here. Bring a Saradomin item for access. She hits very fast — prayer flicking helps a lot.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Rune Crossbow","Karil's Crossbow","Black D'hide","Amulet of Glory","Ava's Accumulator"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Blowpipe / Bowfa","Armadyl Armour / Crystal Armour","Ava's Assembler","Necklace of Anguish","Barrows Gloves","Pegasian Boots"]
+      },
+      special: { label: "Special Attack", items: ["Zaryte Crossbow"] }
+    }
+  },
+  {
+    name: "God Wars Dungeon — Zamorak (K'ril)",
+    icon: "💀",
+    location: "God Wars Dungeon, NE",
+    difficulty: "medium",
+    styles: ["melee","range"],
+    moneyMaker: true,
+    accentStyle: "melee",
+    combatReq: "70+ Melee",
+    prayerRec: "Protect from Melee, Piety — beware Prayer smash attack",
+    tips: "K'ril's prayer smash halves your prayer if it hits while you're praying melee — you can flick to avoid. Zamorakian Spear and Zamorak Hilt drop here. Bring a Zamorakian item. Arclight is exceptional here — K'ril is a demon.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Arclight (BiS here)","Fighter Torso","Rune Platelegs","Amulet of Fury","Barrows Gloves","Dragon Boots"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Arclight","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots","Berserker Ring (i)"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Warhammer","BGS — Arclight spec also applies debuff"] }
+    }
+  },
+  {
+    name: "Zulrah",
+    icon: "🐍",
+    location: "Zul-Andra (Regicide req.)",
+    difficulty: "medium",
+    styles: ["magic","range"],
+    moneyMaker: true,
+    accentStyle: "multi",
+    combatReq: "75+ Magic & Ranged",
+    prayerRec: "Protect from Magic/Ranged — switch per phase",
+    tips: "Gear switch between Magic and Range phases. Green phase = pray Range, use Magic. Blue phase = pray Magic, use Range. Learn the 4 rotations with a cheat sheet. Avg ~170k GP/kill. Anti-venom+ essential.",
+    gear: {
+      budget: {
+        label: "Budget Magic",
+        items: ["Trident of the Swamp","Ahrim's Robes","Occult Necklace","Imbued God Cape","Eternal Boots"]
+      },
+      recommended: {
+        label: "Recommended Magic (swap)",
+        items: ["Tumeken's Shadow / Sanguinesti Staff","Ancestral Robes","Occult Necklace","Tormented Bracelet","Imbued God Cape","Magus Ring"]
+      },
+      recommended2: {
+        label: "Recommended Range (swap)",
+        items: ["Twisted Bow / Bowfa","Masori / Crystal Armour","Necklace of Anguish","Ava's Assembler","Zaryte Vambraces","Pegasian Boots"]
+      }
+    }
+  },
+  {
+    name: "Vorkath",
+    icon: "🔵",
+    location: "Ungael (Dragon Slayer II req.)",
+    difficulty: "medium",
+    styles: ["range"],
+    moneyMaker: true,
+    accentStyle: "range",
+    combatReq: "70+ Ranged, Dragon Slayer II",
+    prayerRec: "Protect from Magic (mostly), Rigour",
+    tips: "Dragon Hunter Crossbow gives 30% accuracy+damage bonus vs Vorkath. Salve Amulet (ei) is huge. During acid phase do the Woox Walk or keep moving. Kill Zombified Spawn immediately with Crumble Undead. Switch Ruby to Diamond bolts at ~35% HP.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Dragon Hunter Crossbow + Broad Bolts","Anti-dragon Shield","Void Range / D'hide","Salve Amulet (ei)","Ava's Assembler","Extended Super Antifire"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Dragon Hunter Crossbow + Ruby/Diamond Bolts (e)","Armadyl Armour","Salve Amulet (ei)","Ava's Assembler","Zaryte Vambraces","Pegasian Boots","Archers Ring (i)","Twisted Buckler"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Warhammer / BGS (for defence spec)","Dragon Claws (finishing)"] }
+    }
+  },
+  {
+    name: "Cerberus",
+    icon: "🐕",
+    location: "Cerberus Lair (Slayer req. 91)",
+    difficulty: "medium",
+    styles: ["melee","range"],
+    moneyMaker: true,
+    accentStyle: "melee",
+    combatReq: "91 Slayer required",
+    prayerRec: "Protect from Melee, Piety — flick ghosts' prayers",
+    tips: "When 3 spectral ghosts appear, flick to their matching prayer (Mage, Range, Melee) one at a time. She uses lava pools — move out immediately. Primordial, Pegasian, Eternal boots drop here. Slash weapons work well.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Abyssal Whip","Fighter Torso","Rune Platelegs","Amulet of Fury","Barrows Gloves","Dragon Boots"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Soulreaper Axe / Scythe of Vitur / Tentacle Whip","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots","Berserker Ring (i)"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Warhammer","Soulreaper Axe (stacks)"] }
+    }
+  },
+  {
+    name: "Kraken",
+    icon: "🦑",
+    location: "Kraken Cove (Slayer req. 87)",
+    difficulty: "medium",
+    styles: ["magic"],
+    moneyMaker: true,
+    accentStyle: "magic",
+    combatReq: "87 Slayer required",
+    prayerRec: "None needed / Augury",
+    tips: "Magic only — Ranged and Melee are not effective. Wake the 4 small whirlpools before attacking the Kraken. Trident of the Swamp is ideal. Very AFK-able. Drops Kraken Tentacle and Trident of the Seas.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Trident of the Seas","Void Mage / Mystic Robes","Occult Necklace","God Cape (i)","Barrows Gloves"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Trident of the Swamp","Ancestral Robes / Ahrim's Robes","Occult Necklace","Imbued God Cape","Tormented Bracelet","Eternal Boots","Magus Ring"]
+      },
+      special: { label: "Special Attack", items: ["N/A"] }
+    }
+  },
+  {
+    name: "Grotesque Guardians",
+    icon: "🗿",
+    location: "Slayer Tower Rooftop (Slayer req. 75)",
+    difficulty: "medium",
+    styles: ["melee","range"],
+    moneyMaker: false,
+    accentStyle: "multi",
+    combatReq: "75 Slayer + Brittle Key",
+    prayerRec: "Protect from Melee (Dusk), Protect from Ranged (Dawn)",
+    tips: "Two phases — Dusk (melee) and Dawn (ranged). Switch protection prayers accordingly. Kill Dawn quickly in P2 to prevent healing. Gargoyle Smasher perk from the boss helps. Granite Dust and Granite Maul upgrade drop here.",
+    gear: {
+      budget: {
+        label: "Budget",
+        items: ["Abyssal Whip (Dusk)","Rune Crossbow (Dawn)","Fighter Torso","Black D'hide","Barrows Gloves"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Tentacle Whip / Fang (Dusk)","Blowpipe / Bowfa (Dawn)","Bandos Chestplate & Tassets","Armadyl Armour","Amulet of Torture / Anguish"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Claws / BGS"] }
+    }
+  },
+
+  // ===================== HARD =====================
+  {
+    name: "Corporeal Beast",
+    icon: "👻",
+    location: "Wilderness (safe zone entry)",
+    difficulty: "hard",
+    styles: ["melee"],
+    moneyMaker: false,
+    accentStyle: "melee",
+    combatReq: "80+ Melee, ideally team",
+    prayerRec: "Protect from Melee, Piety",
+    tips: "Halves damage from non-spear weapons — Zamorakian Spear or Hasta is strongly recommended. Corp heals when you use non-stab. Team bosses massively reduce difficulty. Spirit Shield pieces drop here.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Zamorakian Spear (REQUIRED)","Bandos / Rune Armour","Amulet of Fury","Barrows Gloves","Berserker Ring"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Zamorakian Hasta","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Warhammer","BGS (big spec in team)"] }
+    }
+  },
+  {
+    name: "Alchemical Hydra",
+    icon: "🐲",
+    location: "Karuulm Slayer Dungeon (Slayer req. 95)",
+    difficulty: "hard",
+    styles: ["range"],
+    moneyMaker: true,
+    accentStyle: "range",
+    combatReq: "95 Slayer required",
+    prayerRec: "Protect from Ranged/Magic — switch mid-fight",
+    tips: "Move off the chemical pools when placed under you — they deal 8+ damage per tick. Switch prayers when Hydra changes colour. Dragon Hunter Crossbow excels here for the dragon bonus. Hydra Claw drops here (Brimstone Ring component).",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Dragon Hunter Crossbow + Diamond Bolts (e)","Armadyl Armour","Amulet of Glory / Anguish","Ava's Assembler","Barrows Gloves","Pegasian Boots"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Dragon Hunter Crossbow + Ruby/Diamond Bolts (e)","Masori Armour (f)","Necklace of Anguish","Ava's Assembler / Dizana's Quiver","Zaryte Vambraces","Pegasian Boots","Archers Ring (i)"]
+      },
+      special: { label: "Special Attack", items: ["Zaryte Crossbow"] }
+    }
+  },
+  {
+    name: "Nightmare of Ashihama",
+    icon: "🌙",
+    location: "Sisterhood Sanctuary",
+    difficulty: "hard",
+    styles: ["melee","magic"],
+    moneyMaker: false,
+    accentStyle: "melee",
+    combatReq: "85+ combat, team recommended",
+    prayerRec: "Protect from Melee, Piety",
+    tips: "Nightmare is weak to CRUSH. Inquisitor's Mace or Inquisitor's set give a full crush set bonus. Avoid the black puddles and properly handle the parasites mechanic. Nightmare drops Inquisitor's Armour and Nightmare Staff.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Zamorakian Hasta / Abyssal Bludgeon","Bandos Armour","Amulet of Fury","Barrows Gloves","Berserker Ring (i)"]
+      },
+      recommended: {
+        label: "Recommended (Crush focused)",
+        items: ["Inquisitor's Mace","Inquisitor's Armour (full set bonus)","Amulet of Torture","Ferocious Gloves","Primordial Boots","Berserker Ring (i)","Avernic Defender"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Warhammer","BGS"] }
+    }
+  },
+  {
+    name: "Duke Sucellus",
+    icon: "🧊",
+    location: "Glacial Subpath (Whisperer region)",
+    difficulty: "hard",
+    styles: ["melee","magic"],
+    moneyMaker: true,
+    accentStyle: "melee",
+    combatReq: "85+ combat",
+    prayerRec: "Protect from Magic, Piety",
+    tips: "One of the Desert Treasure II bosses. Weak to stab. Osmumten's Fang is excellent here. Avoid the ice pools and handle the sleep mechanic by drinking a potion. Drops Ancient sceptre upgrades.",
+    gear: {
+      budget: {
+        label: "Budget",
+        items: ["Osmumten's Fang","Bandos Armour","Amulet of Fury","Barrows Gloves","Dragon Boots"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Osmumten's Fang","Bandos Chestplate & Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots","Ultor Ring"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Warhammer","BGS"] }
+    }
+  },
+  {
+    name: "The Whisperer",
+    icon: "👁️",
+    location: "Lassar Undercity (Desert Treasure II)",
+    difficulty: "hard",
+    styles: ["magic"],
+    moneyMaker: true,
+    accentStyle: "magic",
+    combatReq: "85+ Magic",
+    prayerRec: "Protect from Missiles, Augury",
+    tips: "Magic boss — Tumeken's Shadow is best in slot by far. Navigate the mind realm mechanics by collecting the orbs and avoiding shadows. Drops Shadow Quartz and the Siren's Staff.",
+    gear: {
+      budget: {
+        label: "Budget",
+        items: ["Trident of the Swamp","Ahrim's Robes","Occult Necklace","Imbued God Cape","Eternal Boots"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Tumeken's Shadow","Ancestral Robes","Occult Necklace","Tormented Bracelet","Imbued God Cape","Eternal Boots","Magus Ring"]
+      },
+      special: { label: "Special Attack", items: ["N/A"] }
+    }
+  },
+
+  // ===================== ENDGAME =====================
+  {
+    name: "TzTok-Jad (Fight Caves)",
+    icon: "🔥",
+    location: "TzHaar Fight Cave",
+    difficulty: "endgame",
+    styles: ["range"],
+    moneyMaker: false,
+    accentStyle: "range",
+    combatReq: "70+ Ranged, 43 Prayer (overhead)",
+    prayerRec: "Switch: Protect from Magic (when he rocks back) / Ranged (when he slams feet) — CRITICAL",
+    tips: "Watch Jad's animation to switch prayers. His healers appear at ~half HP — attack them once each to stop healing. This is purely about prayer switches. Fire Cape reward. Use chinchompas to speed through waves.",
+    gear: {
+      budget: {
+        label: "Budget / Entry",
+        items: ["Rune Crossbow + Diamond Bolts (e)","Black D'hide","Ava's Accumulator","Amulet of Glory","Barrows Gloves","Ranger Boots"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Blowpipe (waves) + Armadyl Crossbow (Jad)","Armadyl Armour / Void Range","Ava's Assembler","Necklace of Anguish","Zaryte Vambraces","Pegasian Boots"]
+      },
+      special: { label: "Special Attack", items: ["Armadyl Crossbow spec for Jad healers"] }
+    }
+  },
+  {
+    name: "Chambers of Xeric (CoX)",
+    icon: "🏛️",
+    location: "Mount Quidamortem",
+    difficulty: "endgame",
+    styles: ["melee","range","magic"],
+    moneyMaker: true,
+    accentStyle: "multi",
+    combatReq: "90+ all combat recommended",
+    prayerRec: "Piety, Rigour, Augury — switch per room",
+    tips: "Bring all 3 combat styles. Twisted Bow excels on Olm. Osmumten's Fang is versatile across most rooms. The big drops are Twisted Bow, Arcane, Twisted Buckler, Dragon Hunter Crossbow. BGS is highly recommended for Olm defence reduction.",
+    gear: {
+      budget: {
+        label: "Entry Minimum",
+        items: ["Abyssal Tentacle / Rapier","Blowpipe","Trident of the Swamp","Bandos Armour","Armadyl Armour","Ancestral Robes","Barrows Gloves"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Scythe of Vitur / Osmumten's Fang (Melee)","Twisted Bow / Bowfa (Ranged)","Tumeken's Shadow / Sang Staff (Magic)","Masori Armour (f)","Ancestral Robes","Torva Armour"]
+      },
+      special: { label: "Special Attack", items: ["Bandos Godsword (Olm defence)","Dragon Warhammer"] }
+    }
+  },
+  {
+    name: "Theatre of Blood (ToB)",
+    icon: "🩸",
+    location: "Ver Sinhaza",
+    difficulty: "endgame",
+    styles: ["melee","range","magic"],
+    moneyMaker: true,
+    accentStyle: "multi",
+    combatReq: "90+ all combat, 90 Prayer recommended",
+    prayerRec: "All overhead prayers, Piety/Rigour/Augury",
+    tips: "Most bosses require specific mechanics knowledge. Maiden: step away from blood spawns. Bloat: walk under its feet when it stops. Sotetseg: dodge maze correctly. Xarpus: watch poison exhumeds. Verzik: handle web/crabs. Scythe of Vitur is King here.",
+    gear: {
+      budget: {
+        label: "Entry Minimum",
+        items: ["Abyssal Tentacle","Blowpipe","Trident of Swamp","Bandos Armour","Armadyl Armour","Ancestral / Ahrim's","Barrows Gloves"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Scythe of Vitur (main DPS)","Twisted Bow / Bowfa (Ranged)","Sang Staff / Trident (Utility Magic)","Torva Armour","Masori Armour (f)","Ancestral Robes","Ferocious Gloves"]
+      },
+      special: { label: "Special Attack", items: ["BGS / DWH for defence reduction","Dragon Claws / Voidwaker for burst"] }
+    }
+  },
+  {
+    name: "Tombs of Amascut (ToA)",
+    icon: "⚱️",
+    location: "Ruins of Uzer",
+    difficulty: "endgame",
+    styles: ["melee","range","magic"],
+    moneyMaker: true,
+    accentStyle: "multi",
+    combatReq: "90+ all combat, invocation dependent",
+    prayerRec: "All overheads + Piety/Rigour/Augury",
+    tips: "Difficulty scales with Invocations (raid level). Start at 0 and work up. Each room boss has unique mechanics. Fang is excellent for Kephri and Baba. Tumeken's Shadow from this raid. Great Money at higher invocations.",
+    gear: {
+      budget: {
+        label: "Entry (low invocations)",
+        items: ["Osmumten's Fang","Blowpipe","Trident of Swamp","Bandos Armour","Armadyl Armour","Ahrim's Robes"]
+      },
+      recommended: {
+        label: "Recommended (mid-high invocations)",
+        items: ["Osmumten's Fang / Scythe","Twisted Bow","Tumeken's Shadow","Torva Armour","Masori Armour (f)","Ancestral Robes","Ferocious / Zaryte Vambraces"]
+      },
+      special: { label: "Special Attack", items: ["BGS / DWH","Voidwaker","Dragon Claws"] }
+    }
+  },
+  {
+    name: "Nex",
+    icon: "⚡",
+    location: "Ancient Prison, GWD",
+    difficulty: "endgame",
+    styles: ["range"],
+    moneyMaker: true,
+    accentStyle: "range",
+    combatReq: "90+ Ranged, team recommended",
+    prayerRec: "Protect from Missiles/Magic — switch per phase. Piety/Rigour",
+    tips: "Team boss ideally. Five phases — Smoke, Shadow, Blood, Ice, Zaros. Blood phase: DON'T attack her when she heals or she gains HP. Ice phase: run from the ice prison. Torva, Zaryte Crossbow, and Ancient rings drop here.",
+    gear: {
+      budget: {
+        label: "Budget",
+        items: ["Armadyl Crossbow + Diamond Bolts (e)","Armadyl Armour","Ava's Assembler","Necklace of Anguish","Barrows Gloves","Pegasian Boots"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Twisted Bow / Zaryte Crossbow","Masori Armour (f)","Necklace of Anguish","Ava's Assembler / Dizana's Quiver","Zaryte Vambraces","Pegasian Boots","Archers Ring (i)"]
+      },
+      special: { label: "Special Attack", items: ["Zaryte Crossbow (ice phase escape / burst)"] }
+    }
+  },
+  {
+    name: "Slayer (General)",
+    icon: "💀",
+    location: "Various Locations",
+    difficulty: "easy",
+    styles: ["melee","range","magic"],
+    moneyMaker: false,
+    accentStyle: "multi",
+    combatReq: "Varies by task",
+    prayerRec: "Task dependent",
+    tips: "Use Slayer Helm (imbued) on task for +15% accuracy and damage. Blowpipe is great for many tasks. Cannon speeds up kills. Use appropriate style for each monster's weakness. Burst/Barrage for grouped tasks like Abyssal Demons or Dust Devils.",
+    gear: {
+      budget: {
+        label: "Budget",
+        items: ["Slayer Helm (imbued)","Abyssal Whip / Rune Crossbow","Fighter Torso","Black D'hide","Barrows Gloves"]
+      },
+      recommended: {
+        label: "Recommended",
+        items: ["Slayer Helm (imbued)","Tentacle Whip / Blowpipe / Trident","Bandos / Armadyl / Ancestral","Ferocious / Zaryte Vambraces","Primordial / Pegasian / Eternal Boots"]
+      },
+      special: { label: "Special Attack", items: ["Dragon Dagger (budget burst)","Dragon Claws (high DPS)"] }
+    }
+  },
+  {
+    name: "Inferno (TzKal-Zuk)",
+    icon: "🌋",
+    location: "TzHaar Fight Inferno",
+    difficulty: "endgame",
+    styles: ["range","magic"],
+    moneyMaker: false,
+    accentStyle: "multi",
+    combatReq: "90+ Ranged & Magic, Fire Cape required",
+    prayerRec: "Constant prayer switching — pray against highest threat each tick",
+    tips: "The hardest solo PvM in OSRS. 69 waves. Prayer switch on the attack animation, not when the projectile lands. Use chins or barrage for wave management. Zuk himself has a Max hit of 251. Infernal Cape is the reward. Practice extensively before attempting.",
+    gear: {
+      budget: {
+        label: "Near-Minimum",
+        items: ["Twisted Bow / Bowfa (Zuk)","Blowpipe (waves)","Trident of Swamp (magic waves)","Armadyl Armour","Ancestral Robes","Ava's Assembler","Barrows Gloves"]
+      },
+      recommended: {
+        label: "Recommended (BiS)",
+        items: ["Twisted Bow (Zuk)","Blowpipe + Dragon Darts (waves)","Tumeken's Shadow (magic waves)","Masori Armour (f)","Ancestral Robes","Zaryte Vambraces","Pegasian / Eternal Boots"]
+      },
+      special: { label: "Special Attack", items: ["Zaryte Crossbow (healers)"] }
+    }
+  }
+];
+
+let currentFilter = 'all';
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function render() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  let filtered = BOSSES.filter(b => {
+    const matchFilter =
+      currentFilter === 'all' ? true :
+      currentFilter === 'melee' ? b.styles.includes('melee') :
+      currentFilter === 'range' ? b.styles.includes('range') :
+      currentFilter === 'magic' ? b.styles.includes('magic') :
+      currentFilter === 'money' ? b.moneyMaker :
+      b.difficulty === currentFilter;
+
+    const searchStr = (b.name + b.location + b.tips + (b.gear.budget?.items?.join(' ')||'') + (b.gear.recommended?.items?.join(' ')||'')).toLowerCase();
+    const matchSearch = !q || searchStr.includes(q);
+    return matchFilter && matchSearch;
+  });
+
+  document.getElementById('countDisplay').textContent = filtered.length;
+
+  const grid = document.getElementById('grid');
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="no-results">No results found. Try a different search or filter.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((b, i) => {
+    const diffLabel = { easy:'Beginner', medium:'Mid-Game', hard:'Hard', endgame:'Endgame' }[b.difficulty];
+    const diffClass = b.difficulty;
+
+    const g = b.gear;
+
+    let gearHtml = `<div class="gear-section"><div class="gear-label">Gear Setup</div><div class="gear-tier">`;
+
+    if (g.budget) {
+      gearHtml += `<div class="tier-header">💰 ${g.budget.label}</div><div class="gear-list">`;
+      gearHtml += g.budget.items.map(item => `<span class="gear-item">${item}</span>`).join('');
+      gearHtml += `</div>`;
+    }
+
+    if (g.recommended) {
+      gearHtml += `<div class="tier-header">⭐ ${g.recommended.label}</div><div class="gear-list">`;
+      gearHtml += g.recommended.items.map(item => `<span class="gear-item bis">${item}</span>`).join('');
+      gearHtml += `</div>`;
+    }
+
+    if (g.recommended2) {
+      gearHtml += `<div class="tier-header">⭐ ${g.recommended2.label}</div><div class="gear-list">`;
+      gearHtml += g.recommended2.items.map(item => `<span class="gear-item bis">${item}</span>`).join('');
+      gearHtml += `</div>`;
+    }
+
+    if (g.special && g.special.items[0] !== 'N/A') {
+      gearHtml += `<div class="tier-header">💥 ${g.special.label}</div><div class="gear-list">`;
+      gearHtml += g.special.items.map(item => `<span class="gear-item special">${item}</span>`).join('');
+      gearHtml += `</div>`;
+    }
+
+    gearHtml += `</div></div>`;
+
+    return `
+      <div class="card" style="animation-delay:${Math.min(i*0.03,0.4)}s">
+        <div class="card-accent ${b.accentStyle}"></div>
+        <div class="card-header">
+          <div class="card-boss-icon">${b.icon}</div>
+          <div class="card-title-wrap">
+            <div class="card-name">${b.name}</div>
+            <div class="card-location">📍 ${b.location}</div>
+          </div>
+          <div class="diff-badge diff-${diffClass}">${diffLabel}</div>
+        </div>
+        <div class="card-body">
+          <div class="style-row">
+            ${b.styles.includes('melee') ? `<span class="style-tag tag-melee">⚔ Melee</span>` : ''}
+            ${b.styles.includes('range') ? `<span class="style-tag tag-range">🏹 Range</span>` : ''}
+            ${b.styles.includes('magic') ? `<span class="style-tag tag-magic">🔮 Magic</span>` : ''}
+            ${b.moneyMaker ? `<span class="style-tag tag-prayer">💰 Money Maker</span>` : ''}
+          </div>
+          <div class="info-row">
+            <div class="info-chip">Req: <span>${b.combatReq}</span></div>
+          </div>
+          <div class="info-chip" style="font-size:0.72rem; padding:4px 10px; border-color: rgba(243,156,18,0.3); color:#f8c84a;">🙏 ${b.prayerRec}</div>
+          ${gearHtml}
+          <div class="tips-section">
+            <div class="tips-label">📜 Tips & Notes</div>
+            <div class="tips-text">${b.tips}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+render();
+</script>
+</body>
+</html>

@@ -3,830 +3,856 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OSRS Complete Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<title>Cosmic Guides — Game Guides & References</title>
+<meta name="description" content="Cosmic Guides — your community-built reference for Old School RuneScape and beyond. Skilling guides, boss gear setups, herblore recipes and more.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #0c0a07;
-  --bg2: #131009;
-  --surface: #1a1510;
-  --surface2: #221c12;
-  --border: #352c1a;
-  --border2: #4a3e22;
+  --bg: #07060a;
+  --bg2: #0d0b12;
+  --surface: #12101a;
+  --surface2: #1a1726;
+  --border: #2a2540;
+  --border2: #3d3660;
   --gold: #c8a84b;
   --gold2: #e8c96a;
   --gold3: #f5e09a;
-  --text: #e8dfc8;
-  --text2: #b8a880;
-  --text3: #7a6e50;
+  --text: #e8e0f0;
+  --text2: #b0a8c8;
+  --text3: #6a6085;
+  --accent: #7c5cbf;
+  --accent2: #9d7de0;
+  --accent3: #c4a8ff;
   --green: #27ae60;
-  --green2: #50d080;
-  --green3: #8fd480;
-  --blue: #2980b9;
-  --blue2: #5ab0e8;
-  --orange: #e67e22;
-  --orange2: #f0a050;
+  --green2: #4ad880;
   --red: #c0392b;
   --red2: #e05040;
-  --purple: #8e44ad;
-  --purple2: #b070d0;
-  --teal: #1abc9c;
-  --teal2: #4ae0b8;
-  --prayer: #f39c12;
-  --prayer2: #f8c84a;
-  --melee: #c0392b;
-  --melee2: #e05040;
-  --range: #27ae60;
-  --range2: #50d080;
-  --magic: #2980b9;
-  --magic2: #5ab0e8;
-  --herb-color: #5a8c4a;
-  --secondary-color: #7a5a3a;
+  --osrs-green: #3a7a3a;
+  --osrs-brown: #8b6914;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Crimson Pro', Georgia, serif;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── STAR FIELD BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
   background-image:
-    radial-gradient(ellipse at 20% 10%, rgba(200,168,75,0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 90%, rgba(39,174,96,0.04) 0%, transparent 40%),
-    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c8a84b' fill-opacity='0.015'%3E%3Cpath d='M40 0L0 40 40 80 80 40z'/%3E%3C/g%3E%3C/svg%3E");
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 75%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 35%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(ellipse at 30% 20%, rgba(124,92,191,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(200,168,75,0.07) 0%, transparent 40%),
+    radial-gradient(ellipse at 60% 50%, rgba(39,174,96,0.04) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* ── HEADER ── */
-.site-header {
-  text-align: center;
-  padding: 36px 20px 0;
-  background: linear-gradient(180deg, rgba(200,168,75,0.08) 0%, transparent 100%);
-  border-bottom: 1px solid var(--border2);
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7,6,10,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
 }
 
-.site-title {
+.nav-logo {
   font-family: 'Cinzel', serif;
-  font-size: 2.6rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold2);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-logo span { color: var(--accent3); }
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 6px 14px;
+  color: var(--text3);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.15s;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.nav-link:hover { color: var(--gold2); background: rgba(200,168,75,0.06); }
+.nav-link.active { color: var(--gold2); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 90px 20px 70px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(124,92,191,0.08) 0%, transparent 70%);
+}
+
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  color: var(--accent2);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent2));
+}
+.hero-eyebrow::after { background: linear-gradient(90deg, var(--accent2), transparent); }
+
+.hero-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--gold2);
+  text-shadow: 0 0 60px rgba(200,168,75,0.2), 0 0 120px rgba(124,92,191,0.15);
+  margin-bottom: 6px;
+}
+
+.hero-title-sub {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
+  color: var(--accent3);
+  letter-spacing: 0.3em;
+  margin-bottom: 22px;
+  opacity: 0.8;
+}
+
+.hero-desc {
+  max-width: 600px;
+  margin: 0 auto 36px;
+  font-size: 1.05rem;
+  color: var(--text2);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.hero-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.hero-rule::before, .hero-rule::after {
+  content: '';
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.hero-rule::after { background: linear-gradient(90deg, var(--gold), transparent); }
+.hero-rule-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.btn-primary {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--osrs-brown) 100%);
+  color: #0a0800;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,168,75,0.3); }
+
+.btn-secondary {
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--text2);
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold2); transform: translateY(-2px); }
+
+/* ── SECTION WRAPPER ── */
+.section {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+.section-header {
+  margin-bottom: 36px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--gold2);
   letter-spacing: 0.05em;
-  text-shadow: 0 0 40px rgba(200,168,75,0.25);
 }
+.section-title span { color: var(--accent3); }
 
-.site-sub {
-  font-style: italic;
+.section-sub {
+  font-size: 0.85rem;
   color: var(--text3);
-  font-size: 0.95rem;
-  margin-top: 5px;
-  letter-spacing: 0.08em;
+  font-style: italic;
+  margin-top: 4px;
 }
 
-.site-rule {
-  width: 180px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  margin: 14px auto 0;
-}
-
-/* ── TABS ── */
-.tab-bar {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  margin-top: 22px;
+/* ── GAME TABS ── */
+.game-tabs {
+  position: relative;
+  z-index: 1;
+  background: var(--bg2);
   border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
 }
 
-.tab-btn {
-  padding: 14px 30px;
+.game-tabs-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.game-tabs-inner::-webkit-scrollbar { display: none; }
+
+.game-tab {
+  padding: 16px 24px;
   border: none;
-  background: transparent;
+  background: none;
   color: var(--text3);
   font-family: 'Cinzel', serif;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   cursor: pointer;
   transition: all 0.2s;
-  border-top: 2px solid transparent;
-  position: relative;
-  top: 1px;
-}
-
-.tab-btn:hover { color: var(--gold2); }
-
-.tab-btn.active {
-  color: var(--gold2);
-  border-top: 2px solid var(--gold);
-  background: rgba(200,168,75,0.05);
-}
-
-/* ── PANELS ── */
-.panel { display: none; }
-.panel.active { display: block; }
-
-/* ── SHARED CONTROLS ── */
-.controls {
-  max-width: 1200px;
-  margin: 22px auto 0;
-  padding: 0 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-
-.search-wrap { flex: 1; min-width: 200px; position: relative; }
-.search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 0.85rem; pointer-events: none; }
-
-.search-input {
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 4px;
-  color: var(--text);
-  font-family: 'Crimson Pro', serif;
-  font-size: 1rem;
-  padding: 9px 12px 9px 32px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.search-input:focus { border-color: var(--gold); }
-.search-input::placeholder { color: var(--text3); font-style: italic; }
-
-.filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
-
-.filter-btn {
-  padding: 7px 13px;
-  border: 1px solid var(--border2);
-  border-radius: 4px;
-  background: var(--surface);
-  color: var(--text2);
-  font-family: 'Crimson Pro', serif;
-  font-size: 0.88rem;
-  cursor: pointer;
-  transition: all 0.15s;
   white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  position: relative;
 }
-.filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-.filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--bg); font-weight: 600; }
+.game-tab:hover { color: var(--text2); }
+.game-tab.active { color: var(--gold2); border-bottom-color: var(--gold); }
 
-.sort-select {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 4px;
-  color: var(--text2);
+.game-tab-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.55rem;
+  padding: 1px 5px;
+  border-radius: 8px;
+  margin-left: 5px;
+  vertical-align: middle;
   font-family: 'Crimson Pro', serif;
-  font-size: 0.88rem;
-  padding: 8px 12px;
-  outline: none;
-  cursor: pointer;
+  font-style: normal;
 }
-.sort-select:focus { border-color: var(--gold); }
 
-/* ── STATS BAR ── */
-.stats-bar {
-  max-width: 1200px;
-  margin: 12px auto 0;
-  padding: 0 20px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.stat-pill {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 4px 12px;
-  font-size: 0.78rem;
+.coming-soon-badge {
+  background: var(--surface2);
   color: var(--text3);
+  border: 1px solid var(--border);
 }
-.stat-pill strong { color: var(--gold2); }
 
-/* ── GRID ── */
-.grid {
-  max-width: 1200px;
-  margin: 20px auto 50px;
-  padding: 0 20px;
+/* ── GAME PANELS ── */
+.game-panel { display: none; }
+.game-panel.active { display: block; }
+
+/* ── OSRS OVERVIEW CARDS ── */
+.overview-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 16px;
+  margin-bottom: 40px;
 }
 
-.card {
+.overview-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.2s;
-  animation: fadeUp 0.22s ease both;
+  animation: fadeUp 0.25s ease both;
+  text-decoration: none;
+  display: block;
+  color: inherit;
 }
-.card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.overview-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 13px 15px 11px;
-  border-bottom: 1px solid var(--border);
+.oc-accent { height: 3px; }
+.oc-accent-gold    { background: linear-gradient(90deg, var(--osrs-brown), var(--gold2)); }
+.oc-accent-green   { background: linear-gradient(90deg, #27ae60, #50d080); }
+.oc-accent-blue    { background: linear-gradient(90deg, #2980b9, #5ab0e8); }
+.oc-accent-red     { background: linear-gradient(90deg, #c0392b, #e05040); }
+.oc-accent-purple  { background: linear-gradient(90deg, var(--accent), var(--accent3)); }
+.oc-accent-teal    { background: linear-gradient(90deg, #1abc9c, #4ae0b8); }
+
+.oc-header {
+  padding: 16px 18px 12px;
   background: var(--bg2);
-  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 }
 
-.card-icon { font-size: 1.8rem; flex-shrink: 0; }
-.card-title-wrap { flex: 1; }
-.card-name {
-  font-family: 'Cinzel', serif;
-  font-size: 0.95rem;
+.oc-icon { font-size: 2rem; flex-shrink: 0; }
+.oc-title { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600; color: var(--gold2); }
+.oc-subtitle { font-size: 0.72rem; color: var(--text3); font-style: italic; margin-top: 2px; }
+
+.oc-body { padding: 14px 18px; }
+.oc-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
+
+.oc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.oc-tag {
+  font-size: 0.66rem;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid;
   font-weight: 600;
-  color: var(--gold2);
-  line-height: 1.2;
+  letter-spacing: 0.04em;
 }
-.card-sub { font-size: 0.72rem; color: var(--text3); font-style: italic; margin-top: 2px; }
-.card-body { padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; }
+.oc-tag-gold   { background: rgba(200,168,75,0.12); color: var(--gold2); border-color: rgba(200,168,75,0.25); }
+.oc-tag-green  { background: rgba(39,174,96,0.12);  color: #50d080;      border-color: rgba(39,174,96,0.25); }
+.oc-tag-blue   { background: rgba(41,128,185,0.12); color: #5ab0e8;      border-color: rgba(41,128,185,0.25); }
+.oc-tag-red    { background: rgba(192,57,43,0.12);  color: #e05040;      border-color: rgba(192,57,43,0.25); }
+.oc-tag-purple { background: rgba(124,92,191,0.12); color: var(--accent3); border-color: rgba(124,92,191,0.25); }
 
-.tips-section {
-  background: rgba(200,168,75,0.05);
-  border: 1px solid rgba(200,168,75,0.12);
-  border-radius: 4px;
-  padding: 9px 11px;
+.oc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: color 0.15s;
 }
-.tips-label { font-size: 0.6rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
-.tips-text { font-size: 0.77rem; color: var(--text2); line-height: 1.55; font-style: italic; }
+.oc-link:hover { color: var(--gold2); }
+.oc-link::after { content: '→'; transition: transform 0.15s; }
+.oc-link:hover::after { transform: translateX(3px); }
 
-.no-results {
-  grid-column: 1/-1;
-  text-align: center;
-  padding: 60px;
-  color: var(--text3);
-  font-style: italic;
-  font-size: 1.1rem;
-}
-
-/* ── HERBLORE SPECIFIC ── */
-.card-accent-top {
-  height: 3px;
-  background: linear-gradient(90deg, var(--herb-color), var(--gold));
-}
-.ingredients { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
-.ingredient {
+/* ── OSRS WIKI CALLOUT ── */
+.wiki-callout {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 18px 22px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.wiki-callout-icon { font-size: 1.8rem; flex-shrink: 0; }
+.wiki-callout-text { flex: 1; min-width: 200px; }
+.wiki-callout-title { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold2); margin-bottom: 4px; }
+.wiki-callout-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.55; font-style: italic; }
+.wiki-callout-link {
+  padding: 8px 18px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  color: var(--gold2);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.wiki-callout-link:hover { background: rgba(200,168,75,0.1); }
+
+/* ── SKILL QUICK REF ── */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.skill-chip {
   background: var(--surface2);
   border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 3px 7px;
+  border-radius: 4px;
+  padding: 8px 10px;
   font-size: 0.78rem;
   color: var(--text2);
-}
-.ingredient.herb { border-color: var(--green); color: var(--green3); }
-.ingredient.secondary { border-color: var(--secondary-color); color: #c8a070; }
-.plus { color: var(--text3); font-size: 1.1rem; }
-.arrow { color: var(--gold); font-size: 1rem; }
-.result {
   display: flex;
   align-items: center;
-  gap: 4px;
-  background: rgba(200,168,75,0.08);
-  border: 1px solid rgba(200,168,75,0.2);
-  border-radius: 3px;
-  padding: 3px 9px;
-  font-size: 0.82rem;
-  color: var(--gold3);
-  font-weight: 600;
+  gap: 6px;
+  transition: border-color 0.15s;
 }
-.level-badge {
-  background: var(--green);
-  color: #fff;
-  font-family: 'Cinzel', serif;
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 3px;
-  white-space: nowrap;
-  flex-shrink: 0;
+.skill-chip:hover { border-color: var(--border2); }
+.skill-chip-label { font-size: 0.6rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 2px; }
+
+/* ── COMING SOON PANEL ── */
+.coming-soon-panel {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text3);
 }
-.card-stats { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 7px; border-top: 1px solid var(--border); }
-.stat { display: flex; flex-direction: column; gap: 1px; }
-.stat-label { font-size: 0.6rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
-.stat-value { font-size: 0.86rem; font-weight: 600; }
-.stat-value.xp { color: var(--blue2); }
-.stat-value.level { color: var(--green3); }
-.stat-value.effect { color: var(--text2); font-size: 0.76rem; font-weight: 400; font-style: italic; }
+.coming-soon-panel .icon { font-size: 3rem; margin-bottom: 16px; display: block; }
+.coming-soon-panel h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--text2); margin-bottom: 8px; }
+.coming-soon-panel p { font-size: 0.9rem; font-style: italic; }
 
-/* ── BOSS SPECIFIC ── */
-.card-accent { height: 3px; }
-.accent-melee { background: linear-gradient(90deg, var(--melee), var(--melee2)); }
-.accent-range  { background: linear-gradient(90deg, var(--range), var(--range2)); }
-.accent-magic  { background: linear-gradient(90deg, var(--magic), var(--magic2)); }
-.accent-multi  { background: linear-gradient(90deg, var(--melee), var(--range), var(--magic)); }
-
-.diff-badge {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  font-weight: 600;
-  padding: 3px 7px;
-  border-radius: 3px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  letter-spacing: 0.04em;
+/* ── STATS STRIP ── */
+.stats-strip {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px;
 }
-.diff-easy     { background: rgba(39,174,96,0.2);   color: var(--range2);   border: 1px solid rgba(39,174,96,0.3); }
-.diff-medium   { background: rgba(243,156,18,0.2);  color: var(--prayer2);  border: 1px solid rgba(243,156,18,0.3); }
-.diff-hard     { background: rgba(192,57,43,0.2);   color: var(--melee2);   border: 1px solid rgba(192,57,43,0.3); }
-.diff-endgame  { background: rgba(155,89,182,0.2);  color: #c39bd3;         border: 1px solid rgba(155,89,182,0.3); }
-
-.style-row { display: flex; gap: 5px; flex-wrap: wrap; }
-.style-tag {
-  font-size: 0.67rem;
-  padding: 2px 7px;
-  border-radius: 3px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  border: 1px solid;
+.stats-strip-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  text-align: center;
 }
-.tag-melee  { background: rgba(192,57,43,0.15);  color: var(--melee2);  border-color: rgba(192,57,43,0.25); }
-.tag-range  { background: rgba(39,174,96,0.15);  color: var(--range2);  border-color: rgba(39,174,96,0.25); }
-.tag-magic  { background: rgba(41,128,185,0.15); color: var(--magic2);  border-color: rgba(41,128,185,0.25); }
-.tag-prayer { background: rgba(243,156,18,0.15); color: var(--prayer2); border-color: rgba(243,156,18,0.25); }
-
-.info-row { display: flex; gap: 7px; flex-wrap: wrap; }
-.info-chip {
+.stat-block-num {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold2);
+  display: block;
+}
+.stat-block-label {
   font-size: 0.72rem;
-  padding: 3px 9px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  color: var(--text2);
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+  display: block;
 }
-.info-chip span { color: var(--gold2); font-weight: 600; }
 
-.gear-section { display: flex; flex-direction: column; gap: 5px; }
-.gear-label { font-size: 0.6rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.12em; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
-.tier-header { font-size: 0.64rem; color: var(--text3); font-style: italic; margin-top: 4px; }
-.gear-list { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
-.gear-item {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 2px 7px;
-  font-size: 0.73rem;
-  color: var(--text2);
-  white-space: nowrap;
+/* ── CONTACT SECTION ── */
+.contact-section {
+  position: relative;
+  z-index: 1;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 60px 24px;
 }
-.gear-item.bis    { border-color: var(--gold);  color: var(--gold3); }
-.gear-item.special { border-color: var(--melee); color: var(--melee2); }
-
-/* ── SKILLING SPECIFIC ── */
-.accent-combat    { background: linear-gradient(90deg, #c0392b, #e05040); }
-.accent-gathering { background: linear-gradient(90deg, #27ae60, #50d080); }
-.accent-artisan   { background: linear-gradient(90deg, #e67e22, #f0a050); }
-.accent-support   { background: linear-gradient(90deg, #2980b9, #5ab0e8); }
-
-.max-xp-badge {
+.contact-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.contact-title {
   font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  font-weight: 600;
-  padding: 3px 7px;
-  border-radius: 3px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  background: rgba(41,128,185,0.2);
-  color: var(--blue2);
-  border: 1px solid rgba(41,128,185,0.3);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold2);
+  margin-bottom: 10px;
 }
-
-.tag {
-  font-size: 0.66rem;
-  padding: 2px 7px;
-  border-radius: 3px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  border: 1px solid;
-}
-.tag-row { display: flex; gap: 5px; flex-wrap: wrap; }
-.tag-profit   { background: rgba(39,174,96,0.15);  color: var(--green2);   border-color: rgba(39,174,96,0.3); }
-.tag-afk      { background: rgba(90,176,232,0.15); color: var(--blue2);    border-color: rgba(90,176,232,0.3); }
-.tag-fast     { background: rgba(230,126,34,0.15); color: var(--orange2);  border-color: rgba(230,126,34,0.3); }
-.tag-expensive{ background: rgba(192,57,43,0.15);  color: var(--red2);     border-color: rgba(192,57,43,0.3); }
-.tag-f2p      { background: rgba(200,168,75,0.15); color: var(--gold2);    border-color: rgba(200,168,75,0.3); }
-.tag-tick     { background: rgba(26,188,156,0.15); color: var(--teal2);    border-color: rgba(26,188,156,0.3); }
-
-.methods-label { font-size: 0.6rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.12em; padding-bottom: 4px; border-bottom: 1px solid var(--border); margin-bottom: 2px; }
-
-.method-row {
-  padding: 7px 9px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  margin-top: 4px;
-}
-.method-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 3px; }
-.method-name { font-size: 0.82rem; font-weight: 600; color: var(--text); flex: 1; }
-.method-xp {
-  font-size: 0.7rem;
-  color: var(--blue2);
-  font-weight: 600;
-  background: rgba(41,128,185,0.1);
-  border: 1px solid rgba(41,128,185,0.2);
-  border-radius: 3px;
-  padding: 1px 5px;
-  white-space: nowrap;
-}
-.method-level {
-  font-size: 0.67rem;
-  color: var(--green2);
-  background: rgba(39,174,96,0.1);
-  border: 1px solid rgba(39,174,96,0.2);
-  border-radius: 3px;
-  padding: 1px 5px;
-  white-space: nowrap;
-  font-weight: 600;
-}
-.method-desc { font-size: 0.74rem; color: var(--text2); font-style: italic; line-height: 1.45; }
-
-.req-list { display: flex; flex-wrap: wrap; gap: 4px; }
-.req-item {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 2px 7px;
-  font-size: 0.72rem;
+.contact-sub {
+  font-size: 0.95rem;
   color: var(--text2);
+  font-style: italic;
+  margin-bottom: 36px;
+  line-height: 1.6;
 }
+.contact-rule {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 36px;
+}
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  text-align: left;
+}
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+.contact-card:hover { border-color: var(--border2); }
+.contact-card-icon { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+.contact-card-title { font-family: 'Cinzel', serif; font-size: 0.82rem; color: var(--gold2); margin-bottom: 6px; }
+.contact-card-val {
+  font-size: 0.85rem;
+  color: var(--accent3);
+  word-break: break-all;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.contact-card-val:hover { color: var(--gold2); }
+.contact-card-desc { font-size: 0.75rem; color: var(--text3); font-style: italic; margin-top: 4px; }
 
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 28px 24px;
+  text-align: center;
+  color: var(--text3);
+  font-size: 0.78rem;
+}
+footer a { color: var(--text3); text-decoration: none; transition: color 0.15s; }
+footer a:hover { color: var(--gold2); }
+footer .footer-logo { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); margin-bottom: 8px; }
+footer .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+footer .disclaimer { font-style: italic; color: var(--text3); font-size: 0.72rem; max-width: 600px; margin: 8px auto 0; line-height: 1.6; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .navbar { padding: 0 16px; }
+  .hero { padding: 60px 16px 50px; }
+  .nav-links { gap: 2px; }
+  .nav-link { padding: 5px 8px; font-size: 0.65rem; }
+}
 </style>
 </head>
 <body>
 
-<!-- SITE HEADER -->
-<div class="site-header">
-  <div class="site-title">⚔ OSRS Complete Guide</div>
-  <div class="site-sub">Old School RuneScape · Herblore · Boss Gear · Skilling</div>
-  <div class="site-rule"></div>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a class="nav-logo" href="#">⭐ Cosmic <span>Guides</span></a>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="scrollTo('#guides')">Guides</button>
+    <button class="nav-link" onclick="scrollTo('#about')">About</button>
+    <button class="nav-link" onclick="scrollTo('#contact')">Contact</button>
+  </div>
+</nav>
 
-  <!-- TABS -->
-  <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('herblore',this)">🧪 Herblore</button>
-    <button class="tab-btn" onclick="switchTab('bosses',this)">⚔ Boss Gear</button>
-    <button class="tab-btn" onclick="switchTab('skilling',this)">📜 Skilling</button>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Community Game Guides</div>
+  <div class="hero-title">Cosmic Guides</div>
+  <div class="hero-title-sub">cosmicguides.co.uk</div>
+  <div class="hero-rule"><div class="hero-rule-diamond"></div></div>
+  <p class="hero-desc">
+    Your community-built reference for game guides, boss strategies, skilling methods and more. 
+    Accurate, up-to-date, and free forever.
+  </p>
+  <div class="hero-ctas">
+    <a href="osrs-complete-guide.html" class="btn-primary">🗡 Browse OSRS Guides</a>
+    <button class="btn-secondary" onclick="scrollTo('#contact')">✉ Get in Touch</button>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div>
+      <span class="stat-block-num">24</span>
+      <span class="stat-block-label">Skills Covered</span>
+    </div>
+    <div>
+      <span class="stat-block-num">25+</span>
+      <span class="stat-block-label">Boss Guides</span>
+    </div>
+    <div>
+      <span class="stat-block-num">40+</span>
+      <span class="stat-block-label">Potion Recipes</span>
+    </div>
+    <div>
+      <span class="stat-block-num">Free</span>
+      <span class="stat-block-label">Always & Forever</span>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     HERBLORE PANEL
-═══════════════════════════════════════════════ -->
-<div id="panel-herblore" class="panel active">
-  <div class="controls">
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input class="search-input" id="h-search" placeholder="Search potions or herbs..." oninput="renderHerblore()">
-    </div>
-    <div class="filter-group" id="h-filters">
-      <button class="filter-btn active" onclick="hSetFilter('all',this)">All</button>
-      <button class="filter-btn" onclick="hSetFilter('combat',this)">⚔ Combat</button>
-      <button class="filter-btn" onclick="hSetFilter('skilling',this)">🔨 Skilling</button>
-      <button class="filter-btn" onclick="hSetFilter('prayer',this)">🙏 Prayer</button>
-      <button class="filter-btn" onclick="hSetFilter('cure',this)">💊 Cure/Anti</button>
-      <button class="filter-btn" onclick="hSetFilter('other',this)">✨ Other</button>
-    </div>
-    <select class="sort-select" id="h-sort" onchange="renderHerblore()">
-      <option value="level">Sort: Level</option>
-      <option value="xp">Sort: XP</option>
-      <option value="name">Sort: Name</option>
-    </select>
+<!-- GAME TABS -->
+<div id="guides" class="game-tabs">
+  <div class="game-tabs-inner">
+    <button class="game-tab active" onclick="switchGame('osrs', this)">⚔ Old School RuneScape <span class="game-tab-badge">Live</span></button>
+    <button class="game-tab" onclick="switchGame('more', this)">🎮 More Games <span class="game-tab-badge coming-soon-badge">Soon</span></button>
   </div>
-  <div class="stats-bar">
-    <div class="stat-pill">Showing <strong id="h-count">0</strong> potions</div>
-    <div class="stat-pill">Highest XP: <strong id="h-maxXp">-</strong></div>
-    <div class="stat-pill">Level range: <strong id="h-range">-</strong></div>
-  </div>
-  <div class="grid" id="h-grid"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     BOSS GEAR PANEL
-═══════════════════════════════════════════════ -->
-<div id="panel-bosses" class="panel">
-  <div class="controls">
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input class="search-input" id="b-search" placeholder="Search boss, gear, or location..." oninput="renderBosses()">
+<!-- OSRS PANEL -->
+<div id="panel-osrs" class="game-panel active">
+  <div class="section">
+
+    <!-- Wiki callout -->
+    <div class="wiki-callout">
+      <span class="wiki-callout-icon">📖</span>
+      <div class="wiki-callout-text">
+        <div class="wiki-callout-title">Powered by the OSRS Wiki</div>
+        <div class="wiki-callout-desc">Our guides draw on data and information from the official Old School RuneScape Wiki — the community encyclopaedia written and maintained by players since 2013. For deeper reading on any topic, the wiki is always your best resource.</div>
+      </div>
+      <a href="https://oldschool.runescape.wiki" target="_blank" rel="noopener" class="wiki-callout-link">Visit Wiki →</a>
     </div>
-    <div class="filter-group">
-      <button class="filter-btn active" onclick="bSetFilter('all',this)">All</button>
-      <button class="filter-btn" onclick="bSetFilter('easy',this)">🟢 Beginner</button>
-      <button class="filter-btn" onclick="bSetFilter('medium',this)">🟡 Mid-Game</button>
-      <button class="filter-btn" onclick="bSetFilter('hard',this)">🔴 Hard</button>
-      <button class="filter-btn" onclick="bSetFilter('endgame',this)">💀 Endgame</button>
-      <button class="filter-btn" onclick="bSetFilter('melee',this)">⚔ Melee</button>
-      <button class="filter-btn" onclick="bSetFilter('range',this)">🏹 Ranged</button>
-      <button class="filter-btn" onclick="bSetFilter('magic',this)">🔮 Magic</button>
-      <button class="filter-btn" onclick="bSetFilter('money',this)">💰 Money</button>
+
+    <!-- Section header -->
+    <div class="section-header">
+      <div>
+        <div class="section-title">⚔ <span>OSRS</span> Guides</div>
+        <div class="section-sub">Old School RuneScape · Members & F2P · Updated regularly</div>
+      </div>
+      <a href="osrs-complete-guide.html" class="btn-primary" style="font-size:0.72rem; padding:9px 18px;">Open Full Guide →</a>
     </div>
+
+    <!-- Guide cards -->
+    <div class="overview-grid">
+
+      <!-- Skilling Guide -->
+      <a href="osrs-complete-guide.html#skilling" class="overview-card" style="animation-delay:0.05s">
+        <div class="oc-accent oc-accent-green"></div>
+        <div class="oc-header">
+          <span class="oc-icon">📜</span>
+          <div>
+            <div class="oc-title">Skilling Guide</div>
+            <div class="oc-subtitle">All 24 skills · XP rates · Methods</div>
+          </div>
+        </div>
+        <div class="oc-body">
+          <p class="oc-desc">Old School RuneScape features 24 skills across four categories — Combat, Gathering, Production, and Utility. Our skilling guide covers the best training methods for every skill, from level 1 to 99, including AFK options, fastest XP, and profit methods.</p>
+          <div class="oc-tags">
+            <span class="oc-tag oc-tag-green">⚡ Fast XP</span>
+            <span class="oc-tag oc-tag-blue">😴 AFK Methods</span>
+            <span class="oc-tag oc-tag-gold">💰 Profit Routes</span>
+            <span class="oc-tag oc-tag-green">🆓 F2P Options</span>
+          </div>
+          <span class="oc-link">View Skilling Guide</span>
+        </div>
+      </a>
+
+      <!-- Boss Gear Guide -->
+      <a href="osrs-complete-guide.html#bosses" class="overview-card" style="animation-delay:0.1s">
+        <div class="oc-accent oc-accent-red"></div>
+        <div class="oc-header">
+          <span class="oc-icon">⚔️</span>
+          <div>
+            <div class="oc-title">Boss Gear Guide</div>
+            <div class="oc-subtitle">25+ bosses · Budget & BiS setups</div>
+          </div>
+        </div>
+        <div class="oc-body">
+          <p class="oc-desc">From Giant Mole to the Theatre of Blood, our boss gear guide covers every major encounter in OSRS. Each boss includes budget and best-in-slot gear setups, prayer recommendations, combat requirements, special attack weapons and fight tips.</p>
+          <div class="oc-tags">
+            <span class="oc-tag oc-tag-red">⚔ Beginner → Endgame</span>
+            <span class="oc-tag oc-tag-gold">💰 Money Makers</span>
+            <span class="oc-tag oc-tag-blue">🔮 All Styles</span>
+          </div>
+          <span class="oc-link">View Boss Guide</span>
+        </div>
+      </a>
+
+      <!-- Herblore Guide -->
+      <a href="osrs-complete-guide.html#herblore" class="overview-card" style="animation-delay:0.15s">
+        <div class="oc-accent oc-accent-teal"></div>
+        <div class="oc-header">
+          <span class="oc-icon">🧪</span>
+          <div>
+            <div class="oc-title">Herblore Reference</div>
+            <div class="oc-subtitle">40+ potions · Ingredients · XP</div>
+          </div>
+        </div>
+        <div class="oc-body">
+          <p class="oc-desc">A complete reference for every potion in Old School RuneScape. Find the herb and secondary ingredient for any potion, the level required, XP gained, and what the potion does. Covers combat, skilling, prayer, antipoisons and more.</p>
+          <div class="oc-tags">
+            <span class="oc-tag oc-tag-green">🌿 All Herbs</span>
+            <span class="oc-tag oc-tag-blue">🙏 Prayer Potions</span>
+            <span class="oc-tag oc-tag-red">💊 Antidotes</span>
+            <span class="oc-tag oc-tag-gold">⚗ Combat Brews</span>
+          </div>
+          <span class="oc-link">View Herblore Guide</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- About OSRS -->
+    <div id="about" class="section-header" style="margin-top: 10px;">
+      <div>
+        <div class="section-title">About <span>Old School RuneScape</span></div>
+        <div class="section-sub">Source: oldschool.runescape.wiki</div>
+      </div>
+    </div>
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; line-height: 1.75; color: var(--text2); font-size: 0.95rem;">
+      <p style="margin-bottom: 14px;">
+        Old School RuneScape is a massively multiplayer online role-playing game developed and published by Jagex. Originally released in 2007, the game was re-launched in 2013 from an archived version of the original RuneScape, preserving the classic gameplay while continuing to receive new content voted on by the community.
+      </p>
+      <p style="margin-bottom: 14px;">
+        The game features <strong style="color: var(--gold2);">24 skills</strong> spanning four categories as defined by Jagex: <em>Combat skills</em> (Attack, Defence, Hitpoints, Magic, Prayer, Ranged, Strength), <em>Gathering skills</em> (Farming, Fishing, Hunter, Mining, Woodcutting), <em>Production skills</em> (Cooking, Crafting, Fletching, Herblore, Runecraft, Smithing), and <em>Utility skills</em> (Agility, Construction, Firemaking, Sailing, Slayer, Thieving). All skills begin at level 1 except Hitpoints which starts at level 10, and can be trained up to level 99.
+      </p>
+      <p>
+        OSRS also features <strong style="color: var(--gold2);">over 160 bosses</strong> ranging from beginner encounters accessible to new players all the way to endgame raids like the Chambers of Xeric, Theatre of Blood, and Tombs of Amascut — designed for experienced teams with best-in-slot equipment. The game is free-to-play with an optional members subscription that unlocks the vast majority of content.
+      </p>
+    </div>
+
+    <!-- Skills quick ref -->
+    <div style="margin-bottom: 8px; font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.12em;">All 24 Skills at a Glance</div>
+    <div class="skill-grid">
+      <div class="skill-chip">⚔️ <span><span class="skill-chip-label">Combat</span>Attack</span></div>
+      <div class="skill-chip">💪 <span><span class="skill-chip-label">Combat</span>Strength</span></div>
+      <div class="skill-chip">🛡️ <span><span class="skill-chip-label">Combat</span>Defence</span></div>
+      <div class="skill-chip">❤️ <span><span class="skill-chip-label">Combat</span>Hitpoints</span></div>
+      <div class="skill-chip">🏹 <span><span class="skill-chip-label">Combat</span>Ranged</span></div>
+      <div class="skill-chip">🔮 <span><span class="skill-chip-label">Combat</span>Magic</span></div>
+      <div class="skill-chip">🙏 <span><span class="skill-chip-label">Combat</span>Prayer</span></div>
+      <div class="skill-chip">⛏️ <span><span class="skill-chip-label">Gathering</span>Mining</span></div>
+      <div class="skill-chip">🎣 <span><span class="skill-chip-label">Gathering</span>Fishing</span></div>
+      <div class="skill-chip">🪓 <span><span class="skill-chip-label">Gathering</span>Woodcutting</span></div>
+      <div class="skill-chip">🦎 <span><span class="skill-chip-label">Gathering</span>Hunter</span></div>
+      <div class="skill-chip">🌱 <span><span class="skill-chip-label">Gathering</span>Farming</span></div>
+      <div class="skill-chip">🍖 <span><span class="skill-chip-label">Production</span>Cooking</span></div>
+      <div class="skill-chip">💎 <span><span class="skill-chip-label">Production</span>Crafting</span></div>
+      <div class="skill-chip">🪶 <span><span class="skill-chip-label">Production</span>Fletching</span></div>
+      <div class="skill-chip">🧪 <span><span class="skill-chip-label">Production</span>Herblore</span></div>
+      <div class="skill-chip">🔵 <span><span class="skill-chip-label">Production</span>Runecraft</span></div>
+      <div class="skill-chip">🔨 <span><span class="skill-chip-label">Production</span>Smithing</span></div>
+      <div class="skill-chip">🏃 <span><span class="skill-chip-label">Utility</span>Agility</span></div>
+      <div class="skill-chip">🏠 <span><span class="skill-chip-label">Utility</span>Construction</span></div>
+      <div class="skill-chip">🔥 <span><span class="skill-chip-label">Utility</span>Firemaking</span></div>
+      <div class="skill-chip">⛵ <span><span class="skill-chip-label">Utility</span>Sailing</span></div>
+      <div class="skill-chip">💀 <span><span class="skill-chip-label">Utility</span>Slayer</span></div>
+      <div class="skill-chip">🗝️ <span><span class="skill-chip-label">Utility</span>Thieving</span></div>
+    </div>
+
   </div>
-  <div class="stats-bar">
-    <div class="stat-pill">Showing <strong id="b-count">0</strong> bosses</div>
-  </div>
-  <div class="grid" id="b-grid"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SKILLING PANEL
-═══════════════════════════════════════════════ -->
-<div id="panel-skilling" class="panel">
-  <div class="controls">
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input class="search-input" id="s-search" placeholder="Search skill, method, or item..." oninput="renderSkilling()">
-    </div>
-    <div class="filter-group">
-      <button class="filter-btn active" onclick="sSetFilter('all',this)">All</button>
-      <button class="filter-btn" onclick="sSetFilter('combat',this)">⚔ Combat</button>
-      <button class="filter-btn" onclick="sSetFilter('gathering',this)">⛏ Gathering</button>
-      <button class="filter-btn" onclick="sSetFilter('artisan',this)">🔨 Artisan</button>
-      <button class="filter-btn" onclick="sSetFilter('support',this)">✨ Support</button>
-      <button class="filter-btn" onclick="sSetFilter('profit',this)">💰 Profit</button>
-      <button class="filter-btn" onclick="sSetFilter('afk',this)">😴 AFK</button>
-      <button class="filter-btn" onclick="sSetFilter('f2p',this)">🆓 F2P</button>
+<!-- MORE GAMES PANEL -->
+<div id="panel-more" class="game-panel">
+  <div class="section">
+    <div class="coming-soon-panel">
+      <span class="icon">🎮</span>
+      <h3>More Games Coming Soon</h3>
+      <p>We're planning to expand Cosmic Guides to cover more games. Have a suggestion? Get in touch via the contact section below.</p>
     </div>
   </div>
-  <div class="stats-bar">
-    <div class="stat-pill">Showing <strong id="s-count">0</strong> skills</div>
-    <div class="stat-pill">23 skills · Members & F2P covered</div>
-  </div>
-  <div class="grid" id="s-grid"></div>
 </div>
+
+<!-- CONTACT SECTION -->
+<div id="contact" class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-title">Get in Touch</div>
+    <div class="contact-rule"></div>
+    <p class="contact-sub">Have a suggestion for a guide, spotted an error, or want to contribute? We'd love to hear from you. Cosmic Guides is community-driven and your feedback helps make it better.</p>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <span class="contact-card-icon">✉️</span>
+        <div class="contact-card-title">Email Us</div>
+        <a href="mailto:scottmills@cosmicguides.co.uk" class="contact-card-val">scottmills@cosmicguides.co.uk</a>
+        <div class="contact-card-desc">For guide suggestions, corrections, or general enquiries.</div>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">📖</span>
+        <div class="contact-card-title">OSRS Wiki</div>
+        <a href="https://oldschool.runescape.wiki" target="_blank" rel="noopener" class="contact-card-val">oldschool.runescape.wiki</a>
+        <div class="contact-card-desc">Our primary data source — the community encyclopaedia for all things OSRS.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">⭐ Cosmic Guides</div>
+  <div class="footer-links">
+    <a href="#">Home</a>
+    <a href="osrs-complete-guide.html">OSRS Guide</a>
+    <a href="#contact">Contact</a>
+    <a href="https://oldschool.runescape.wiki" target="_blank" rel="noopener">OSRS Wiki</a>
+  </div>
+  <p>© 2025 Cosmic Guides · cosmicguides.co.uk</p>
+  <p class="disclaimer">Cosmic Guides is a fan-made community resource and is not affiliated with or endorsed by Jagex Ltd. Old School RuneScape is a trademark of Jagex Ltd. Game data and information referenced from the Old School RuneScape Wiki under Creative Commons Attribution-NonCommercial-ShareAlike 3.0.</p>
+</footer>
 
 <script>
-/* ═══════════════════════════
-   TAB SWITCHING
-═══════════════════════════ */
-function switchTab(name, btn) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+function switchGame(name, btn) {
+  document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.game-tab').forEach(b => b.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
   btn.classList.add('active');
 }
 
-/* ═══════════════════════════
-   HERBLORE DATA + RENDER
-═══════════════════════════ */
-const POTIONS = [
-  { name:"Attack Potion", level:3, xp:25, herb:"Guam leaf", secondary:"Eye of newt", effect:"+10% + 3 Attack boost", type:"combat", herbEmoji:"🌿", secEmoji:"👁" },
-  { name:"Strength Potion", level:12, xp:50, herb:"Tarromin", secondary:"Limpwurt root", effect:"+10% + 3 Strength boost", type:"combat", herbEmoji:"🌿", secEmoji:"🌱" },
-  { name:"Defence Potion", level:15, xp:67.5, herb:"Ranarr weed", secondary:"White berries", effect:"+10% + 3 Defence boost", type:"combat", herbEmoji:"🌿", secEmoji:"🫐" },
-  { name:"Ranging Potion", level:30, xp:87.5, herb:"Dwarf weed", secondary:"Wine of zamorak", effect:"+10% + 4 Ranged boost", type:"combat", herbEmoji:"🌿", secEmoji:"🍷" },
-  { name:"Magic Potion", level:76, xp:172.5, herb:"Irit leaf", secondary:"Bathtub of liquid", effect:"+4 Magic boost", type:"combat", herbEmoji:"🌿", secEmoji:"🦇" },
-  { name:"Super Attack", level:45, xp:100, herb:"Irit leaf", secondary:"Eye of newt", effect:"+15% + 5 Attack boost", type:"combat", herbEmoji:"🌿", secEmoji:"👁" },
-  { name:"Super Strength", level:55, xp:125, herb:"Kwuarm", secondary:"Limpwurt root", effect:"+15% + 5 Strength boost", type:"combat", herbEmoji:"🌿", secEmoji:"🌱" },
-  { name:"Super Defence", level:66, xp:150, herb:"Cadantine", secondary:"White berries", effect:"+15% + 5 Defence boost", type:"combat", herbEmoji:"🌿", secEmoji:"🫐" },
-  { name:"Super Combat Potion", level:90, xp:150, herb:"Torstol", secondary:"Super Attack/Str/Def mix", effect:"+15% + 5 to Attack, Str & Def", type:"combat", herbEmoji:"🌿", secEmoji:"⚗" },
-  { name:"Bastion Potion", level:80, xp:155, herb:"Cadantine", secondary:"Wine of zamorak", effect:"+10% + 4 Ranged & +15% +5 Defence", type:"combat", herbEmoji:"🌿", secEmoji:"🍷" },
-  { name:"Battlemage Potion", level:80, xp:155, herb:"Cadantine", secondary:"Potato cactus", effect:"+4 Magic & +15% +5 Defence", type:"combat", herbEmoji:"🌿", secEmoji:"🌵" },
-  { name:"Prayer Potion", level:38, xp:87.5, herb:"Ranarr weed", secondary:"Snape grass", effect:"Restores 7 + 25% Prayer points", type:"prayer", herbEmoji:"🌿", secEmoji:"🌾" },
-  { name:"Super Restore", level:63, xp:142.5, herb:"Snapdragon", secondary:"Red spiders' eggs", effect:"Restores 8 + 25% of all stats", type:"prayer", herbEmoji:"🌿", secEmoji:"🥚" },
-  { name:"Sanfew Serum", level:65, xp:160, herb:"Super restore", secondary:"Unicorn horn dust + snake weed + nail beast nails", effect:"Restores Prayer, cures poison/venom", type:"prayer", herbEmoji:"⚗", secEmoji:"🦄" },
-  { name:"Fishing Potion", level:50, xp:112.5, herb:"Avantoe", secondary:"Snape grass", effect:"+3 Fishing boost", type:"skilling", herbEmoji:"🌿", secEmoji:"🌾" },
-  { name:"Hunter Potion", level:53, xp:120, herb:"Avantoe", secondary:"Kebbit teeth dust", effect:"+3 Hunter boost", type:"skilling", herbEmoji:"🌿", secEmoji:"🦷" },
-  { name:"Agility Potion", level:34, xp:80, herb:"Toadflax", secondary:"Toad's legs", effect:"+3 Agility boost", type:"skilling", herbEmoji:"🌿", secEmoji:"🐸" },
-  { name:"Stamina Potion", level:77, xp:102, herb:"Super energy", secondary:"Amylase crystal", effect:"Restores run energy, reduces drain rate", type:"skilling", herbEmoji:"⚗", secEmoji:"💎" },
-  { name:"Super Energy", level:52, xp:117.5, herb:"Avantoe", secondary:"Mort myre fungus", effect:"Restores 40% run energy", type:"skilling", herbEmoji:"🌿", secEmoji:"🍄" },
-  { name:"Energy Potion", level:26, xp:67.5, herb:"Harralander", secondary:"Chocolate dust", effect:"Restores 20% run energy", type:"skilling", herbEmoji:"🌿", secEmoji:"🍫" },
-  { name:"Fletching Potion", level:58, xp:132.5, herb:"Wergali", secondary:"Wimpy feather", effect:"+3 Fletching boost", type:"skilling", herbEmoji:"🌿", secEmoji:"🪶" },
-  { name:"Crafting Potion", level:42, xp:95, herb:"Wergali", secondary:"Frog spawn", effect:"+3 Crafting boost", type:"skilling", herbEmoji:"🌿", secEmoji:"🐸" },
-  { name:"Herblore Potion", level:9, xp:40, herb:"Guam leaf", secondary:"Marrentill", effect:"+2-3 Herblore boost", type:"skilling", herbEmoji:"🌿", secEmoji:"🌿" },
-  { name:"Mining Potion", level:14, xp:60, herb:"Kodai-weed", secondary:"Liquid crystal", effect:"+2-4 Mining boost", type:"skilling", herbEmoji:"🌿", secEmoji:"💎" },
-  { name:"Antipoison", level:5, xp:37.5, herb:"Marrentill", secondary:"Unicorn horn dust", effect:"Cures & prevents poison for ~90s", type:"cure", herbEmoji:"🌿", secEmoji:"🦄" },
-  { name:"Superantipoison", level:48, xp:106.3, herb:"Irit leaf", secondary:"Unicorn horn dust", effect:"Cures & prevents poison for ~6 min", type:"cure", herbEmoji:"🌿", secEmoji:"🦄" },
-  { name:"Antidote+", level:68, xp:155, herb:"Toadflax", secondary:"Yew roots", effect:"Cures venom, prevents for ~9 min", type:"cure", herbEmoji:"🌿", secEmoji:"🌳" },
-  { name:"Antidote++", level:79, xp:177.5, herb:"Irit leaf", secondary:"Magic roots", effect:"Cures venom, prevents for ~12 min", type:"cure", herbEmoji:"🌿", secEmoji:"✨" },
-  { name:"Antifire Potion", level:69, xp:157.5, herb:"Lantadyme", secondary:"Dragon scale dust", effect:"Partial dragonfire protection", type:"cure", herbEmoji:"🌿", secEmoji:"🐉" },
-  { name:"Extended Antifire", level:69, xp:110, herb:"Antifire potion", secondary:"Lava scale shard", effect:"Extended dragonfire protection", type:"cure", herbEmoji:"⚗", secEmoji:"🐉" },
-  { name:"Super Antifire", level:85, xp:130, herb:"Antifire potion", secondary:"Crushed superior dragon bones", effect:"Full dragonfire protection", type:"cure", herbEmoji:"⚗", secEmoji:"🔥" },
-  { name:"Antivenom", level:87, xp:120, herb:"Zulrah's scales x20", secondary:"Antidote++", effect:"Cures venom, prevents for ~12 min", type:"cure", herbEmoji:"🐍", secEmoji:"⚗" },
-  { name:"Antivenom+", level:94, xp:125, herb:"Antivenom", secondary:"Torstol", effect:"Cures venom, prevents ~15 min", type:"cure", herbEmoji:"⚗", secEmoji:"🌿" },
-  { name:"Relicym's Balm", level:8, xp:40, herb:"Rogue's purse", secondary:"Snake weed", effect:"Cures disease", type:"cure", herbEmoji:"🌿", secEmoji:"🐍" },
-  { name:"Zamorak Brew", level:60, xp:175, herb:"Torstol", secondary:"Jangerberries", effect:"+2-20% Attack/Str, -10-12% Defence/HP", type:"other", herbEmoji:"🌿", secEmoji:"🫐" },
-  { name:"Saradomin Brew", level:81, xp:180, herb:"Toadflax", secondary:"Crushed bird nest", effect:"+15% HP (above max), -10% all combat", type:"other", herbEmoji:"🌿", secEmoji:"🥚" },
-  { name:"Guthix Rest", level:18, xp:59.5, herb:"Harralander", secondary:"Swamp tar + marrentill + water", effect:"Heals 5 HP, mild antipoison", type:"other", herbEmoji:"🌿", secEmoji:"🌾" },
-  { name:"Compost Potion", level:22, xp:60, herb:"Harralander", secondary:"Volcanic ash", effect:"Turns compost to supercompost", type:"other", herbEmoji:"🌿", secEmoji:"🌋" },
-  { name:"Ancient Brew", level:85, xp:190, herb:"Dwarf weed", secondary:"Nihil dust", effect:"+3-6 Magic, restores Prayer, lowers melee", type:"combat", herbEmoji:"🌿", secEmoji:"✨" },
-  { name:"Forgotten Brew", level:91, xp:190, herb:"Ancient brew", secondary:"Ancient essence", effect:"+3-6 Magic, enhanced Prayer restore", type:"combat", herbEmoji:"⚗", secEmoji:"💎" },
-];
-
-let hFilter = 'all';
-function hSetFilter(t, btn) {
-  hFilter = t;
-  document.querySelectorAll('#panel-herblore .filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderHerblore();
+function scrollTo(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-function renderHerblore() {
-  const q = document.getElementById('h-search').value.toLowerCase();
-  const sort = document.getElementById('h-sort').value;
-  let list = POTIONS.filter(p => {
-    const mf = hFilter === 'all' || p.type === hFilter;
-    const ms = !q || (p.name+p.herb+p.secondary+p.effect).toLowerCase().includes(q);
-    return mf && ms;
-  });
-  list.sort((a,b) => sort==='level' ? a.level-b.level : sort==='xp' ? b.xp-a.xp : a.name.localeCompare(b.name));
-  document.getElementById('h-count').textContent = list.length;
-  if (list.length) {
-    document.getElementById('h-maxXp').textContent = Math.max(...list.map(p=>p.xp)) + ' XP';
-    const lvls = list.map(p=>p.level);
-    document.getElementById('h-range').textContent = Math.min(...lvls) + ' – ' + Math.max(...lvls);
-  }
-  const typeMap = { combat:'⚔ Combat', skilling:'🔨 Skilling', prayer:'🙏 Prayer', cure:'💊 Cure/Anti', other:'✨ Other' };
-  document.getElementById('h-grid').innerHTML = list.length ? list.map((p,i) => `
-    <div class="card" style="animation-delay:${Math.min(i*0.03,0.4)}s">
-      <div class="card-accent-top"></div>
-      <div class="card-header">
-        <div>
-          <div class="card-name">${p.name}</div>
-          <div class="card-sub">${typeMap[p.type]||p.type}</div>
-        </div>
-        <div class="level-badge">Lvl ${p.level}</div>
-      </div>
-      <div class="card-body">
-        <div class="ingredients">
-          <div class="ingredient herb"><span>${p.herbEmoji}</span> ${p.herb}</div>
-          <span class="plus">+</span>
-          <div class="ingredient secondary"><span>${p.secEmoji}</span> ${p.secondary}</div>
-          <span class="arrow">→</span>
-          <div class="result">🧪 ${p.name}</div>
-        </div>
-        <div class="card-stats">
-          <div class="stat"><span class="stat-label">XP gained</span><span class="stat-value xp">${p.xp} xp</span></div>
-          <div class="stat"><span class="stat-label">Req. level</span><span class="stat-value level">${p.level}</span></div>
-          <div class="stat"><span class="stat-label">Effect</span><span class="stat-value effect">${p.effect}</span></div>
-        </div>
-      </div>
-    </div>`).join('') : '<div class="no-results">No potions found.</div>';
-}
-
-/* ═══════════════════════════
-   BOSS DATA + RENDER
-═══════════════════════════ */
-const BOSSES = [
-  { name:"Giant Mole", icon:"🦔", location:"Falador Mole Lair", difficulty:"easy", styles:["melee","range"], moneyMaker:false, accentStyle:"melee", combatReq:"60+ Melee", prayerRec:"Protect from Melee", tips:"Bring a spade and a light source. Use a falconer's glove or orb to track her when she burrows. Cannon is great here. She burrows frequently so stay mobile.", gear:{ budget:{label:"Budget / Entry",items:["Rune Scimitar / Dragon Dagger","Fighter Torso / Rune Platebody","Rune Platelegs","Helm of Neitiznot","Amulet of Glory","Barrows Gloves","Dragon Boots","Berserker Ring"]}, recommended:{label:"Recommended",items:["Abyssal Whip","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Fury","Barrows Gloves","Dragon Boots","Berserker Ring (i)"]}, special:{label:"Special Attack",items:["Dragon Dagger (p++)","BGS"]} }},
-  { name:"Barrows", icon:"⚰️", location:"Barrows, Morytania", difficulty:"easy", styles:["magic","range"], moneyMaker:false, accentStyle:"multi", combatReq:"70+ Magic/Range", prayerRec:"Protect from relevant brother", tips:"Use Iban's Blast or Trident on the brothers. Salve Amulet (e) gives a massive bonus as they are undead. Complete tunnels efficiently by doing them in a set order. Bring ~15 prayer potions.", gear:{ budget:{label:"Budget / Entry",items:["Iban's Staff / Trident of the Seas","Ahrim's Robes / Mystic Robes","Occult Necklace","God Cape (i)","Barrows Gloves","Eternal Boots"]}, recommended:{label:"Recommended",items:["Trident of the Swamp","Ahrim's Robes","Occult Necklace","Imbued God Cape","Barrows Gloves","Eternal Boots","Salve Amulet (e)"]}, special:{label:"Special Attack",items:["N/A"]} }},
-  { name:"King Black Dragon", icon:"🐉", location:"Wilderness, KBD Lair", difficulty:"easy", styles:["range","melee"], moneyMaker:false, accentStyle:"range", combatReq:"60+ Ranged", prayerRec:"Protect from Magic", tips:"MUST bring Anti-dragon Shield or Antifire Potion. He uses dragonfire, melee and magic. Salve Amulet (ei) is huge. Beware PKers in wilderness. Ranging is safest.", gear:{ budget:{label:"Budget / Entry",items:["Rune Crossbow + Broad Bolts","Anti-dragon Shield","Void Range / D'hide","Salve Amulet (ei)","Ava's Accumulator","Barrows Gloves"]}, recommended:{label:"Recommended",items:["Dragon Hunter Crossbow + Ruby Bolts (e)","Anti-dragon Shield / Twisted Buckler","Armadyl Armour","Salve Amulet (ei)","Ava's Assembler","Zaryte Vambraces","Pegasian Boots"]}, special:{label:"Special Attack",items:["Zaryte Crossbow"]} }},
-  { name:"Dagannoth Kings", icon:"🦈", location:"Waterbirth Island Dungeon", difficulty:"easy", styles:["melee","range","magic"], moneyMaker:false, accentStyle:"multi", combatReq:"70+ all combat", prayerRec:"Switch per king: Prime=Mage, Rex=Melee, Supreme=Range", tips:"Rex is melee only and can be safespotted. Prime and Supreme require style switching. Bring all 3 combat setups. Berserker, Archers, and Seers rings drop here.", gear:{ budget:{label:"Budget / Entry",items:["Whip (Rex)","Trident of Seas (Prime)","Rune Crossbow (Supreme)","Guthan's for healing","Amulet of Glory"]}, recommended:{label:"Recommended",items:["Abyssal Tentacle (Rex)","Trident of Swamp (Prime)","Armadyl Crossbow (Supreme)","Armadyl Armour","Ancestral Robes","Bandos Armour"]}, special:{label:"Special Attack",items:["BGS or DWH for Rex"]} }},
-  { name:"God Wars — Bandos (Graardor)", icon:"🪖", location:"God Wars Dungeon, NW", difficulty:"medium", styles:["melee"], moneyMaker:true, accentStyle:"melee", combatReq:"70+ Melee, 75 Str recommended", prayerRec:"Protect from Melee, Piety", tips:"Bring a Bandos/Zamorakian item for the dungeon. Graardor uses Melee and his minions range — Protect from Melee is most important. DWH or BGS specs to lower his defence.", gear:{ budget:{label:"Budget / Entry",items:["Abyssal Whip","Rune Platebody / Fighter Torso","Rune Platelegs","Helm of Neitiznot","Amulet of Fury","Barrows Gloves","Dragon Boots"]}, recommended:{label:"Recommended",items:["Abyssal Tentacle / Rapier","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots","Berserker Ring (i)","Avernic Defender"]}, special:{label:"Special Attack",items:["Dragon Warhammer","Bandos Godsword"]} }},
-  { name:"God Wars — Armadyl (Kree'arra)", icon:"🦅", location:"God Wars Dungeon, SW", difficulty:"medium", styles:["range"], moneyMaker:true, accentStyle:"range", combatReq:"70+ Ranged, cannot use Melee", prayerRec:"Protect from Ranged, Rigour", tips:"Cannot use Melee at Kree'arra. Range only. Kree'arra has a high ranged attack that pushes you back — stand to the side of the room. Bring an Armadyl item for access.", gear:{ budget:{label:"Budget / Entry",items:["Rune Crossbow + Diamond Bolts (e)","Void Range / D'hide","Ava's Accumulator","Amulet of Glory","Barrows Gloves"]}, recommended:{label:"Recommended",items:["Armadyl Crossbow / Bowfa","Armadyl Armour / Crystal Armour","Ava's Assembler","Necklace of Anguish","Zaryte Vambraces","Pegasian Boots","Archers Ring (i)"]}, special:{label:"Special Attack",items:["Zaryte Crossbow"]} }},
-  { name:"God Wars — Saradomin (Zilyana)", icon:"✨", location:"God Wars Dungeon, SE", difficulty:"medium", styles:["range","melee"], moneyMaker:true, accentStyle:"range", combatReq:"75+ Ranged or Melee", prayerRec:"Protect from Melee (she switches), Piety/Rigour", tips:"Range from a distance to avoid her high melee damage. She teleports around the room. Bring a Saradomin item for access. She hits very fast — prayer flicking helps a lot.", gear:{ budget:{label:"Budget / Entry",items:["Rune Crossbow","Karil's Crossbow","Black D'hide","Amulet of Glory","Ava's Accumulator"]}, recommended:{label:"Recommended",items:["Blowpipe / Bowfa","Armadyl Armour / Crystal Armour","Ava's Assembler","Necklace of Anguish","Barrows Gloves","Pegasian Boots"]}, special:{label:"Special Attack",items:["Zaryte Crossbow"]} }},
-  { name:"God Wars — Zamorak (K'ril)", icon:"💀", location:"God Wars Dungeon, NE", difficulty:"medium", styles:["melee","range"], moneyMaker:true, accentStyle:"melee", combatReq:"70+ Melee", prayerRec:"Protect from Melee, Piety — beware Prayer smash attack", tips:"K'ril's prayer smash halves your prayer if it hits while praying melee. Arclight is exceptional here — K'ril is a demon. Bring a Zamorakian item for access.", gear:{ budget:{label:"Budget / Entry",items:["Arclight (BiS here)","Fighter Torso","Rune Platelegs","Amulet of Fury","Barrows Gloves","Dragon Boots"]}, recommended:{label:"Recommended",items:["Arclight","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots","Berserker Ring (i)"]}, special:{label:"Special Attack",items:["Dragon Warhammer","BGS — Arclight spec also applies debuff"]} }},
-  { name:"Zulrah", icon:"🐍", location:"Zul-Andra (Regicide req.)", difficulty:"medium", styles:["magic","range"], moneyMaker:true, accentStyle:"multi", combatReq:"75+ Magic & Ranged", prayerRec:"Protect from Magic/Ranged — switch per phase", tips:"Gear switch between Magic and Range phases. Green phase = pray Range, use Magic. Blue phase = pray Magic, use Range. Learn the 4 rotations. Avg ~170k GP/kill. Anti-venom+ essential.", gear:{ budget:{label:"Budget Magic",items:["Trident of the Swamp","Ahrim's Robes","Occult Necklace","Imbued God Cape","Eternal Boots"]}, recommended:{label:"Recommended Magic (swap)",items:["Tumeken's Shadow / Sanguinesti Staff","Ancestral Robes","Occult Necklace","Tormented Bracelet","Imbued God Cape","Magus Ring"]}, recommended2:{label:"Recommended Range (swap)",items:["Twisted Bow / Bowfa","Masori / Crystal Armour","Necklace of Anguish","Ava's Assembler","Zaryte Vambraces","Pegasian Boots"]} }},
-  { name:"Vorkath", icon:"🔵", location:"Ungael (Dragon Slayer II req.)", difficulty:"medium", styles:["range"], moneyMaker:true, accentStyle:"range", combatReq:"70+ Ranged, Dragon Slayer II", prayerRec:"Protect from Magic (mostly), Rigour", tips:"Dragon Hunter Crossbow gives 30% accuracy+damage bonus vs Vorkath. Salve Amulet (ei) is huge. During acid phase do the Woox Walk or keep moving. Kill Zombified Spawn immediately with Crumble Undead.", gear:{ budget:{label:"Budget / Entry",items:["Dragon Hunter Crossbow + Broad Bolts","Anti-dragon Shield","Void Range / D'hide","Salve Amulet (ei)","Ava's Assembler","Extended Super Antifire"]}, recommended:{label:"Recommended",items:["Dragon Hunter Crossbow + Ruby/Diamond Bolts (e)","Armadyl Armour","Salve Amulet (ei)","Ava's Assembler","Zaryte Vambraces","Pegasian Boots","Archers Ring (i)","Twisted Buckler"]}, special:{label:"Special Attack",items:["Dragon Warhammer / BGS (for defence spec)","Dragon Claws (finishing)"]} }},
-  { name:"Cerberus", icon:"🐕", location:"Cerberus Lair (Slayer req. 91)", difficulty:"medium", styles:["melee","range"], moneyMaker:true, accentStyle:"melee", combatReq:"91 Slayer required", prayerRec:"Protect from Melee, Piety — flick ghosts' prayers", tips:"When 3 spectral ghosts appear, flick to their matching prayer one at a time. She uses lava pools — move out immediately. Primordial, Pegasian, Eternal boots drop here.", gear:{ budget:{label:"Budget / Entry",items:["Abyssal Whip","Fighter Torso","Rune Platelegs","Amulet of Fury","Barrows Gloves","Dragon Boots"]}, recommended:{label:"Recommended",items:["Soulreaper Axe / Scythe of Vitur / Tentacle Whip","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots","Berserker Ring (i)"]}, special:{label:"Special Attack",items:["Dragon Warhammer","Soulreaper Axe (stacks)"]} }},
-  { name:"Kraken", icon:"🦑", location:"Kraken Cove (Slayer req. 87)", difficulty:"medium", styles:["magic"], moneyMaker:true, accentStyle:"magic", combatReq:"87 Slayer required", prayerRec:"None needed / Augury", tips:"Magic only — Ranged and Melee are not effective. Wake the 4 small whirlpools before attacking the Kraken. Trident of the Swamp is ideal. Very AFK-able. Drops Kraken Tentacle and Trident of the Seas.", gear:{ budget:{label:"Budget / Entry",items:["Trident of the Seas","Void Mage / Mystic Robes","Occult Necklace","God Cape (i)","Barrows Gloves"]}, recommended:{label:"Recommended",items:["Trident of the Swamp","Ancestral Robes / Ahrim's Robes","Occult Necklace","Imbued God Cape","Tormented Bracelet","Eternal Boots","Magus Ring"]}, special:{label:"Special Attack",items:["N/A"]} }},
-  { name:"Grotesque Guardians", icon:"🗿", location:"Slayer Tower Rooftop (75 Slayer)", difficulty:"medium", styles:["melee","range"], moneyMaker:false, accentStyle:"multi", combatReq:"75 Slayer + Brittle Key", prayerRec:"Protect from Melee (Dusk), Protect from Ranged (Dawn)", tips:"Two phases — Dusk (melee) and Dawn (ranged). Switch protection prayers accordingly. Kill Dawn quickly in P2 to prevent healing. Granite Dust and Granite Maul upgrade drop here.", gear:{ budget:{label:"Budget",items:["Abyssal Whip (Dusk)","Rune Crossbow (Dawn)","Fighter Torso","Black D'hide","Barrows Gloves"]}, recommended:{label:"Recommended",items:["Tentacle Whip / Fang (Dusk)","Blowpipe / Bowfa (Dawn)","Bandos Chestplate & Tassets","Armadyl Armour","Amulet of Torture / Anguish"]}, special:{label:"Special Attack",items:["Dragon Claws / BGS"]} }},
-  { name:"Corporeal Beast", icon:"👻", location:"Wilderness (safe zone entry)", difficulty:"hard", styles:["melee"], moneyMaker:false, accentStyle:"melee", combatReq:"80+ Melee, ideally team", prayerRec:"Protect from Melee, Piety", tips:"Halves damage from non-spear weapons — Zamorakian Spear or Hasta is strongly recommended. Corp heals when you use non-stab. Team bosses massively reduce difficulty. Spirit Shield pieces drop here.", gear:{ budget:{label:"Budget / Entry",items:["Zamorakian Spear (REQUIRED)","Bandos / Rune Armour","Amulet of Fury","Barrows Gloves","Berserker Ring"]}, recommended:{label:"Recommended",items:["Zamorakian Hasta","Bandos Chestplate","Bandos Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots"]}, special:{label:"Special Attack",items:["Dragon Warhammer","BGS (big spec in team)"]} }},
-  { name:"Alchemical Hydra", icon:"🐲", location:"Karuulm Slayer Dungeon (95 Slayer)", difficulty:"hard", styles:["range"], moneyMaker:true, accentStyle:"range", combatReq:"95 Slayer required", prayerRec:"Protect from Ranged/Magic — switch mid-fight", tips:"Move off the chemical pools when placed under you — they deal 8+ damage per tick. Switch prayers when Hydra changes colour. Dragon Hunter Crossbow excels here. Hydra Claw drops here.", gear:{ budget:{label:"Budget / Entry",items:["Dragon Hunter Crossbow + Diamond Bolts (e)","Armadyl Armour","Amulet of Glory / Anguish","Ava's Assembler","Barrows Gloves","Pegasian Boots"]}, recommended:{label:"Recommended",items:["Dragon Hunter Crossbow + Ruby/Diamond Bolts (e)","Masori Armour (f)","Necklace of Anguish","Ava's Assembler / Dizana's Quiver","Zaryte Vambraces","Pegasian Boots","Archers Ring (i)"]}, special:{label:"Special Attack",items:["Zaryte Crossbow"]} }},
-  { name:"Nightmare of Ashihama", icon:"🌙", location:"Sisterhood Sanctuary", difficulty:"hard", styles:["melee","magic"], moneyMaker:false, accentStyle:"melee", combatReq:"85+ combat, team recommended", prayerRec:"Protect from Melee, Piety", tips:"Nightmare is weak to CRUSH. Inquisitor's Mace or Inquisitor's set give a full crush bonus. Avoid the black puddles and handle the parasites mechanic. Drops Inquisitor's Armour and Nightmare Staff.", gear:{ budget:{label:"Budget / Entry",items:["Zamorakian Hasta / Abyssal Bludgeon","Bandos Armour","Amulet of Fury","Barrows Gloves","Berserker Ring (i)"]}, recommended:{label:"Recommended (Crush focused)",items:["Inquisitor's Mace","Inquisitor's Armour (full set bonus)","Amulet of Torture","Ferocious Gloves","Primordial Boots","Berserker Ring (i)","Avernic Defender"]}, special:{label:"Special Attack",items:["Dragon Warhammer","BGS"]} }},
-  { name:"Duke Sucellus", icon:"🧊", location:"Glacial Subpath (Desert Treasure II)", difficulty:"hard", styles:["melee","magic"], moneyMaker:true, accentStyle:"melee", combatReq:"85+ combat", prayerRec:"Protect from Magic, Piety", tips:"One of the Desert Treasure II bosses. Weak to stab. Osmumten's Fang is excellent here. Avoid the ice pools and handle the sleep mechanic by drinking a potion. Drops Ancient sceptre upgrades.", gear:{ budget:{label:"Budget",items:["Osmumten's Fang","Bandos Armour","Amulet of Fury","Barrows Gloves","Dragon Boots"]}, recommended:{label:"Recommended",items:["Osmumten's Fang","Bandos Chestplate & Tassets","Neitiznot Helm","Amulet of Torture","Ferocious Gloves","Primordial Boots","Ultor Ring"]}, special:{label:"Special Attack",items:["Dragon Warhammer","BGS"]} }},
-  { name:"The Whisperer", icon:"👁️", location:"Lassar Undercity (Desert Treasure II)", difficulty:"hard", styles:["magic"], moneyMaker:true, accentStyle:"magic", combatReq:"85+ Magic", prayerRec:"Protect from Missiles, Augury", tips:"Magic boss — Tumeken's Shadow is best in slot by far. Navigate the mind realm mechanics by collecting the orbs and avoiding shadows. Drops Shadow Quartz and the Siren's Staff.", gear:{ budget:{label:"Budget",items:["Trident of the Swamp","Ahrim's Robes","Occult Necklace","Imbued God Cape","Eternal Boots"]}, recommended:{label:"Recommended",items:["Tumeken's Shadow","Ancestral Robes","Occult Necklace","Tormented Bracelet","Imbued God Cape","Eternal Boots","Magus Ring"]}, special:{label:"Special Attack",items:["N/A"]} }},
-  { name:"TzTok-Jad (Fight Caves)", icon:"🔥", location:"TzHaar Fight Cave", difficulty:"endgame", styles:["range"], moneyMaker:false, accentStyle:"range", combatReq:"70+ Ranged, 43 Prayer (overhead)", prayerRec:"Switch: Protect from Magic (rocks back) / Ranged (slams feet) — CRITICAL", tips:"Watch Jad's animation to switch prayers. His healers appear at ~half HP — attack them once each to stop healing. Fire Cape reward. Use chinchompas to speed through waves.", gear:{ budget:{label:"Budget / Entry",items:["Rune Crossbow + Diamond Bolts (e)","Black D'hide","Ava's Accumulator","Amulet of Glory","Barrows Gloves","Ranger Boots"]}, recommended:{label:"Recommended",items:["Blowpipe (waves) + Armadyl Crossbow (Jad)","Armadyl Armour / Void Range","Ava's Assembler","Necklace of Anguish","Zaryte Vambraces","Pegasian Boots"]}, special:{label:"Special Attack",items:["Armadyl Crossbow spec for Jad healers"]} }},
-  { name:"Chambers of Xeric (CoX)", icon:"🏛️", location:"Mount Quidamortem", difficulty:"endgame", styles:["melee","range","magic"], moneyMaker:true, accentStyle:"multi", combatReq:"90+ all combat recommended", prayerRec:"Piety, Rigour, Augury — switch per room", tips:"Bring all 3 combat styles. Twisted Bow excels on Olm. Osmumten's Fang is versatile across most rooms. Big drops: Twisted Bow, Arcane, Twisted Buckler, Dragon Hunter Crossbow. BGS recommended for Olm defence reduction.", gear:{ budget:{label:"Entry Minimum",items:["Abyssal Tentacle / Rapier","Blowpipe","Trident of the Swamp","Bandos Armour","Armadyl Armour","Ancestral Robes","Barrows Gloves"]}, recommended:{label:"Recommended",items:["Scythe of Vitur / Osmumten's Fang (Melee)","Twisted Bow / Bowfa (Ranged)","Tumeken's Shadow / Sang Staff (Magic)","Masori Armour (f)","Ancestral Robes","Torva Armour"]}, special:{label:"Special Attack",items:["Bandos Godsword (Olm defence)","Dragon Warhammer"]} }},
-  { name:"Theatre of Blood (ToB)", icon:"🩸", location:"Ver Sinhaza", difficulty:"endgame", styles:["melee","range","magic"], moneyMaker:true, accentStyle:"multi", combatReq:"90+ all combat, 90 Prayer recommended", prayerRec:"All overhead prayers, Piety/Rigour/Augury", tips:"Maiden: step away from blood spawns. Bloat: walk under feet when stopped. Sotetseg: dodge maze. Xarpus: watch poison exhumeds. Verzik: handle web/crabs. Scythe of Vitur is king here.", gear:{ budget:{label:"Entry Minimum",items:["Abyssal Tentacle","Blowpipe","Trident of Swamp","Bandos Armour","Armadyl Armour","Ancestral / Ahrim's","Barrows Gloves"]}, recommended:{label:"Recommended",items:["Scythe of Vitur (main DPS)","Twisted Bow / Bowfa (Ranged)","Sang Staff / Trident (Utility Magic)","Torva Armour","Masori Armour (f)","Ancestral Robes","Ferocious Gloves"]}, special:{label:"Special Attack",items:["BGS / DWH for defence reduction","Dragon Claws / Voidwaker for burst"]} }},
-  { name:"Tombs of Amascut (ToA)", icon:"⚱️", location:"Ruins of Uzer", difficulty:"endgame", styles:["melee","range","magic"], moneyMaker:true, accentStyle:"multi", combatReq:"90+ all combat, invocation dependent", prayerRec:"All overheads + Piety/Rigour/Augury", tips:"Difficulty scales with Invocations (raid level). Start at 0 and work up. Fang is excellent for Kephri and Baba. Tumeken's Shadow drops from this raid. Great money at higher invocations.", gear:{ budget:{label:"Entry (low invocations)",items:["Osmumten's Fang","Blowpipe","Trident of Swamp","Bandos Armour","Armadyl Armour","Ahrim's Robes"]}, recommended:{label:"Recommended (mid-high invocations)",items:["Osmumten's Fang / Scythe","Twisted Bow","Tumeken's Shadow","Torva Armour","Masori Armour (f)","Ancestral Robes","Ferocious / Zaryte Vambraces"]}, special:{label:"Special Attack",items:["BGS / DWH","Voidwaker","Dragon Claws"]} }},
-  { name:"Nex", icon:"⚡", location:"Ancient Prison, GWD", difficulty:"endgame", styles:["range"], moneyMaker:true, accentStyle:"range", combatReq:"90+ Ranged, team recommended", prayerRec:"Protect from Missiles/Magic — switch per phase. Piety/Rigour", tips:"Team boss ideally. Five phases — Smoke, Shadow, Blood, Ice, Zaros. Blood phase: DON'T attack her when she heals or she gains HP. Ice phase: run from the ice prison. Torva, Zaryte Crossbow drop here.", gear:{ budget:{label:"Budget",items:["Armadyl Crossbow + Diamond Bolts (e)","Armadyl Armour","Ava's Assembler","Necklace of Anguish","Barrows Gloves","Pegasian Boots"]}, recommended:{label:"Recommended",items:["Twisted Bow / Zaryte Crossbow","Masori Armour (f)","Necklace of Anguish","Ava's Assembler / Dizana's Quiver","Zaryte Vambraces","Pegasian Boots","Archers Ring (i)"]}, special:{label:"Special Attack",items:["Zaryte Crossbow (ice phase escape / burst)"]} }},
-  { name:"Slayer (General)", icon:"🗡️", location:"Various Locations", difficulty:"easy", styles:["melee","range","magic"], moneyMaker:false, accentStyle:"multi", combatReq:"Varies by task", prayerRec:"Task dependent", tips:"Use Slayer Helm (imbued) on task for +15% accuracy and damage. Blowpipe is great for many tasks. Cannon speeds up kills. Burst/Barrage for grouped tasks like Abyssal Demons or Dust Devils.", gear:{ budget:{label:"Budget",items:["Slayer Helm (imbued)","Abyssal Whip / Rune Crossbow","Fighter Torso","Black D'hide","Barrows Gloves"]}, recommended:{label:"Recommended",items:["Slayer Helm (imbued)","Tentacle Whip / Blowpipe / Trident","Bandos / Armadyl / Ancestral","Ferocious / Zaryte Vambraces","Primordial / Pegasian / Eternal Boots"]}, special:{label:"Special Attack",items:["Dragon Dagger (budget burst)","Dragon Claws (high DPS)"]} }},
-  { name:"Inferno (TzKal-Zuk)", icon:"🌋", location:"TzHaar Fight Inferno", difficulty:"endgame", styles:["range","magic"], moneyMaker:false, accentStyle:"multi", combatReq:"90+ Ranged & Magic, Fire Cape required", prayerRec:"Constant prayer switching — pray against highest threat each tick", tips:"The hardest solo PvM in OSRS. 69 waves. Prayer switch on the attack animation, not when the projectile lands. Use chins or barrage for wave management. Zuk hits 251 max. Infernal Cape is the reward.", gear:{ budget:{label:"Near-Minimum",items:["Twisted Bow / Bowfa (Zuk)","Blowpipe (waves)","Trident of Swamp (magic waves)","Armadyl Armour","Ancestral Robes","Ava's Assembler","Barrows Gloves"]}, recommended:{label:"Recommended (BiS)",items:["Twisted Bow (Zuk)","Blowpipe + Dragon Darts (waves)","Tumeken's Shadow (magic waves)","Masori Armour (f)","Ancestral Robes","Zaryte Vambraces","Pegasian / Eternal Boots"]}, special:{label:"Special Attack",items:["Zaryte Crossbow (healers)"]} }},
-];
-
-let bFilter = 'all';
-function bSetFilter(f, btn) {
-  bFilter = f;
-  document.querySelectorAll('#panel-bosses .filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderBosses();
-}
-function renderBosses() {
-  const q = document.getElementById('b-search').value.toLowerCase();
-  let list = BOSSES.filter(b => {
-    const mf = bFilter==='all' ? true : bFilter==='melee' ? b.styles.includes('melee') : bFilter==='range' ? b.styles.includes('range') : bFilter==='magic' ? b.styles.includes('magic') : bFilter==='money' ? b.moneyMaker : b.difficulty===bFilter;
-    const str = (b.name+b.location+b.tips+(b.gear.budget?.items?.join(' ')||'')+(b.gear.recommended?.items?.join(' ')||'')).toLowerCase();
-    return mf && (!q || str.includes(q));
-  });
-  document.getElementById('b-count').textContent = list.length;
-  const diffLabel = { easy:'Beginner', medium:'Mid-Game', hard:'Hard', endgame:'Endgame' };
-  document.getElementById('b-grid').innerHTML = list.length ? list.map((b,i) => {
-    const g = b.gear;
-    let gh = `<div class="gear-section"><div class="gear-label">Gear Setup</div>`;
-    if (g.budget) { gh += `<div class="tier-header">💰 ${g.budget.label}</div><div class="gear-list">${g.budget.items.map(x=>`<span class="gear-item">${x}</span>`).join('')}</div>`; }
-    if (g.recommended) { gh += `<div class="tier-header">⭐ ${g.recommended.label}</div><div class="gear-list">${g.recommended.items.map(x=>`<span class="gear-item bis">${x}</span>`).join('')}</div>`; }
-    if (g.recommended2) { gh += `<div class="tier-header">⭐ ${g.recommended2.label}</div><div class="gear-list">${g.recommended2.items.map(x=>`<span class="gear-item bis">${x}</span>`).join('')}</div>`; }
-    if (g.special && g.special.items[0]!=='N/A') { gh += `<div class="tier-header">💥 ${g.special.label}</div><div class="gear-list">${g.special.items.map(x=>`<span class="gear-item special">${x}</span>`).join('')}</div>`; }
-    gh += `</div>`;
-    return `<div class="card" style="animation-delay:${Math.min(i*0.03,0.4)}s">
-      <div class="card-accent accent-${b.accentStyle}"></div>
-      <div class="card-header">
-        <div class="card-icon">${b.icon}</div>
-        <div class="card-title-wrap"><div class="card-name">${b.name}</div><div class="card-sub">📍 ${b.location}</div></div>
-        <div class="diff-badge diff-${b.difficulty}">${diffLabel[b.difficulty]}</div>
-      </div>
-      <div class="card-body">
-        <div class="style-row">
-          ${b.styles.includes('melee')?'<span class="style-tag tag-melee">⚔ Melee</span>':''}
-          ${b.styles.includes('range')?'<span class="style-tag tag-range">🏹 Range</span>':''}
-          ${b.styles.includes('magic')?'<span class="style-tag tag-magic">🔮 Magic</span>':''}
-          ${b.moneyMaker?'<span class="style-tag tag-prayer">💰 Money Maker</span>':''}
-        </div>
-        <div class="info-row"><div class="info-chip">Req: <span>${b.combatReq}</span></div></div>
-        <div class="info-chip" style="font-size:0.71rem;border-color:rgba(243,156,18,0.3);color:#f8c84a;">🙏 ${b.prayerRec}</div>
-        ${gh}
-        <div class="tips-section"><div class="tips-label">📜 Tips & Notes</div><div class="tips-text">${b.tips}</div></div>
-      </div>
-    </div>`;
-  }).join('') : '<div class="no-results">No bosses found.</div>';
-}
-
-/* ═══════════════════════════
-   SKILLING DATA + RENDER
-═══════════════════════════ */
-const SKILLS = [
-  { name:"Attack", icon:"⚔️", category:"combat", accent:"combat", maxXp:"~120k XP/hr", tags:["fast","expensive"], tip:"Train Attack to unlock higher tier weapons. Nightmare Zone is great for AFK training at higher levels using Dharok's + absorption potions.", required:["Combat gear","Potions"], methods:[ {level:1,name:"Questing (early)",xp:"Varies",desc:"Complete quests like Vampire Slayer, Fight Arena and Waterfall for large early XP dumps. Can skip to 30+ without touching combat."}, {level:30,name:"Crabs (Sand/Rock/Ammonite)",xp:"30k/hr",desc:"AFK-friendly, low attention required. Great for early accounts. Ammonite crabs are best — 480 HP and aggressive."}, {level:60,name:"Nightmare Zone (Dharok's)",xp:"90–110k/hr",desc:"Use Dharok's full set with absorption potions and overloads. Stay at 1 HP to maximise damage output. Very AFK."}, {level:75,name:"Slayer tasks",xp:"50–80k/hr",desc:"Best long-term method — earn Slayer XP alongside Attack. Imbued Slayer Helm gives +15% bonus."} ]},
-  { name:"Strength", icon:"💪", category:"combat", accent:"combat", maxXp:"~130k XP/hr", tags:["fast","expensive"], tip:"Nightmare Zone with Dharok's is the fastest practical method. Scythe of Vitur and Soulreaper Axe are best in slot weapons for Strength XP.", required:["Dharok's set (NMZ)","Absorption potions","Overloads"], methods:[ {level:1,name:"Questing (early)",xp:"Varies",desc:"Waterfall Quest gives 13,750 Strength XP at level 1 — takes you straight to level 30. Highly recommended."}, {level:30,name:"Ammonite Crabs",xp:"30k/hr",desc:"AFK and low-cost. Good for early accounts building up combat."}, {level:70,name:"Nightmare Zone (Dharok's)",xp:"100–130k/hr",desc:"Stay at 1 HP with Dharok's set bonus. Use overloads and absorption potions. Best AFK method by far."}, {level:85,name:"Bandos GWD / Raids",xp:"60–80k/hr",desc:"Great passive Strength XP while bossing. Scythe of Vitur in ToB gives exceptional Strength XP."} ]},
-  { name:"Defence", icon:"🛡️", category:"combat", accent:"combat", maxXp:"~400k XP/hr", tags:["fast","tick","expensive"], tip:"Black chinchompas on Maniacal Monkeys (post-MM2) give around 400k Defence XP/hr alongside Ranged XP. For standard training, Nightmare Zone and slayer are the go-to methods.", required:["Black chinchompas (fast)","Void range gear","MM2 quest (fast method)"], methods:[ {level:1,name:"Questing",xp:"Varies",desc:"Dragon Slayer I, Horror from the Deep and other quests give solid Defence XP early."}, {level:40,name:"Ammonite Crabs / NMZ",xp:"30–90k/hr",desc:"Same methods as Attack/Strength — Defence is trained on the same hits so pick your XP split."}, {level:80,name:"Black chins (Maniacal Monkeys)",xp:"~400k/hr",desc:"Post Monkey Madness II. Fastest Defence XP in the game alongside Ranged. Very expensive."} ]},
-  { name:"Hitpoints", icon:"❤️", category:"combat", accent:"combat", maxXp:"~85k XP/hr", tags:["afk"], tip:"Hitpoints XP is earned automatically alongside combat skills. Every hit gives 1.33 HP XP. Fastest passive HP gains come from AoE methods like chinning.", required:["Any combat gear"], methods:[ {level:1,name:"Passive (all combat)",xp:"Automatic",desc:"You earn HP XP on every hit, 1.33x the combat XP. No separate training needed."}, {level:70,name:"Nightmare Zone",xp:"~50k/hr",desc:"HP XP naturally stacks up while AFK training melee here."}, {level:80,name:"Chinning (MM2 tunnels)",xp:"~85k/hr",desc:"AoE from chinchompas hits multiple targets — great passive HP gains."} ]},
-  { name:"Ranged", icon:"🏹", category:"combat", accent:"combat", maxXp:"~1M+ XP/hr", tags:["fast","expensive"], tip:"Chinchompas at Maniacal Monkeys is the fastest Ranged XP. Red chins are more affordable; black chins are faster but cost more. Void Range gear maximises XP at chins.", required:["Chinchompas","Void Range gear","MM2 completed","Ava's device"], methods:[ {level:1,name:"Questing",xp:"Varies",desc:"Temple of Ikov and other quests give early Ranged XP jumps."}, {level:1,name:"Crabs (Ranged)",xp:"30–50k/hr",desc:"AFK method using any bow/crossbow. Good for lower levels or budget training."}, {level:55,name:"Chinchompas (Red) — MM2",xp:"200–400k/hr",desc:"Multi-target hits with AoE. Use in the tunnels after Monkey Madness 2. Stack monkeys for best results."}, {level:70,name:"Black Chinchompas — MM2",xp:"800k–1M+/hr",desc:"Fastest Ranged XP available. Extremely expensive but incredibly fast. Void Range + Rigour recommended."} ]},
-  { name:"Magic", icon:"🔮", category:"combat", accent:"combat", maxXp:"~250k XP/hr", tags:["fast","profit","afk"], tip:"Alching is very AFK and profitable. Splashing gives low XP but is extremely AFK. High-level players use bolt enchanting for fast XP. Slayer with Trident is great passive Magic XP.", required:["Runes","Staff","God Cape (imbued)"], methods:[ {level:1,name:"Questing / Low-level spells",xp:"Varies",desc:"Curse, Confuse, Teleports all give decent early XP. Do quests like Imp Catcher early."}, {level:55,name:"High Alchemy",xp:"~78k/hr",desc:"Very AFK. Cast on Nature Runes + items bought from shops. Profit varies — check GE prices first."}, {level:43,name:"Splashing (AFK)",xp:"~7k/hr",desc:"Wear -65 magic bonus gear to always splash. Very slow but completely AFK. Useful overnight."}, {level:55,name:"Enchanting Bolts",xp:"~250k/hr",desc:"One-tick enchant method at high levels. Very click-intensive but fastest Magic XP in the game."}, {level:94,name:"Tan Leather",xp:"~150k/hr + profit",desc:"Lunar spellbook spell. Tans dragonhide for profit and solid Magic XP."} ]},
-  { name:"Prayer", icon:"🙏", category:"combat", accent:"combat", maxXp:"~2M XP/hr", tags:["expensive"], tip:"Prayer is almost purely a money sink. Wilderness Altar gives 3.5x XP per bone. Dragon Bones → 252 XP each at altar. Ensouled Heads are more cost-effective but slower.", required:["Bones / Ensouled Heads","POH with Gilded Altar (2 lit incense)","Chaos Altar access (Wilderness)"], methods:[ {level:1,name:"Ensouled Heads (budget)",xp:"~280k/hr",desc:"Reanimate heads using Arceuus Spellbook. Roughly half the cost of altar bones. Requires 60+ Magic."}, {level:1,name:"Gilded Altar (POH)",xp:"~400k/hr",desc:"Dragon Bones give 252 XP each with 2 incense lit. Host world services available (Yanille W330)."}, {level:1,name:"Chaos Altar (Wilderness)",xp:"~500k–2M/hr",desc:"3.5x bone XP — the best rate possible. High PKer risk. Use single-click bones on the altar and be ready to teleport."} ]},
-  { name:"Slayer", icon:"💀", category:"combat", accent:"combat", maxXp:"~90k XP/hr", tags:["profit"], tip:"Slayer is one of the best skills in the game — profit, combat XP, and access to exclusive bosses. Use Turael skipping to farm points faster. Konar tasks give bonus Brimstone keys.", required:["Slayer Helm (imbued)","Combat gear","Cannon (optional)","Superantipoison / Antifire"], methods:[ {level:1,name:"Turael/Spria (early)",xp:"5–15k/hr",desc:"Start with Turael for easy tasks. Very low XP but good for getting started."}, {level:50,name:"Chaeldar tasks",xp:"30–50k/hr",desc:"Good mid-level tasks. Unlocks access to Zulrah-adjacent monsters."}, {level:75,name:"Nieve / Steve tasks",xp:"50–70k/hr",desc:"Best for mid-game. Wide variety including profitable ones like Gargoyles, Abyssal Demons."}, {level:85,name:"Duradel tasks (best points)",xp:"60–90k/hr",desc:"Highest point rewards. Skip bad tasks and prioritise Hydra, Cerberus, Abyssal Demons."} ]},
-  { name:"Mining", icon:"⛏️", category:"gathering", accent:"gathering", maxXp:"~90k XP/hr", tags:["profit","f2p"], tip:"3-tick Granite at Bandit Camp Quarry is the absolute fastest but extremely click-intensive. Motherlode Mine is the best AFK option. Blast Mine gives great XP and profit. Amethyst at 92 is relaxed and profitable.", required:["Crystal Pickaxe (best)","Dragon Pickaxe (budget)","Varrock Armour (XP bonus)","Expert Mining Gloves (MLM)"], methods:[ {level:1,name:"Questing / Copper-Tin",xp:"~15k/hr",desc:"Mine Copper and Tin to level 15. Power-mine by dropping ores."}, {level:15,name:"Powermine Iron",xp:"~45k/hr",desc:"Best F2P XP. Mine iron and drop immediately. 3-tick iron is faster but click-heavy."}, {level:55,name:"Motherlode Mine",xp:"~25k/hr",desc:"AFK-friendly. Mine pay-dirt and collect ores. Unlock upper level at 72 for more rocks."}, {level:75,name:"Blast Mine (Lovakengj)",xp:"~55k/hr",desc:"Use dynamite to blast ore chunks. Great XP + profit up to 550k GP/hr."}, {level:85,name:"3-tick 4 Granite",xp:"~85–90k/hr",desc:"Fastest Mining XP. Requires tick manipulation at Bandit Camp Quarry. Very click-intensive."}, {level:92,name:"Amethyst (AFK)",xp:"~19–27k/hr",desc:"Very relaxed. Profitable — 300–500k GP/hr crafting into javelins."} ]},
-  { name:"Fishing", icon:"🎣", category:"gathering", accent:"gathering", maxXp:"~100k XP/hr", tags:["afk","profit","f2p"], tip:"Barbarian Fishing is the best XP from level 58+. Karambwans at 65 are very click-intensive but fast. Anglerfish at 82 are relaxed and profitable.", required:["Barbarian rod + feathers (fast)","Harpoon","Fishing Outfit (5% XP bonus)"], methods:[ {level:1,name:"Questing / Shrimps-Sardines",xp:"~10k/hr",desc:"Do Fishing Contest quest for early XP jump to level 24."}, {level:20,name:"Fly Fishing (Barbarian)",xp:"~30k/hr",desc:"F2P viable. Fish trout and salmon at Barbarian Village. Power-fish for best XP."}, {level:58,name:"Barbarian Fishing",xp:"~60k/hr",desc:"Best balanced method. Gives Strength and Agility XP too. Use Otto's rod at Barbarian Outpost."}, {level:65,name:"1-tick Karambwans",xp:"~100k/hr",desc:"Fastest Fishing XP but extremely click-intensive. Requires Tai Bwo Wannai Trio quest."}, {level:82,name:"Anglerfish (Piscarilius)",xp:"~25–35k/hr",desc:"Relaxed and profitable — Anglerfish sell well. Requires 100% Piscarilius favor."} ]},
-  { name:"Woodcutting", icon:"🪓", category:"gathering", accent:"gathering", maxXp:"~70k XP/hr", tags:["afk","f2p","profit"], tip:"Teaks at Ape Atoll are the fastest XP from level 60. 2-tick teaks is extremely fast but click-heavy. Redwoods at 90 are very AFK. Forestry events boost XP and add profit.", required:["Dragon Axe or Crystal Axe","Woodcutting Outfit (5% XP)","Forestry Kit (optional)"], methods:[ {level:1,name:"Regular-Oak Trees",xp:"~10–20k/hr",desc:"Train at any trees until level 30+. Oak trees near a bank are efficient early on."}, {level:30,name:"Willow Trees",xp:"~30k/hr",desc:"Good F2P XP. Draynor Village is a great spot."}, {level:60,name:"Teak Trees (Ape Atoll/Fossil Island)",xp:"~60k/hr",desc:"Best mid-level XP. Fossil Island teaks are safe; Ape Atoll requires Monkey Madness I."}, {level:60,name:"2-tick Teaks",xp:"~160k/hr",desc:"One of the fastest Woodcutting methods using tick manipulation. Very click-intensive."}, {level:90,name:"Redwood Trees",xp:"~50–60k/hr",desc:"AFK-friendly. Located at the Woodcutting Guild. Good passive XP."} ]},
-  { name:"Hunter", icon:"🦎", category:"gathering", accent:"gathering", maxXp:"~250k XP/hr", tags:["profit","fast"], tip:"Black Chinchompas in the Wilderness are the most profitable Hunter method but risky due to PKers. Herbiboar at Fossil Island gives great XP and Herblore secondaries.", required:["Hunter gear (none required)","Graceful for running","Looting bag (Wildy chins)"], methods:[ {level:1,name:"Polar Kebbits / Birds",xp:"~5k/hr",desc:"Start with basic traps. Follow the method progression — never stay on lower traps too long."}, {level:43,name:"Red Salamanders",xp:"~90k/hr",desc:"Very fast XP in a small area. Great for rushing to 60+. Located in Ourania."}, {level:53,name:"Red Chinchompas",xp:"~100–140k/hr",desc:"Profitable and decent XP. Box traps in the Feldip Hills hunting area."}, {level:77,name:"Herbiboar (Fossil Island)",xp:"~150k/hr",desc:"Great XP and drops Herblore secondaries passively. Requires 80 Herblore to harvest."}, {level:80,name:"Black Chinchompas (Wildy)",xp:"~230–250k/hr",desc:"Best XP and profit. High-risk due to PKers — bring minimal gear. Very lucrative."} ]},
-  { name:"Farming", icon:"🌱", category:"gathering", accent:"gathering", maxXp:"~Runs-based", tags:["profit","afk"], tip:"Farming is run-based, not time-based. Herb runs are the best passive GP in the game — do them every 80 minutes while doing other skills. Magic Secateurs and Farming Cape are key upgrades.", required:["Magic Secateurs (herb yield)","Bottomless Compost Bucket","Explorer's Ring (teleports)","Farming Guild access (45+)"], methods:[ {level:1,name:"Allotment Patches",xp:"Low",desc:"Cabbage → Potato → Onion. Good for early levels and Farming contracts."}, {level:15,name:"Herb Runs (profit)",xp:"~10–50k/run",desc:"Best money per click in the game — ~300k–1M GP per herb run. Run every 80 mins."}, {level:15,name:"Oak/Willow Tree Runs",xp:"~10–50k/run",desc:"Tree patches are the primary way to train Farming XP. Always use pay-to-protect for guaranteed harvest."}, {level:63,name:"Mahogany Tree Runs",xp:"~50k/run",desc:"Fast XP runs — Mahogany Trees at Fossil Island patch (Hardwood Grove)."}, {level:75,name:"Redwood / Magic Tree runs",xp:"~60–80k/run",desc:"Largest tree XP. Long growth times but massive rewards when they mature."} ]},
-  { name:"Herblore", icon:"🧪", category:"artisan", accent:"artisan", maxXp:"~650k XP/hr", tags:["fast","expensive"], tip:"Herblore is purely a bankstanding money sink. Make the highest-level potion you can. Super Combat Potions at 90 are often the best XP-per-gp. Check the Herblore tab for full recipes!", required:["Vials of Water","Herbs","Secondary ingredients","GP for supplies"], methods:[ {level:1,name:"Attack Potions (early)",xp:"25 XP ea",desc:"Use Guam + Eye of Newt. Fast to do, cheap to buy supplies."}, {level:38,name:"Prayer Potions",xp:"87.5 XP ea",desc:"Good mid-game XP and always useful. Ranarr + Snape Grass."}, {level:63,name:"Super Restores",xp:"142 XP ea",desc:"Snapdragon + Red Spider Eggs. Efficient XP and strong potions for personal use."}, {level:81,name:"Saradomin Brews",xp:"180 XP ea",desc:"Toadflax + Crushed Bird Nest. Very fast XP but expensive. Great for rushing to 90+."}, {level:90,name:"Super Combat Potions",xp:"150 XP ea",desc:"Best XP per cost at high levels. Combine 3 super potions + Torstol. Very efficient."} ]},
-  { name:"Smithing", icon:"🔨", category:"artisan", accent:"artisan", maxXp:"~380k XP/hr", tags:["fast","profit","f2p"], tip:"Blast Furnace with Gold Bars and Goldsmith Gauntlets is the fastest viable method from level 40. The gauntlets double Gold Bar XP.", required:["Goldsmith Gauntlets (Family Crest quest)","Coal Bag (MLM nuggets)","Stamina Potions","Ice Gloves (for speed)"], methods:[ {level:1,name:"Quest XP dumps",xp:"Varies",desc:"The Knight's Sword quest gives 12,725 XP — instantly takes you to level 29."}, {level:30,name:"Iron/Steel Bars (F2P)",xp:"~40k/hr",desc:"F2P option. Less efficient than Blast Furnace but accessible."}, {level:40,name:"Gold Bars at Blast Furnace",xp:"~350k/hr",desc:"With Goldsmith Gauntlets, Gold Bars give 56 XP each instead of 22. Best XP-to-cost ratio."}, {level:74,name:"Rune Bars (Blast Furnace)",xp:"~380k/hr",desc:"Fastest Smithing XP but most expensive method at the Blast Furnace."} ]},
-  { name:"Crafting", icon:"💎", category:"artisan", accent:"artisan", maxXp:"~440k XP/hr", tags:["fast","expensive"], tip:"Crafting is expensive to train fast. Battlestaves are click-intensive but cheap. Black Dragonhide Bodies at 84 are the fastest viable method. Glassblowing is slower but cheaper.", required:["Needle and Thread","Crafting Outfit (5% XP bonus)","GP for supplies"], methods:[ {level:1,name:"Leather Items (early)",xp:"~20k/hr",desc:"Craft leather gloves, boots, bodies. Cheap and fast for early levels."}, {level:54,name:"Battlestaves",xp:"~250k/hr",desc:"Attach orbs to battlestaves. Best XP-per-cost ratio. Air Battlestaves are most popular."}, {level:84,name:"Black Dragonhide Bodies",xp:"~440k/hr",desc:"Fastest crafting XP. With Death on the Isle quest, no thread needed."} ]},
-  { name:"Fletching", icon:"🪶", category:"artisan", accent:"artisan", maxXp:"~9M XP/hr", tags:["fast","expensive"], tip:"Fletching is one of the fastest 99s in the game. Dragon Darts are the fastest method but costly. Cutting bows is much cheaper but slower. Bolt-making is a middleground.", required:["Dart tips + Feathers","Logs (for bows)","Knife"], methods:[ {level:1,name:"Headless Arrows (budget)",xp:"~30k/hr",desc:"Attach feathers to arrow shafts. Very cheap, decent early XP."}, {level:10,name:"Shortbows / Longbows",xp:"~50–100k/hr",desc:"Cut and string bows from logs. Slower but very cheap — good for ironmen."}, {level:52,name:"Steel Darts",xp:"~500k/hr",desc:"Good mid-level XP. Attach steel dart tips to feathers — fast clicking."}, {level:81,name:"Dragon Darts",xp:"~1–9M/hr",desc:"Fastest Fletching XP in the game. Very expensive. Use mouse keys for maximum efficiency."} ]},
-  { name:"Cooking", icon:"🍖", category:"artisan", accent:"artisan", maxXp:"~480k XP/hr", tags:["fast","profit","f2p"], tip:"Cooking is one of the easiest 99s. At 74+ with Cooking Gauntlets you stop burning Lobsters. Karambwans with 1-tick cooking is the fastest method. Rogues' Den or Myth's Guild have fires next to banks.", required:["Cooking Gauntlets (Family Crest)","Close-to-bank fire/range","Raw fish or meat"], methods:[ {level:1,name:"Shrimps → Trout → Salmon",xp:"~30–80k/hr",desc:"Cook progressively better fish as you level. Rogues' Den range is best location."}, {level:65,name:"Monkfish",xp:"~200k/hr",desc:"Good XP and stop burning at 92 (90 with Gauntlets). Profitable to cook."}, {level:80,name:"Shark",xp:"~210k/hr",desc:"Popular method. Sharks stop burning at 99 (94 with Gauntlets). AFK-friendly."}, {level:30,name:"1-tick Karambwans",xp:"~950k/hr",desc:"Fastest Cooking XP. Extremely click-intensive one-tick method. Requires Tai Bwo Wannai Trio quest."} ]},
-  { name:"Construction", icon:"🏠", category:"artisan", accent:"artisan", maxXp:"~14M XP/hr", tags:["fast","expensive"], tip:"Construction is expensive but fast. Always use a Demon Butler to fetch planks. Mahogany Homes minigame is great for cheaper XP. Gilded Altar at 75 gives massive utility for training Prayer.", required:["Demon Butler (50 Con required)","Mahogany / Teak / Oak Planks","POH with workshop / chapel","GP — very expensive"], methods:[ {level:1,name:"Crude Wooden Chairs → Oak",xp:"~30k/hr",desc:"Early levels — build and remove cheap furniture. Oak at 20+ is much better."}, {level:20,name:"Oak Larders / Tables",xp:"~100k/hr",desc:"Good early XP. Oak planks are affordable. Use Demon Butler to fetch planks."}, {level:52,name:"Mahogany Tables",xp:"~600k/hr",desc:"Excellent XP. Build and remove in the Dining Room. Demon Butler brings planks."}, {level:77,name:"Mahogany Homes (budget)",xp:"~200–400k/hr",desc:"Much cheaper than regular methods. Do contracts in Mahogany Homes for good XP at lower cost."} ]},
-  { name:"Firemaking", icon:"🔥", category:"artisan", accent:"artisan", maxXp:"~400k XP/hr", tags:["fast","f2p"], tip:"Wintertodt is the recommended method from level 50 — it gives useful skilling supplies and XP for other skills. Redwood logs at 90 are the fastest standard Firemaking XP. One of the easiest and cheapest 99s.", required:["Tinderbox","Logs","Warm Clothing (Wintertodt)","Axe + Knife (Wintertodt)"], methods:[ {level:1,name:"Logs → Oak → Willow",xp:"~30–100k/hr",desc:"Light logs in a line across Varrock or Seers' Village. Use the best logs you can afford."}, {level:50,name:"Wintertodt (recommended)",xp:"~250–300k/hr",desc:"Minigame-based training. Gives random supplies (seeds, herbs, gems). Great for Ironmen. Wear warm clothes."}, {level:90,name:"Redwood Logs",xp:"~350–400k/hr",desc:"Fastest standard Firemaking XP. Light lines of redwood logs from Woodcutting Guild."} ]},
-  { name:"Runecrafting", icon:"🔵", category:"artisan", accent:"artisan", maxXp:"~79k XP/hr", tags:["profit","slow"], tip:"OSRS's slowest and most painful skill. Lava Runes are the fastest XP. Guardians of the Rift is fun and gives ~50–70k XP/hr. Blood Runes from level 77 are AFK and profitable. Raiments of the Eye outfit gives +60% rune yield.", required:["Essence Pouches (all sizes)","Ring of Dueling (Lavas)","Raiments of the Eye outfit","Binding Necklace (Lavas)","Lunar Diplomacy (Magic Imbue)"], methods:[ {level:1,name:"Air Runes (F2P)",xp:"~8k/hr",desc:"Very slow. Only do this if you have no other option."}, {level:27,name:"Guardians of the Rift",xp:"~50–70k/hr",desc:"Fun minigame-based training. Rewards include the RC outfit and Catalytic Rune bag."}, {level:23,name:"Lava Runes (Fastest XP)",xp:"~65–79k/hr",desc:"Use Ring of Dueling to Fire Altar, craft Lava Runes, teleport to Castle Wars to bank. Requires Lunar Diplomacy for Magic Imbue."}, {level:77,name:"Blood Runes (AFK + profit)",xp:"~40–50k/hr",desc:"Very AFK. Mine and craft at the Arceuus Blood Altar. Consistently profitable."} ]},
-  { name:"Agility", icon:"🏃", category:"support", accent:"support", maxXp:"~80k XP/hr", tags:["afk","profit"], tip:"Marks of Grace (from rooftop courses) purchase the Graceful Outfit — essential for all skillers. The Wilderness Agility Course at 52 is highly profitable. Seers' Village course with Kandarin Diary is best mid-level XP.", required:["Graceful Outfit (for run energy)","Summer Pie (boosts Agility 5 levels)"], methods:[ {level:1,name:"Gnome Stronghold Course",xp:"~10k/hr",desc:"Best starter course. Low fail rate, easy laps. Keep doing until level 30."}, {level:30,name:"Varrock Rooftop Course",xp:"~18k/hr",desc:"Good Marks of Grace rate. Do all rooftop courses in sequence for Graceful outfit."}, {level:40,name:"Canifis Rooftop Course",xp:"~22k/hr",desc:"Best Marks of Grace rate in the game. Do this one until Graceful is complete."}, {level:52,name:"Wilderness Agility Course (profit)",xp:"~50–60k/hr",desc:"~2.5M GP/hr after 60 laps. PKer risk in Wilderness. Bring minimal gear."}, {level:60,name:"Seers' Village Rooftop",xp:"~55k/hr",desc:"Great mid-level XP with Kandarin Medium Diary."}, {level:85,name:"Hallowed Sepulchre",xp:"~80k/hr",desc:"Hardest Agility content — puzzle-based obstacle course. Great XP and unique rewards including Dark Graceful."} ]},
-  { name:"Thieving", icon:"🗝️", category:"support", accent:"support", maxXp:"~400k XP/hr", tags:["profit","fast"], tip:"Blackjacking at level 45+ is the fastest early-to-mid XP. Pickpocketing Elves at 85 (post Song of the Elves) is the best profit at ~4M GP/hr. Pyramid Plunder at 91 is highly AFK. Rogue's Outfit doubles pickpocket coin rewards.", required:["Rogue's Outfit (doubles coin pickpocket)","Dodgy Necklace (prevents stun)","Ardougne Cloak (bonus pickpocket chance)"], methods:[ {level:1,name:"Men/Women → Farmers → Warriors",xp:"~10–20k/hr",desc:"Pickpocket NPCs in sequence. Always wear Rogue's Outfit once obtained."}, {level:45,name:"Blackjacking (Bandits)",xp:"~200k/hr",desc:"Lure a Bandit into a building, knock them out, pickpocket twice. Fast XP but click-intensive."}, {level:55,name:"Master Farmers",xp:"~80k/hr",desc:"Great for Ironmen — steal seeds. Requires Ardougne Cloak for best success rate."}, {level:85,name:"Elves (Prifddinas)",xp:"~250k XP + 4M GP/hr",desc:"Best profit by far. Crystal Teleport Seeds are massive. Requires Song of the Elves."}, {level:91,name:"Pyramid Plunder",xp:"~270k/hr",desc:"Very AFK. Open urns and sarcophagi in the Pyramid. Pharaoh's Sceptre drops here."} ]},
-];
-
-let sFilter = 'all';
-function sSetFilter(f, btn) {
-  sFilter = f;
-  document.querySelectorAll('#panel-skilling .filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderSkilling();
-}
-function renderSkilling() {
-  const q = document.getElementById('s-search').value.toLowerCase();
-  let list = SKILLS.filter(s => {
-    const mf = sFilter==='all' ? true : sFilter==='profit' ? s.tags?.includes('profit') : sFilter==='afk' ? s.tags?.includes('afk') : sFilter==='f2p' ? s.tags?.includes('f2p') : s.category===sFilter;
-    const str = (s.name+' '+s.tip+' '+(s.methods||[]).map(m=>m.name+' '+m.desc).join(' ')).toLowerCase();
-    return mf && (!q || str.includes(q));
-  });
-  document.getElementById('s-count').textContent = list.length;
-  const catMap = { combat:'⚔ Combat Skill', gathering:'⛏ Gathering Skill', artisan:'🔨 Artisan Skill', support:'✨ Support Skill' };
-  const tagMap = { profit:'<span class="tag tag-profit">💰 Profit</span>', afk:'<span class="tag tag-afk">😴 AFK</span>', fast:'<span class="tag tag-fast">⚡ Fast XP</span>', expensive:'<span class="tag tag-expensive">💸 Expensive</span>', f2p:'<span class="tag tag-f2p">🆓 F2P</span>', tick:'<span class="tag tag-tick">🖱 Tick Manip.</span>', slow:'<span class="tag tag-expensive">🐢 Slow</span>' };
-  document.getElementById('s-grid').innerHTML = list.length ? list.map((s,i) => {
-    const tags = (s.tags||[]).map(t=>tagMap[t]||'').join('');
-    const methods = (s.methods||[]).map(m=>`<div class="method-row"><div class="method-top"><span class="method-name">${m.name}</span><span class="method-level">Lv ${m.level}</span><span class="method-xp">${m.xp}</span></div><div class="method-desc">${m.desc}</div></div>`).join('');
-    const req = s.required?.length ? `<div><div class="methods-label" style="margin-bottom:5px;">Recommended Items</div><div class="req-list">${s.required.map(r=>`<span class="req-item">${r}</span>`).join('')}</div></div>` : '';
-    return `<div class="card" style="animation-delay:${Math.min(i*0.03,0.4)}s">
-      <div class="card-accent accent-${s.accent||s.category}"></div>
-      <div class="card-header">
-        <div class="card-icon">${s.icon}</div>
-        <div class="card-title-wrap"><div class="card-name">${s.name}</div><div class="card-sub">${catMap[s.category]||s.category}</div></div>
-        ${s.maxXp?`<div class="max-xp-badge">Max ${s.maxXp}</div>`:''}
-      </div>
-      <div class="card-body">
-        ${tags?`<div class="tag-row">${tags}</div>`:''}
-        <div><div class="methods-label">Training Methods</div>${methods}</div>
-        ${req}
-        <div class="tips-section"><div class="tips-label">📜 Tips & Notes</div><div class="tips-text">${s.tip}</div></div>
-      </div>
-    </div>`;
-  }).join('') : '<div class="no-results">No skills found.</div>';
-}
-
-/* ═══════════════════════════
-   INIT
-═══════════════════════════ */
-renderHerblore();
-renderBosses();
-renderSkilling();
 </script>
+
 </body>
 </html>
