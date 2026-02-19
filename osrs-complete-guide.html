@@ -580,6 +580,17 @@ function switchTab(name, btn) {
   btn.classList.add('active');
 }
 
+// Auto-switch to tab based on URL ?tab=skilling / ?tab=bosses / ?tab=herblore
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const tab = params.get('tab');
+  const valid = ['herblore', 'bosses', 'skilling'];
+  if (tab && valid.includes(tab)) {
+    const btn = document.querySelector(`.tab-btn[onclick*="'${tab}'"]`);
+    if (btn) switchTab(tab, btn);
+  }
+})();
+
 /* ═══════════════════════════
    HERBLORE DATA + RENDER
 ═══════════════════════════ */
