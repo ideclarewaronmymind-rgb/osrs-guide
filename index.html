@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmic Guides — Game Guides & References</title>
+<meta name="description" content="Cosmic Guides — your community-built reference for Old School RuneScape and beyond. Skilling guides, boss gear setups, herblore recipes and more.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #07060a;
+  --bg2: #0d0b12;
+  --surface: #12101a;
+  --surface2: #1a1726;
+  --border: #2a2540;
+  --border2: #3d3660;
+  --gold: #c8a84b;
+  --gold2: #e8c96a;
+  --gold3: #f5e09a;
+  --text: #e8e0f0;
+  --text2: #b0a8c8;
+  --text3: #6a6085;
+  --accent: #7c5cbf;
+  --accent2: #9d7de0;
+  --accent3: #c4a8ff;
+  --green: #27ae60;
+  --green2: #4ad880;
+  --red: #c0392b;
+  --red2: #e05040;
+  --osrs-green: #3a7a3a;
+  --osrs-brown: #8b6914;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Crimson Pro', Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── STAR FIELD BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 75%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 35%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(ellipse at 30% 20%, rgba(124,92,191,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(200,168,75,0.07) 0%, transparent 40%),
+    radial-gradient(ellipse at 60% 50%, rgba(39,174,96,0.04) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7,6,10,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+}
+
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold2);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-logo span { color: var(--accent3); }
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 6px 14px;
+  color: var(--text3);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.15s;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.nav-link:hover { color: var(--gold2); background: rgba(200,168,75,0.06); }
+.nav-link.active { color: var(--gold2); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 90px 20px 70px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(124,92,191,0.08) 0%, transparent 70%);
+}
+
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  color: var(--accent2);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent2));
+}
+.hero-eyebrow::after { background: linear-gradient(90deg, var(--accent2), transparent); }
+
+.hero-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--gold2);
+  text-shadow: 0 0 60px rgba(200,168,75,0.2), 0 0 120px rgba(124,92,191,0.15);
+  margin-bottom: 6px;
+}
+
+.hero-title-sub {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
+  color: var(--accent3);
+  letter-spacing: 0.3em;
+  margin-bottom: 22px;
+  opacity: 0.8;
+}
+
+.hero-desc {
+  max-width: 600px;
+  margin: 0 auto 36px;
+  font-size: 1.05rem;
+  color: var(--text2);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.hero-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.hero-rule::before, .hero-rule::after {
+  content: '';
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.hero-rule::after { background: linear-gradient(90deg, var(--gold), transparent); }
+.hero-rule-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.btn-primary {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--osrs-brown) 100%);
+  color: #0a0800;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,168,75,0.3); }
+
+.btn-secondary {
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--text2);
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold2); transform: translateY(-2px); }
+
+/* ── SECTION WRAPPER ── */
+.section {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+.section-header {
+  margin-bottom: 36px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold2);
+  letter-spacing: 0.05em;
+}
+.section-title span { color: var(--accent3); }
+
+.section-sub {
+  font-size: 0.85rem;
+  color: var(--text3);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ── GAME TABS ── */
+.game-tabs {
+  position: relative;
+  z-index: 1;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.game-tabs-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.game-tabs-inner::-webkit-scrollbar { display: none; }
+
+.game-tab {
+  padding: 16px 24px;
+  border: none;
+  background: none;
+  color: var(--text3);
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+.game-tab:hover { color: var(--text2); }
+.game-tab.active { color: var(--gold2); border-bottom-color: var(--gold); }
+
+.game-tab-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.55rem;
+  padding: 1px 5px;
+  border-radius: 8px;
+  margin-left: 5px;
+  vertical-align: middle;
+  font-family: 'Crimson Pro', serif;
+  font-style: normal;
+}
+
+.coming-soon-badge {
+  background: var(--surface2);
+  color: var(--text3);
+  border: 1px solid var(--border);
+}
+
+/* ── GAME PANELS ── */
+.game-panel { display: none; }
+.game-panel.active { display: block; }
+
+/* ── OSRS OVERVIEW CARDS ── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.overview-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.2s;
+  animation: fadeUp 0.25s ease both;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+.overview-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.oc-accent { height: 3px; }
+.oc-accent-gold    { background: linear-gradient(90deg, var(--osrs-brown), var(--gold2)); }
+.oc-accent-green   { background: linear-gradient(90deg, #27ae60, #50d080); }
+.oc-accent-blue    { background: linear-gradient(90deg, #2980b9, #5ab0e8); }
+.oc-accent-red     { background: linear-gradient(90deg, #c0392b, #e05040); }
+.oc-accent-purple  { background: linear-gradient(90deg, var(--accent), var(--accent3)); }
+.oc-accent-teal    { background: linear-gradient(90deg, #1abc9c, #4ae0b8); }
+
+.oc-header {
+  padding: 16px 18px 12px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.oc-icon { font-size: 2rem; flex-shrink: 0; }
+.oc-title { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600; color: var(--gold2); }
+.oc-subtitle { font-size: 0.72rem; color: var(--text3); font-style: italic; margin-top: 2px; }
+
+.oc-body { padding: 14px 18px; }
+.oc-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
+
+.oc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.oc-tag {
+  font-size: 0.66rem;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.oc-tag-gold   { background: rgba(200,168,75,0.12); color: var(--gold2); border-color: rgba(200,168,75,0.25); }
+.oc-tag-green  { background: rgba(39,174,96,0.12);  color: #50d080;      border-color: rgba(39,174,96,0.25); }
+.oc-tag-blue   { background: rgba(41,128,185,0.12); color: #5ab0e8;      border-color: rgba(41,128,185,0.25); }
+.oc-tag-red    { background: rgba(192,57,43,0.12);  color: #e05040;      border-color: rgba(192,57,43,0.25); }
+.oc-tag-purple { background: rgba(124,92,191,0.12); color: var(--accent3); border-color: rgba(124,92,191,0.25); }
+
+.oc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.oc-link:hover { color: var(--gold2); }
+.oc-link::after { content: '→'; transition: transform 0.15s; }
+.oc-link:hover::after { transform: translateX(3px); }
+
+/* ── OSRS WIKI CALLOUT ── */
+.wiki-callout {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.wiki-callout-icon { font-size: 1.8rem; flex-shrink: 0; }
+.wiki-callout-text { flex: 1; min-width: 200px; }
+.wiki-callout-title { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold2); margin-bottom: 4px; }
+.wiki-callout-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.55; font-style: italic; }
+.wiki-callout-link {
+  padding: 8px 18px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  color: var(--gold2);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.wiki-callout-link:hover { background: rgba(200,168,75,0.1); }
+
+/* ── SKILL QUICK REF ── */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.skill-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.15s;
+}
+.skill-chip:hover { border-color: var(--border2); }
+.skill-chip-label { font-size: 0.6rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 2px; }
+
+/* ── COMING SOON PANEL ── */
+.coming-soon-panel {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text3);
+}
+.coming-soon-panel .icon { font-size: 3rem; margin-bottom: 16px; display: block; }
+.coming-soon-panel h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--text2); margin-bottom: 8px; }
+.coming-soon-panel p { font-size: 0.9rem; font-style: italic; }
+
+/* ── STATS STRIP ── */
+.stats-strip {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px;
+}
+.stats-strip-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+.stat-block-num {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold2);
+  display: block;
+}
+.stat-block-label {
+  font-size: 0.72rem;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+  display: block;
+}
+
+/* ── CONTACT SECTION ── */
+.contact-section {
+  position: relative;
+  z-index: 1;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 60px 24px;
+}
+.contact-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.contact-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold2);
+  margin-bottom: 10px;
+}
+.contact-sub {
+  font-size: 0.95rem;
+  color: var(--text2);
+  font-style: italic;
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+.contact-rule {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 36px;
+}
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  text-align: left;
+}
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+.contact-card:hover { border-color: var(--border2); }
+.contact-card-icon { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+.contact-card-title { font-family: 'Cinzel', serif; font-size: 0.82rem; color: var(--gold2); margin-bottom: 6px; }
+.contact-card-val {
+  font-size: 0.85rem;
+  color: var(--accent3);
+  word-break: break-all;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.contact-card-val:hover { color: var(--gold2); }
+.contact-card-desc { font-size: 0.75rem; color: var(--text3); font-style: italic; margin-top: 4px; }
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 28px 24px;
+  text-align: center;
+  color: var(--text3);
+  font-size: 0.78rem;
+}
+footer a { color: var(--text3); text-decoration: none; transition: color 0.15s; }
+footer a:hover { color: var(--gold2); }
+footer .footer-logo { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); margin-bottom: 8px; }
+footer .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+footer .disclaimer { font-style: italic; color: var(--text3); font-size: 0.72rem; max-width: 600px; margin: 8px auto 0; line-height: 1.6; }
+
+/* ── GUIDE VIEWER OVERLAY ── */
+.guide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.guide-overlay.open {
+  transform: translateY(0);
+}
+
+.guide-topbar {
+  height: 52px;
+  background: rgba(7,6,10,0.97);
+  border-bottom: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 14px;
+  flex-shrink: 0;
+  backdrop-filter: blur(10px);
+}
+
+.guide-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  color: var(--gold2);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.guide-back-btn:hover { background: rgba(200,168,75,0.1); border-color: var(--gold); }
+
+.guide-topbar-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  color: var(--text2);
+  letter-spacing: 0.06em;
+}
+
+.guide-topbar-logo {
+  margin-left: auto;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  color: var(--gold);
+  opacity: 0.6;
+}
+
+.guide-frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: var(--bg);
+}
+
+
+/* ── GUIDE VIEWER OVERLAY ── */
+.guide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+.guide-overlay.open {
+  transform: translateY(0);
+  pointer-events: all;
+}
+.guide-topbar {
+  height: 52px;
+  background: rgba(7,6,10,0.97);
+  border-bottom: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.guide-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  color: var(--gold2);
+  font-family: "Cinzel", serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.guide-back-btn:hover { background: rgba(200,168,75,0.1); border-color: var(--gold); }
+.guide-topbar-title {
+  font-family: "Cinzel", serif;
+  font-size: 0.82rem;
+  color: var(--text2);
+  letter-spacing: 0.06em;
+}
+.guide-topbar-logo {
+  margin-left: auto;
+  font-family: "Cinzel", serif;
+  font-size: 0.78rem;
+  color: var(--gold);
+  opacity: 0.6;
+}
+.guide-frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: var(--bg);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .navbar { padding: 0 16px; }
+  .hero { padding: 60px 16px 50px; }
+  .nav-links { gap: 2px; }
+  .nav-link { padding: 5px 8px; font-size: 0.65rem; }
+}
+
+/* ── POTION GAME PANEL ── */
+#potion-game-panel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #08070c;
+  flex-direction: column;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+#potion-game-panel.open {
+  display: flex;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.pg-topbar {
+  height: 52px;
+  background: rgba(7,6,10,0.97);
+  border-bottom: 1px solid #2d2748;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 14px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.pg-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background: #161224;
+  border: 1px solid #453e6a;
+  border-radius: 4px;
+  color: #e8c96a;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.pg-back-btn:hover { background: rgba(200,168,75,0.1); border-color: #c8a84b; }
+.pg-topbar-title { font-family: 'Cinzel', serif; font-size: 0.82rem; color: #b0a8d0; letter-spacing: 0.06em; }
+.pg-topbar-logo { margin-left: auto; font-family: 'Cinzel', serif; font-size: 0.78rem; color: #c8a84b; opacity: 0.6; }
+
+/* Scoped potion game styles */
+#potion-game-panel .pg-header {
+  text-align: center;
+  padding: 28px 20px 16px;
+  width: 100%;
+  border-bottom: 1px solid #2d2748;
+  background: linear-gradient(180deg, rgba(142,68,173,0.1) 0%, transparent 100%);
+}
+#potion-game-panel .pg-header-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #e8c96a;
+  text-shadow: 0 0 40px rgba(200,168,75,0.3);
+  letter-spacing: 0.06em;
+}
+#potion-game-panel .pg-header-sub {
+  font-style: italic;
+  color: #6a6090;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  letter-spacing: 0.08em;
+}
+#potion-game-panel .pg-stats-bar {
+  display: flex;
+  gap: 20px;
+  padding: 14px 24px;
+  background: #161224;
+  border-bottom: 1px solid #2d2748;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#potion-game-panel .pg-stat-block { text-align: center; min-width: 80px; }
+#potion-game-panel .pg-stat-val { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #e8c96a; display: block; }
+#potion-game-panel .pg-stat-label { font-size: 0.62rem; color: #6a6090; text-transform: uppercase; letter-spacing: 0.1em; }
+#potion-game-panel .pg-xp-bar-wrap { width: 100%; max-width: 700px; padding: 10px 24px 0; margin: 0 auto; }
+#potion-game-panel .pg-xp-bar-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: #6a6090; margin-bottom: 5px; }
+#potion-game-panel .pg-xp-bar-track { height: 8px; background: #1e1930; border-radius: 4px; border: 1px solid #2d2748; overflow: hidden; }
+#potion-game-panel .pg-xp-bar-fill { height: 100%; background: linear-gradient(90deg, #8e44ad, #c8a84b); border-radius: 4px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+
+#potion-game-panel .pg-game-area {
+  display: grid;
+  grid-template-columns: 260px 1fr 260px;
+  gap: 18px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex: 1;
+}
+@media (max-width: 780px) {
+  #potion-game-panel .pg-game-area { grid-template-columns: 1fr; }
+}
+#potion-game-panel .pg-panel { background: #161224; border: 1px solid #2d2748; border-radius: 8px; overflow: hidden; }
+#potion-game-panel .pg-panel-header { padding: 11px 14px; background: #0f0d17; border-bottom: 1px solid #2d2748; font-family: 'Cinzel', serif; font-size: 0.72rem; font-weight: 600; color: #e8c96a; letter-spacing: 0.08em; text-transform: uppercase; }
+#potion-game-panel .pg-panel-body { padding: 12px; }
+#potion-game-panel .pg-ingredient-list { display: flex; flex-direction: column; gap: 6px; }
+#potion-game-panel .pg-ingredient-item { display: flex; align-items: center; gap: 9px; padding: 8px 10px; background: #1e1930; border: 1px solid #2d2748; border-radius: 5px; cursor: grab; transition: all 0.15s; user-select: none; position: relative; }
+#potion-game-panel .pg-ingredient-item:hover { border-color: #453e6a; transform: translateX(3px); background: rgba(69,62,106,0.4); }
+#potion-game-panel .pg-ingredient-item.dragging { opacity: 0.4; cursor: grabbing; }
+#potion-game-panel .pg-ingredient-emoji { font-size: 1.3rem; flex-shrink: 0; }
+#potion-game-panel .pg-ingredient-info { flex: 1; min-width: 0; }
+#potion-game-panel .pg-ingredient-name { font-size: 0.82rem; font-weight: 600; color: #e8e0f8; }
+#potion-game-panel .pg-ingredient-qty { font-size: 0.65rem; color: #6a6090; margin-top: 1px; }
+#potion-game-panel .pg-qty-badge { font-family: 'Cinzel', serif; font-size: 0.65rem; font-weight: 700; background: #8e44ad; color: #fff; padding: 2px 6px; border-radius: 3px; flex-shrink: 0; }
+#potion-game-panel .pg-brew-center { display: flex; flex-direction: column; gap: 14px; }
+#potion-game-panel .pg-cauldron-wrap { background: #161224; border: 1px solid #2d2748; border-radius: 8px; padding: 20px; text-align: center; min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+#potion-game-panel .pg-cauldron-wrap.drag-over { border-color: #b06fd0; background: rgba(142,68,173,0.1); box-shadow: 0 0 24px rgba(142,68,173,0.2) inset; }
+#potion-game-panel .pg-cauldron-emoji { font-size: 4rem; display: block; margin-bottom: 10px; filter: drop-shadow(0 0 12px rgba(142,68,173,0.5)); animation: pgCauldronBob 3s ease-in-out infinite; }
+@keyframes pgCauldronBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+#potion-game-panel .pg-cauldron-label { font-family: 'Cinzel', serif; font-size: 0.72rem; color: #6a6090; letter-spacing: 0.1em; text-transform: uppercase; }
+#potion-game-panel .pg-cauldron-slots { display: flex; gap: 10px; margin-top: 14px; justify-content: center; }
+#potion-game-panel .pg-slot { width: 64px; height: 64px; border: 2px dashed #453e6a; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; background: #1e1930; transition: all 0.2s; cursor: default; position: relative; }
+#potion-game-panel .pg-slot.filled { border-color: #b06fd0; background: rgba(142,68,173,0.15); box-shadow: 0 0 12px rgba(142,68,173,0.2); }
+#potion-game-panel .pg-slot.filled::after { content: '×'; position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: #e74c3c; color: #fff; border-radius: 50%; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; cursor: pointer; line-height: 16px; font-family: sans-serif; }
+#potion-game-panel .pg-slot-label { position: absolute; bottom: -18px; font-size: 0.58rem; color: #6a6090; white-space: nowrap; left: 50%; transform: translateX(-50%); text-transform: uppercase; letter-spacing: 0.06em; }
+#potion-game-panel .pg-brew-btn { width: 100%; padding: 13px; background: linear-gradient(135deg, #8e44ad 0%, #b06fd0 100%); border: none; border-radius: 6px; color: #fff; font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+#potion-game-panel .pg-brew-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(142,68,173,0.4); }
+#potion-game-panel .pg-brew-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+#potion-game-panel .pg-brew-btn.brewing { animation: pgBrewPulse 0.6s ease-in-out infinite; }
+@keyframes pgBrewPulse { 0%, 100% { box-shadow: 0 0 10px rgba(142,68,173,0.4); } 50% { box-shadow: 0 0 30px rgba(142,68,173,0.8); } }
+#potion-game-panel .pg-result-box { background: #161224; border: 1px solid #2d2748; border-radius: 8px; padding: 14px; text-align: center; min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+#potion-game-panel .pg-result-emoji { font-size: 2rem; }
+#potion-game-panel .pg-result-name { font-family: 'Cinzel', serif; font-size: 0.9rem; color: #e8c96a; }
+#potion-game-panel .pg-result-xp { font-size: 0.8rem; color: #55e88a; font-style: italic; }
+#potion-game-panel .pg-result-fail { font-size: 0.82rem; color: #ff6b5b; font-style: italic; }
+#potion-game-panel .pg-recipe-list { display: flex; flex-direction: column; gap: 5px; max-height: 400px; overflow-y: auto; }
+#potion-game-panel .pg-recipe-item { padding: 8px 10px; background: #1e1930; border: 1px solid #2d2748; border-radius: 5px; font-size: 0.78rem; transition: border-color 0.15s; }
+#potion-game-panel .pg-recipe-item:hover { border-color: #453e6a; }
+#potion-game-panel .pg-recipe-item.discovered { border-color: rgba(46,204,113,0.3); background: rgba(46,204,113,0.05); }
+#potion-game-panel .pg-recipe-item.locked-recipe { opacity: 0.45; }
+#potion-game-panel .pg-recipe-name { font-weight: 600; color: #e8e0f8; margin-bottom: 3px; }
+#potion-game-panel .pg-recipe-name.discovered-name { color: #55e88a; }
+#potion-game-panel .pg-recipe-ingredients { color: #6a6090; font-size: 0.72rem; font-style: italic; }
+#potion-game-panel .pg-recipe-lvl { font-size: 0.62rem; color: #b06fd0; margin-top: 2px; }
+#potion-game-panel .pg-recipe-xp-val { color: #60b8f0; font-size: 0.62rem; }
+#potion-game-panel .pg-shop-list { display: flex; flex-direction: column; gap: 5px; }
+#potion-game-panel .pg-shop-item { display: flex; align-items: center; gap: 8px; padding: 7px 9px; background: #1e1930; border: 1px solid #2d2748; border-radius: 5px; cursor: pointer; transition: all 0.15s; }
+#potion-game-panel .pg-shop-item:hover:not(.pg-shop-locked) { border-color: #c8a84b; }
+#potion-game-panel .pg-shop-item.pg-shop-locked { opacity: 0.35; cursor: not-allowed; }
+#potion-game-panel .pg-shop-emoji { font-size: 1.2rem; }
+#potion-game-panel .pg-shop-info { flex: 1; }
+#potion-game-panel .pg-shop-name { font-size: 0.8rem; font-weight: 600; color: #e8e0f8; }
+#potion-game-panel .pg-shop-cost { font-size: 0.68rem; color: #e8c96a; }
+#potion-game-panel .pg-shop-buy-btn { font-family: 'Cinzel', serif; font-size: 0.62rem; padding: 3px 8px; background: rgba(200,168,75,0.15); border: 1px solid #c8a84b; border-radius: 3px; color: #e8c96a; cursor: pointer; transition: all 0.15s; }
+#potion-game-panel .pg-shop-buy-btn:hover { background: rgba(200,168,75,0.3); }
+#potion-game-panel .pg-toast-container { position: fixed; top: 70px; right: 20px; z-index: 999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+#potion-game-panel .pg-toast { padding: 10px 16px; border-radius: 6px; font-family: 'Cinzel', serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; animation: pgToastIn 0.3s ease, pgToastOut 0.3s ease 2s forwards; pointer-events: none; max-width: 280px; border: 1px solid; }
+#potion-game-panel .pg-toast-success { background: rgba(46,204,113,0.15); border-color: rgba(46,204,113,0.4); color: #55e88a; }
+#potion-game-panel .pg-toast-fail { background: rgba(231,76,60,0.15); border-color: rgba(231,76,60,0.4); color: #ff6b5b; }
+#potion-game-panel .pg-toast-info { background: rgba(200,168,75,0.15); border-color: rgba(200,168,75,0.4); color: #e8c96a; }
+#potion-game-panel .pg-toast-level { background: rgba(142,68,173,0.2); border-color: rgba(142,68,173,0.5); color: #b06fd0; }
+@keyframes pgToastIn  { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
+@keyframes pgToastOut { from { opacity:1; } to { opacity:0; } }
+#potion-game-panel .pg-bubble { position: absolute; border-radius: 50%; pointer-events: none; animation: pgBubbleUp 1.5s ease-out forwards; }
+@keyframes pgBubbleUp { 0% { opacity: 0.8; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-80px) scale(0.3); } }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a class="nav-logo" href="#">⭐ Cosmic <span>Guides</span></a>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="scrollTo('#guides')">Guides</button>
+    <button class="nav-link" onclick="scrollTo('#about')">About</button>
+    <button class="nav-link" onclick="scrollTo('#contact')">Contact</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Community Game Guides</div>
+  <div class="hero-title">Cosmic Guides</div>
+  <div class="hero-title-sub">cosmicguides.co.uk</div>
+  <div class="hero-rule"><div class="hero-rule-diamond"></div></div>
+  <p class="hero-desc">
+    Your community-built reference for game guides, boss strategies, skilling methods and more. 
+    Accurate, up-to-date, and free forever.
+  </p>
+  <div class="hero-ctas">
+    <button class="btn-primary" onclick="openGuide('osrs-complete-guide.html', '⚔ OSRS Complete Guide')">🗡 Browse OSRS Guides</button>
+    <button class="btn-secondary" onclick="scrollTo('#contact')">✉ Get in Touch</button>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div>
+      <span class="stat-block-num">24</span>
+      <span class="stat-block-label">Skills Covered</span>
+    </div>
+    <div>
+      <span class="stat-block-num">25+</span>
+      <span class="stat-block-label">Boss Guides</span>
+    </div>
+    <div>
+      <span class="stat-block-num">40+</span>
+      <span class="stat-block-label">Potion Recipes</span>
+    </div>
+    <div>
+      <span class="stat-block-num">Free</span>
+      <span class="stat-block-label">Always & Forever</span>
+    </div>
+  </div>
+</div>
+
+<!-- GAME TABS -->
+<div id="guides" class="game-tabs">
+  <div class="game-tabs-inner">
+    <button class="game-tab active" onclick="switchGame('osrs', this)">⚔ Old School RuneScape <span class="game-tab-badge">Live</span></button>
+    <button class="game-tab" onclick="switchGame('more', this)">🎮 More Games <span class="game-tab-badge coming-soon-badge">Soon</span></button>
+  </div>
+</div>
+
+<!-- OSRS PANEL -->
+<div id="panel-osrs" class="game-panel active">
+  <div class="section">
+
+    <!-- Wiki callout -->
+    <div class="wiki-callout">
+      <span class="wiki-callout-icon">📖</span>
+      <div class="wiki-callout-text">
+        <div class="wiki-callout-title">Powered by the OSRS Wiki</div>
+        <div class="wiki-callout-desc">Our guides draw on data and information from the official Old School RuneScape Wiki — the community encyclopaedia written and maintained by players since 2013. For deeper reading on any topic, the wiki is always your best resource.</div>
+      </div>
+      <a href="https://oldschool.runescape.wiki" target="_blank" rel="noopener" class="wiki-callout-link">Visit Wiki →</a>
+    </div>
+
+    <!-- Section header -->
+    <div class="section-header">
+      <div>
+        <div class="section-title">⚔ <span>OSRS</span> Guides</div>
+        <div class="section-sub">Old School RuneScape · Members & F2P · Updated regularly</div>
+      </div>
+      <button class="btn-primary" style="font-size:0.72rem; padding:9px 18px;" onclick="openGuide('osrs-complete-guide.html', '⚔ OSRS Complete Guide')">Open Full Guide →</button>
+    </div>
+
+    <!-- Guide cards -->
+    <div class="overview-grid">
+
+      <!-- Skilling Guide -->
+      <div class="overview-card" style="animation-delay:0.05s;cursor:pointer" onclick="openGuide('osrs-complete-guide.html?tab=skilling', '📜 Skilling Guide')">
+        <div class="oc-accent oc-accent-green"></div>
+        <div class="oc-header">
+          <span class="oc-icon">📜</span>
+          <div>
+            <div class="oc-title">Skilling Guide</div>
+            <div class="oc-subtitle">All 24 skills · XP rates · Methods</div>
+          </div>
+        </div>
+        <div class="oc-body">
+          <p class="oc-desc">Old School RuneScape features 24 skills across four categories — Combat, Gathering, Production, and Utility. Our skilling guide covers the best training methods for every skill, from level 1 to 99, including AFK options, fastest XP, and profit methods.</p>
+          <div class="oc-tags">
+            <span class="oc-tag oc-tag-green">⚡ Fast XP</span>
+            <span class="oc-tag oc-tag-blue">😴 AFK Methods</span>
+            <span class="oc-tag oc-tag-gold">💰 Profit Routes</span>
+            <span class="oc-tag oc-tag-green">🆓 F2P Options</span>
+          </div>
+          <span class="oc-link">View Skilling Guide</span>
+        </div>
+      </div>
+
+      <!-- Boss Gear Guide -->
+      <div class="overview-card" style="animation-delay:0.1s;cursor:pointer" onclick="openGuide('osrs-complete-guide.html?tab=bosses', '⚔ Boss Gear Guide')">
+        <div class="oc-accent oc-accent-red"></div>
+        <div class="oc-header">
+          <span class="oc-icon">⚔️</span>
+          <div>
+            <div class="oc-title">Boss Gear Guide</div>
+            <div class="oc-subtitle">25+ bosses · Budget & BiS setups</div>
+          </div>
+        </div>
+        <div class="oc-body">
+          <p class="oc-desc">From Giant Mole to the Theatre of Blood, our boss gear guide covers every major encounter in OSRS. Each boss includes budget and best-in-slot gear setups, prayer recommendations, combat requirements, special attack weapons and fight tips.</p>
+          <div class="oc-tags">
+            <span class="oc-tag oc-tag-red">⚔ Beginner → Endgame</span>
+            <span class="oc-tag oc-tag-gold">💰 Money Makers</span>
+            <span class="oc-tag oc-tag-blue">🔮 All Styles</span>
+          </div>
+          <span class="oc-link">View Boss Guide</span>
+        </div>
+      </div>
+
+      <!-- Herblore Guide -->
+      <div class="overview-card" style="animation-delay:0.15s;cursor:pointer" onclick="openGuide('osrs-complete-guide.html?tab=herblore', '🧪 Herblore Reference')">
+        <div class="oc-accent oc-accent-teal"></div>
+        <div class="oc-header">
+          <span class="oc-icon">🧪</span>
+          <div>
+            <div class="oc-title">Herblore Reference</div>
+            <div class="oc-subtitle">40+ potions · Ingredients · XP</div>
+          </div>
+        </div>
+        <div class="oc-body">
+          <p class="oc-desc">A complete reference for every potion in Old School RuneScape. Find the herb and secondary ingredient for any potion, the level required, XP gained, and what the potion does. Covers combat, skilling, prayer, antipoisons and more.</p>
+          <div class="oc-tags">
+            <span class="oc-tag oc-tag-green">🌿 All Herbs</span>
+            <span class="oc-tag oc-tag-blue">🙏 Prayer Potions</span>
+            <span class="oc-tag oc-tag-red">💊 Antidotes</span>
+            <span class="oc-tag oc-tag-gold">⚗ Combat Brews</span>
+          </div>
+          <span class="oc-link">View Herblore Guide</span>
+        </div>
+      </div>
+
+      <!-- Potion Game -->
+      <div class="overview-card" style="animation-delay:0.2s;cursor:pointer" onclick="openPotionGame()">
+        <div class="oc-accent oc-accent-purple"></div>
+        <div class="oc-header">
+          <span class="oc-icon">⚗️</span>
+          <div>
+            <div class="oc-title">Cosmic Brewer</div>
+            <div class="oc-subtitle">Potion Game · Brew · Level Up</div>
+          </div>
+        </div>
+        <div class="oc-body">
+          <p class="oc-desc">Think you know your Herblore? Drag herbs and secondary ingredients into the cauldron to brew OSRS potions. Earn GP, discover recipes, and level up your Herblore in this interactive brewing game.</p>
+          <div class="oc-tags">
+            <span class="oc-tag oc-tag-purple">🎮 Mini Game</span>
+            <span class="oc-tag oc-tag-green">🌿 Herblore</span>
+            <span class="oc-tag oc-tag-gold">🏆 Level Up</span>
+          </div>
+          <span class="oc-link">Play Now</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- About OSRS -->
+    <div id="about" class="section-header" style="margin-top: 10px;">
+      <div>
+        <div class="section-title">About <span>Old School RuneScape</span></div>
+        <div class="section-sub">Source: oldschool.runescape.wiki</div>
+      </div>
+    </div>
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; line-height: 1.75; color: var(--text2); font-size: 0.95rem;">
+      <p style="margin-bottom: 14px;">
+        Old School RuneScape is a massively multiplayer online role-playing game developed and published by Jagex. Originally released in 2007, the game was re-launched in 2013 from an archived version of the original RuneScape, preserving the classic gameplay while continuing to receive new content voted on by the community.
+      </p>
+      <p style="margin-bottom: 14px;">
+        The game features <strong style="color: var(--gold2);">24 skills</strong> spanning four categories as defined by Jagex: <em>Combat skills</em> (Attack, Defence, Hitpoints, Magic, Prayer, Ranged, Strength), <em>Gathering skills</em> (Farming, Fishing, Hunter, Mining, Woodcutting), <em>Production skills</em> (Cooking, Crafting, Fletching, Herblore, Runecraft, Smithing), and <em>Utility skills</em> (Agility, Construction, Firemaking, Sailing, Slayer, Thieving). All skills begin at level 1 except Hitpoints which starts at level 10, and can be trained up to level 99.
+      </p>
+      <p>
+        OSRS also features <strong style="color: var(--gold2);">over 160 bosses</strong> ranging from beginner encounters accessible to new players all the way to endgame raids like the Chambers of Xeric, Theatre of Blood, and Tombs of Amascut — designed for experienced teams with best-in-slot equipment. The game is free-to-play with an optional members subscription that unlocks the vast majority of content.
+      </p>
+    </div>
+
+    <!-- Skills quick ref -->
+    <div style="margin-bottom: 8px; font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.12em;">All 24 Skills at a Glance</div>
+    <div class="skill-grid">
+      <div class="skill-chip">⚔️ <span><span class="skill-chip-label">Combat</span>Attack</span></div>
+      <div class="skill-chip">💪 <span><span class="skill-chip-label">Combat</span>Strength</span></div>
+      <div class="skill-chip">🛡️ <span><span class="skill-chip-label">Combat</span>Defence</span></div>
+      <div class="skill-chip">❤️ <span><span class="skill-chip-label">Combat</span>Hitpoints</span></div>
+      <div class="skill-chip">🏹 <span><span class="skill-chip-label">Combat</span>Ranged</span></div>
+      <div class="skill-chip">🔮 <span><span class="skill-chip-label">Combat</span>Magic</span></div>
+      <div class="skill-chip">🙏 <span><span class="skill-chip-label">Combat</span>Prayer</span></div>
+      <div class="skill-chip">⛏️ <span><span class="skill-chip-label">Gathering</span>Mining</span></div>
+      <div class="skill-chip">🎣 <span><span class="skill-chip-label">Gathering</span>Fishing</span></div>
+      <div class="skill-chip">🪓 <span><span class="skill-chip-label">Gathering</span>Woodcutting</span></div>
+      <div class="skill-chip">🦎 <span><span class="skill-chip-label">Gathering</span>Hunter</span></div>
+      <div class="skill-chip">🌱 <span><span class="skill-chip-label">Gathering</span>Farming</span></div>
+      <div class="skill-chip">🍖 <span><span class="skill-chip-label">Production</span>Cooking</span></div>
+      <div class="skill-chip">💎 <span><span class="skill-chip-label">Production</span>Crafting</span></div>
+      <div class="skill-chip">🪶 <span><span class="skill-chip-label">Production</span>Fletching</span></div>
+      <div class="skill-chip">🧪 <span><span class="skill-chip-label">Production</span>Herblore</span></div>
+      <div class="skill-chip">🔵 <span><span class="skill-chip-label">Production</span>Runecraft</span></div>
+      <div class="skill-chip">🔨 <span><span class="skill-chip-label">Production</span>Smithing</span></div>
+      <div class="skill-chip">🏃 <span><span class="skill-chip-label">Utility</span>Agility</span></div>
+      <div class="skill-chip">🏠 <span><span class="skill-chip-label">Utility</span>Construction</span></div>
+      <div class="skill-chip">🔥 <span><span class="skill-chip-label">Utility</span>Firemaking</span></div>
+      <div class="skill-chip">⛵ <span><span class="skill-chip-label">Utility</span>Sailing</span></div>
+      <div class="skill-chip">💀 <span><span class="skill-chip-label">Utility</span>Slayer</span></div>
+      <div class="skill-chip">🗝️ <span><span class="skill-chip-label">Utility</span>Thieving</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MORE GAMES PANEL -->
+<div id="panel-more" class="game-panel">
+  <div class="section">
+    <div class="coming-soon-panel">
+      <span class="icon">🎮</span>
+      <h3>More Games Coming Soon</h3>
+      <p>We're planning to expand Cosmic Guides to cover more games. Have a suggestion? Get in touch via the contact section below.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<div id="contact" class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-title">Get in Touch</div>
+    <div class="contact-rule"></div>
+    <p class="contact-sub">Have a suggestion for a guide, spotted an error, or want to contribute? We'd love to hear from you. Cosmic Guides is community-driven and your feedback helps make it better.</p>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <span class="contact-card-icon">✉️</span>
+        <div class="contact-card-title">Email Us</div>
+        <a id="contact-email" href="#" class="contact-card-val"><span class="__cf_email__" data-cfemail="4437272b3030292d28283704272b37292d2723312d2021376a272b6a312f">[email&#160;protected]</span></a>
+        <div class="contact-card-desc">For guide suggestions, corrections, or general enquiries.</div>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">📖</span>
+        <div class="contact-card-title">OSRS Wiki</div>
+        <a href="https://oldschool.runescape.wiki" target="_blank" rel="noopener" class="contact-card-val">oldschool.runescape.wiki</a>
+        <div class="contact-card-desc">Our primary data source — the community encyclopaedia for all things OSRS.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">⭐ Cosmic Guides</div>
+  <div class="footer-links">
+    <a href="#">Home</a>
+    <a href="osrs-complete-guide.html">OSRS Guide</a>
+    <a href="#contact">Contact</a>
+    <a href="https://oldschool.runescape.wiki" target="_blank" rel="noopener">OSRS Wiki</a>
+  </div>
+  <p>© 2025 Cosmic Guides · cosmicguides.co.uk</p>
+  <p class="disclaimer">Cosmic Guides is a fan-made community resource and is not affiliated with or endorsed by Jagex Ltd. Old School RuneScape is a trademark of Jagex Ltd. Game data and information referenced from the Old School RuneScape Wiki under Creative Commons Attribution-NonCommercial-ShareAlike 3.0.</p>
+</footer>
+
+<!-- GUIDE VIEWER OVERLAY -->
+<div class="guide-overlay" id="guideOverlay">
+  <div class="guide-topbar">
+    <button class="guide-back-btn" onclick="closeGuide()">← Back to Cosmic Guides</button>
+    <span class="guide-topbar-title" id="guideTitle"></span>
+    <span class="guide-topbar-logo">⭐ cosmicguides.co.uk</span>
+  </div>
+  <iframe class="guide-frame" id="guideFrame" src="" title="Guide"></iframe>
+</div>
+
+<!-- POTION GAME PANEL -->
+<div id="potion-game-panel">
+  <div class="pg-topbar">
+    <button class="pg-back-btn" onclick="closePotionGame()">← Back to Cosmic Guides</button>
+    <span class="pg-topbar-title">⚗️ Cosmic Brewer</span>
+    <span class="pg-topbar-logo">⭐ cosmicguides.co.uk</span>
+  </div>
+
+  <div id="pg-toast-container" class="pg-toast-container"></div>
+
+  <div class="pg-header">
+    <div class="pg-header-title">⚗ Cosmic Brewer</div>
+    <div class="pg-header-sub">Drag herbs into the cauldron · Brew potions · Level up your Herblore</div>
+  </div>
+
+  <div class="pg-xp-bar-wrap">
+    <div class="pg-xp-bar-label">
+      <span>Herblore Level <strong id="pg-levelDisplay">1</strong></span>
+      <span id="pg-xpDisplay">0 / 83 XP</span>
+    </div>
+    <div class="pg-xp-bar-track"><div class="pg-xp-bar-fill" id="pg-xpBar" style="width:0%"></div></div>
+  </div>
+
+  <div class="pg-stats-bar">
+    <div class="pg-stat-block"><span class="pg-stat-val" id="pg-statGp">500</span><span class="pg-stat-label">GP</span></div>
+    <div class="pg-stat-block"><span class="pg-stat-val" id="pg-statBrewed">0</span><span class="pg-stat-label">Potions Brewed</span></div>
+    <div class="pg-stat-block"><span class="pg-stat-val" id="pg-statDiscovered">0</span><span class="pg-stat-label">Discovered</span></div>
+    <div class="pg-stat-block"><span class="pg-stat-val" id="pg-statLevel">1</span><span class="pg-stat-label">Level</span></div>
+  </div>
+
+  <div class="pg-game-area">
+    <div class="pg-panel">
+      <div class="pg-panel-header">🌿 Ingredient Satchel</div>
+      <div class="pg-panel-body">
+        <div class="pg-ingredient-list" id="pg-ingredientList"></div>
+        <div style="margin-top:10px; padding-top:10px; border-top:1px solid #2d2748;">
+          <div class="pg-panel-header" style="margin:-12px -12px 10px; border-radius:0; border:none; border-bottom:1px solid #2d2748;">🛒 Shop</div>
+          <div class="pg-shop-list" id="pg-shopList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pg-brew-center">
+      <div class="pg-cauldron-wrap" id="pg-cauldronDrop"
+        ondragover="event.preventDefault(); this.classList.add('drag-over')"
+        ondragleave="this.classList.remove('drag-over')"
+        ondrop="pgHandleDrop(event)">
+        <span class="pg-cauldron-emoji" id="pg-cauldronEmoji">🪄</span>
+        <div class="pg-cauldron-label">Drag ingredients here</div>
+        <div class="pg-cauldron-slots" style="margin-top:20px;">
+          <div style="position:relative">
+            <div class="pg-slot" id="pg-slot0" onclick="pgClearSlot(0)">
+              <span id="pg-slot0emoji"></span>
+              <span class="pg-slot-label">Herb</span>
+            </div>
+          </div>
+          <div style="position:relative">
+            <div class="pg-slot" id="pg-slot1" onclick="pgClearSlot(1)">
+              <span id="pg-slot1emoji"></span>
+              <span class="pg-slot-label">Secondary</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="pg-brew-btn" id="pg-brewBtn" onclick="pgBrew()" disabled>⚗ Brew Potion</button>
+      <div class="pg-result-box" id="pg-resultBox">
+        <span style="font-size:1.8rem; opacity:0.3">🧪</span>
+        <span style="font-size:0.78rem; color:#6a6090; font-style:italic;">Your creation will appear here</span>
+      </div>
+      <div style="background:#161224; border:1px solid #2d2748; border-radius:6px; padding:11px 14px; font-size:0.77rem; color:#6a6090; font-style:italic; text-align:center; line-height:1.6;">
+        💡 Fill both slots then hit Brew. Slot 1 = Herb, Slot 2 = Secondary. Check the recipe book for hints!
+      </div>
+    </div>
+
+    <div class="pg-panel">
+      <div class="pg-panel-header">📖 Recipe Book</div>
+      <div class="pg-panel-body">
+        <div class="pg-recipe-list" id="pg-recipeList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Email via JS to bypass Cloudflare obfuscation
+(function() {
+  var u = 'scottmills';
+  var d = 'cosmicguides.co.uk';
+  var el = document.getElementById('contact-email');
+  if (el) { el.href = 'mailto:' + u + '@' + d; el.textContent = u + '@' + d; }
+})();
+
+function switchGame(name, btn) {
+  document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.game-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+function scrollTo(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function openGuide(url, title) {
+  const overlay = document.getElementById('guideOverlay');
+  const frame = document.getElementById('guideFrame');
+  document.getElementById('guideTitle').textContent = title;
+  frame.src = url;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  history.pushState({ guide: url }, '', '');
+}
+
+function closeGuide() {
+  const overlay = document.getElementById('guideOverlay');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { document.getElementById('guideFrame').src = ''; }, 350);
+  history.back();
+}
+
+function openPotionGame() {
+  const panel = document.getElementById('potion-game-panel');
+  panel.style.display = 'flex';
+  requestAnimationFrame(() => panel.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+  history.pushState({ potionGame: true }, '', '');
+  if (!pgInitialized) { pgInit(); pgInitialized = true; }
+}
+
+function closePotionGame() {
+  const panel = document.getElementById('potion-game-panel');
+  panel.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { panel.style.display = 'none'; }, 350);
+  history.back();
+}
+
+window.addEventListener('popstate', function() {
+  const overlay = document.getElementById('guideOverlay');
+  if (overlay.classList.contains('open')) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { document.getElementById('guideFrame').src = ''; }, 350);
+  }
+  const pgPanel = document.getElementById('potion-game-panel');
+  if (pgPanel.classList.contains('open')) {
+    pgPanel.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { pgPanel.style.display = 'none'; }, 350);
+  }
+});
+
+/* ══════════════════════════════════════
+   POTION GAME LOGIC
+══════════════════════════════════════ */
+let pgInitialized = false;
+
+const PG_INGREDIENTS = [
+  { id:'guam',      name:'Guam Leaf',         emoji:'🌿', type:'herb',      startQty:5 },
+  { id:'marrentill',name:'Marrentill',         emoji:'🍀', type:'herb',      startQty:3 },
+  { id:'tarromin',  name:'Tarromin',           emoji:'🌱', type:'herb',      startQty:3 },
+  { id:'harralander',name:'Harralander',       emoji:'🪴', type:'herb',      startQty:2 },
+  { id:'ranarr',    name:'Ranarr Weed',        emoji:'🌾', type:'herb',      startQty:0 },
+  { id:'toadflax',  name:'Toadflax',           emoji:'🌻', type:'herb',      startQty:0 },
+  { id:'irit',      name:'Irit Leaf',          emoji:'🍃', type:'herb',      startQty:0 },
+  { id:'avantoe',   name:'Avantoe',            emoji:'🌿', type:'herb',      startQty:0 },
+  { id:'kwuarm',    name:'Kwuarm',             emoji:'🌺', type:'herb',      startQty:0 },
+  { id:'snapdragon',name:'Snapdragon',         emoji:'🌸', type:'herb',      startQty:0 },
+  { id:'cadantine', name:'Cadantine',          emoji:'💐', type:'herb',      startQty:0 },
+  { id:'torstol',   name:'Torstol',            emoji:'🍄', type:'herb',      startQty:0 },
+  { id:'eye_newt',  name:'Eye of Newt',        emoji:'👁️', type:'secondary', startQty:5 },
+  { id:'limpwurt',  name:'Limpwurt Root',      emoji:'🌰', type:'secondary', startQty:3 },
+  { id:'unicorn',   name:'Unicorn Horn Dust',  emoji:'🦄', type:'secondary', startQty:3 },
+  { id:'white_berries',name:'White Berries',   emoji:'🫐', type:'secondary', startQty:0 },
+  { id:'snape_grass',name:'Snape Grass',       emoji:'🌾', type:'secondary', startQty:0 },
+  { id:'red_eggs',  name:"Red Spider's Eggs",  emoji:'🥚', type:'secondary', startQty:0 },
+  { id:'wine_zam',  name:'Wine of Zamorak',    emoji:'🍷', type:'secondary', startQty:0 },
+  { id:'crushed_nest',name:'Crushed Bird Nest',emoji:'🪺', type:'secondary', startQty:0 },
+  { id:'jangerberries',name:'Jangerberries',   emoji:'🍇', type:'secondary', startQty:0 },
+  { id:'mort_fungus',name:'Mort Myre Fungus',  emoji:'🍄', type:'secondary', startQty:0 },
+  { id:'amylase',   name:'Amylase Crystal',    emoji:'💎', type:'secondary', startQty:0 },
+  { id:'toad_legs', name:"Toad's Legs",        emoji:'🐸', type:'secondary', startQty:0 },
+];
+
+const PG_RECIPES = [
+  { id:'attack',    name:'Attack Potion',    herb:'guam',       secondary:'eye_newt',     xp:25,    level:3,  gp:150,  emoji:'🟤', effect:'+10% Attack' },
+  { id:'antipoison',name:'Antipoison',       herb:'marrentill', secondary:'unicorn',      xp:37.5,  level:5,  gp:200,  emoji:'🟢', effect:'Cures poison' },
+  { id:'strength',  name:'Strength Potion',  herb:'tarromin',   secondary:'limpwurt',     xp:50,    level:12, gp:280,  emoji:'🟠', effect:'+10% Strength' },
+  { id:'prayer',    name:'Prayer Potion',    herb:'ranarr',     secondary:'snape_grass',  xp:87.5,  level:38, gp:900,  emoji:'🔵', effect:'Restores Prayer' },
+  { id:'super_attack',name:'Super Attack',   herb:'irit',       secondary:'eye_newt',     xp:100,   level:45, gp:700,  emoji:'🟤', effect:'+15% Attack' },
+  { id:'agility',   name:'Agility Potion',   herb:'toadflax',   secondary:'toad_legs',    xp:80,    level:34, gp:450,  emoji:'🏃', effect:'+3 Agility' },
+  { id:'super_str', name:'Super Strength',   herb:'kwuarm',     secondary:'limpwurt',     xp:125,   level:55, gp:900,  emoji:'💪', effect:'+15% Strength' },
+  { id:'super_restore',name:'Super Restore', herb:'snapdragon', secondary:'red_eggs',     xp:142.5, level:63, gp:1400, emoji:'💜', effect:'Restores all stats' },
+  { id:'super_def', name:'Super Defence',    herb:'cadantine',  secondary:'white_berries',xp:150,   level:66, gp:1100, emoji:'🛡️', effect:'+15% Defence' },
+  { id:'sara_brew', name:'Saradomin Brew',   herb:'toadflax',   secondary:'crushed_nest', xp:180,   level:81, gp:2000, emoji:'✨', effect:'+15% HP max' },
+  { id:'zam_brew',  name:'Zamorak Brew',     herb:'torstol',    secondary:'jangerberries',xp:175,   level:60, gp:1800, emoji:'🔴', effect:'+Attack/Str boost' },
+  { id:'ranging',   name:'Ranging Potion',   herb:'avantoe',    secondary:'wine_zam',     xp:87.5,  level:30, gp:600,  emoji:'🏹', effect:'+10% Ranged' },
+  { id:'super_energy',name:'Super Energy',   herb:'avantoe',    secondary:'mort_fungus',  xp:117.5, level:52, gp:500,  emoji:'⚡', effect:'Restores 40% run energy' },
+];
+
+const PG_SHOP = [
+  { id:'buy_guam',       name:'Guam Leaf x5',      emoji:'🌿', cost:100,  gives:{ id:'guam',        qty:5 }, reqLevel:1  },
+  { id:'buy_tarromin',   name:'Tarromin x5',        emoji:'🌱', cost:150,  gives:{ id:'tarromin',    qty:5 }, reqLevel:1  },
+  { id:'buy_eye',        name:'Eye of Newt x5',     emoji:'👁️', cost:80,   gives:{ id:'eye_newt',    qty:5 }, reqLevel:1  },
+  { id:'buy_limpwurt',   name:'Limpwurt Root x5',   emoji:'🌰', cost:120,  gives:{ id:'limpwurt',    qty:5 }, reqLevel:1  },
+  { id:'buy_unicorn',    name:'Unicorn Horn x3',    emoji:'🦄', cost:200,  gives:{ id:'unicorn',     qty:3 }, reqLevel:1  },
+  { id:'buy_marrentill', name:'Marrentill x5',      emoji:'🍀', cost:100,  gives:{ id:'marrentill',  qty:5 }, reqLevel:1  },
+  { id:'buy_harralander',name:'Harralander x3',     emoji:'🪴', cost:180,  gives:{ id:'harralander', qty:3 }, reqLevel:20 },
+  { id:'buy_snape',      name:'Snape Grass x5',     emoji:'🌾', cost:250,  gives:{ id:'snape_grass', qty:5 }, reqLevel:30 },
+  { id:'buy_ranarr',     name:'Ranarr Weed x3',     emoji:'🌾', cost:600,  gives:{ id:'ranarr',      qty:3 }, reqLevel:30 },
+  { id:'buy_toadflax',   name:'Toadflax x3',        emoji:'🌻', cost:400,  gives:{ id:'toadflax',    qty:3 }, reqLevel:25 },
+  { id:'buy_toad_legs',  name:"Toad's Legs x5",     emoji:'🐸', cost:200,  gives:{ id:'toad_legs',   qty:5 }, reqLevel:25 },
+  { id:'buy_white_berries',name:'White Berries x5', emoji:'🫐', cost:350,  gives:{ id:'white_berries',qty:5},  reqLevel:40 },
+  { id:'buy_irit',       name:'Irit Leaf x3',       emoji:'🍃', cost:500,  gives:{ id:'irit',        qty:3 }, reqLevel:40 },
+  { id:'buy_red_eggs',   name:"Red Spider's Eggs x5",emoji:'🥚',cost:300,  gives:{ id:'red_eggs',    qty:5 }, reqLevel:50 },
+  { id:'buy_kwuarm',     name:'Kwuarm x3',           emoji:'🌺', cost:700,  gives:{ id:'kwuarm',      qty:3 }, reqLevel:50 },
+  { id:'buy_snapdragon', name:'Snapdragon x3',       emoji:'🌸', cost:1200, gives:{ id:'snapdragon',  qty:3 }, reqLevel:60 },
+  { id:'buy_mort',       name:'Mort Myre Fungus x5', emoji:'🍄', cost:300,  gives:{ id:'mort_fungus', qty:5 }, reqLevel:45 },
+  { id:'buy_wine_zam',   name:'Wine of Zamorak x3',  emoji:'🍷', cost:400,  gives:{ id:'wine_zam',    qty:3 }, reqLevel:25 },
+  { id:'buy_torstol',    name:'Torstol x2',           emoji:'🍄', cost:2000, gives:{ id:'torstol',     qty:2 }, reqLevel:75 },
+  { id:'buy_jangerberries',name:'Jangerberries x5',  emoji:'🍇', cost:500,  gives:{ id:'jangerberries',qty:5}, reqLevel:55 },
+  { id:'buy_crushed_nest',name:'Crushed Bird Nest x3',emoji:'🪺',cost:800,  gives:{ id:'crushed_nest',qty:3 }, reqLevel:70 },
+  { id:'buy_cadantine',  name:'Cadantine x3',         emoji:'💐', cost:900,  gives:{ id:'cadantine',   qty:3 }, reqLevel:60 },
+];
+
+const PG_XP_TABLE = [0,0,83,174,276,388,512,650,801,969,1154,1358,1584,1833,2107,2411,2746,3115,3523,3973,4470,5018,5624,6291,7028,7842,8740,9730,10824,12031,13363,14833,16456,18247,20224,22406,24815,27473,30408,33648,37224,41171,45529,50339,55649,61512,67983,75127,83014,91721,101333];
+
+let pgState = {
+  level: 1, xp: 0, gp: 500, brewed: 0,
+  discovered: new Set(), inventory: {}, slots: [null, null],
+};
+let pgDraggedId = null;
+
+function pgInit() {
+  pgState = { level:1, xp:0, gp:500, brewed:0, discovered:new Set(), inventory:{}, slots:[null,null] };
+  PG_INGREDIENTS.forEach(ing => { if (ing.startQty > 0) pgState.inventory[ing.id] = ing.startQty; });
+  pgRenderIngredients();
+  pgRenderShop();
+  pgRenderRecipes();
+  pgUpdateStats();
+  pgUpdateXpBar();
+}
+
+function pgGetLevel(xp) {
+  for (let i = PG_XP_TABLE.length - 1; i >= 1; i--) { if (xp >= PG_XP_TABLE[i]) return i; }
+  return 1;
+}
+function pgGetXpForLevel(lvl) { return PG_XP_TABLE[Math.min(lvl, PG_XP_TABLE.length-1)] || 99999; }
+
+function pgAddXp(amount) {
+  const old = pgState.level;
+  pgState.xp += amount;
+  pgState.level = pgGetLevel(pgState.xp);
+  if (pgState.level > old) pgLevelUp(pgState.level);
+  pgUpdateXpBar();
+}
+
+function pgUpdateXpBar() {
+  const lvl = pgState.level;
+  const cur = pgGetXpForLevel(lvl), nxt = pgGetXpForLevel(lvl+1);
+  const pct = lvl >= 50 ? 100 : ((pgState.xp - cur) / (nxt - cur)) * 100;
+  document.getElementById('pg-xpBar').style.width = Math.min(pct,100) + '%';
+  document.getElementById('pg-xpDisplay').textContent = `${pgState.xp} / ${nxt} XP`;
+  document.getElementById('pg-levelDisplay').textContent = lvl;
+  document.getElementById('pg-statLevel').textContent = lvl;
+}
+
+function pgLevelUp(level) {
+  pgShowToast(`🎉 Level Up! Herblore is now ${level}!`, 'level');
+  pgRenderShop(); pgRenderRecipes();
+}
+
+function pgHandleDrop(ev) {
+  ev.preventDefault();
+  document.getElementById('pg-cauldronDrop').classList.remove('drag-over');
+  if (!pgDraggedId) return;
+  pgAddToSlot(pgDraggedId);
+  pgDraggedId = null;
+}
+
+function pgAddToSlot(ingId) {
+  const ing = PG_INGREDIENTS.find(i => i.id === ingId);
+  if (!ing) return;
+  if (!pgState.inventory[ingId] || pgState.inventory[ingId] <= 0) { pgShowToast('Not enough ' + ing.name + '!', 'fail'); return; }
+  const target = ing.type === 'herb' ? 0 : 1;
+  if (pgState.slots[target]) pgState.inventory[pgState.slots[target].id] = (pgState.inventory[pgState.slots[target].id]||0)+1;
+  pgState.slots[target] = ing;
+  pgState.inventory[ingId]--;
+  pgUpdateSlots(); pgUpdateBrewBtn(); pgRenderIngredients(); pgBubbles();
+}
+
+function pgClearSlot(i) {
+  if (!pgState.slots[i]) return;
+  pgState.inventory[pgState.slots[i].id] = (pgState.inventory[pgState.slots[i].id]||0)+1;
+  pgState.slots[i] = null;
+  pgUpdateSlots(); pgUpdateBrewBtn(); pgRenderIngredients();
+}
+
+function pgUpdateSlots() {
+  [0,1].forEach(i => {
+    const slotEl = document.getElementById('pg-slot'+i);
+    const emojiEl = document.getElementById('pg-slot'+i+'emoji');
+    if (pgState.slots[i]) { slotEl.classList.add('filled'); emojiEl.textContent = pgState.slots[i].emoji; }
+    else { slotEl.classList.remove('filled'); emojiEl.textContent = ''; }
+  });
+  const filled = pgState.slots.filter(Boolean).length;
+  document.getElementById('pg-cauldronEmoji').textContent = filled >= 1 ? '🫧' : '🪄';
+}
+
+function pgUpdateBrewBtn() {
+  document.getElementById('pg-brewBtn').disabled = !(pgState.slots[0] && pgState.slots[1]);
+}
+
+function pgBrew() {
+  const herb = pgState.slots[0], sec = pgState.slots[1];
+  if (!herb || !sec) return;
+  const btn = document.getElementById('pg-brewBtn');
+  btn.disabled = true; btn.classList.add('brewing'); btn.textContent = '⚗ Brewing...';
+  setTimeout(() => {
+    btn.classList.remove('brewing'); btn.textContent = '⚗ Brew Potion';
+    const recipe = PG_RECIPES.find(r => r.herb === herb.id && r.secondary === sec.id);
+    if (recipe) {
+      if (pgState.level < recipe.level) {
+        pgShowResult('❌','Level too low!',`Need level ${recipe.level} Herblore`,true);
+        pgShowToast(`Need level ${recipe.level} to brew ${recipe.name}!`,'fail');
+        pgReturnSlots();
+      } else {
+        const isNew = !pgState.discovered.has(recipe.id);
+        pgState.discovered.add(recipe.id); pgState.brewed++; pgState.gp += recipe.gp;
+        pgAddXp(recipe.xp);
+        pgShowResult(recipe.emoji, recipe.name, `+${recipe.xp} XP · +${recipe.gp.toLocaleString()} GP · ${recipe.effect}`, false);
+        pgShowToast(`${recipe.emoji} ${recipe.name} brewed! +${recipe.xp} XP`,'success');
+        if (isNew) pgShowToast(`📖 New recipe discovered: ${recipe.name}!`,'info');
+        pgUpdateStats(); pgRenderRecipes(); pgBigBubbles();
+      }
+    } else {
+      pgShowResult('💥','Nothing happened!',"That combination doesn't make a potion...",true);
+      pgShowToast("That combination doesn't work!",'fail');
+      pgReturnSlots();
+    }
+    pgState.slots=[null,null]; pgUpdateSlots(); pgUpdateBrewBtn(); pgRenderIngredients();
+  }, 900);
+}
+
+function pgReturnSlots() {
+  [0,1].forEach(i => { if (pgState.slots[i]) pgState.inventory[pgState.slots[i].id] = (pgState.inventory[pgState.slots[i].id]||0)+1; });
+}
+
+function pgShowResult(emoji, name, sub, fail) {
+  document.getElementById('pg-resultBox').innerHTML = `
+    <span class="pg-result-emoji">${emoji}</span>
+    <span class="pg-result-name" style="color:${fail?'#ff6b5b':'#e8c96a'}">${name}</span>
+    <span class="${fail?'pg-result-fail':'pg-result-xp'}">${sub}</span>`;
+}
+
+function pgUpdateStats() {
+  document.getElementById('pg-statGp').textContent = pgState.gp.toLocaleString();
+  document.getElementById('pg-statBrewed').textContent = pgState.brewed;
+  document.getElementById('pg-statDiscovered').textContent = pgState.discovered.size;
+  document.getElementById('pg-statLevel').textContent = pgState.level;
+}
+
+function pgBuyItem(shopId) {
+  const item = PG_SHOP.find(s => s.id === shopId);
+  if (!item || pgState.level < item.reqLevel) return;
+  if (pgState.gp < item.cost) { pgShowToast('Not enough GP!','fail'); return; }
+  pgState.gp -= item.cost;
+  pgState.inventory[item.gives.id] = (pgState.inventory[item.gives.id]||0) + item.gives.qty;
+  pgShowToast(`Bought ${item.name}!`,'info');
+  pgUpdateStats(); pgRenderIngredients(); pgRenderShop();
+}
+
+function pgRenderIngredients() {
+  const list = document.getElementById('pg-ingredientList');
+  const avail = PG_INGREDIENTS.filter(i => pgState.inventory[i.id] > 0);
+  if (!avail.length) { list.innerHTML = '<div style="text-align:center;color:#6a6090;font-style:italic;font-size:0.8rem;padding:14px;">No ingredients — visit the shop!</div>'; return; }
+  list.innerHTML = avail.map(ing => `
+    <div class="pg-ingredient-item"
+      draggable="true"
+      ondragstart="pgDraggedId='${ing.id}'; this.classList.add('dragging')"
+      ondragend="this.classList.remove('dragging')"
+      onclick="pgAddToSlot('${ing.id}')"
+      title="Click or drag to add to cauldron">
+      <span class="pg-ingredient-emoji">${ing.emoji}</span>
+      <div class="pg-ingredient-info">
+        <div class="pg-ingredient-name">${ing.name}</div>
+        <div class="pg-ingredient-qty">${ing.type==='herb'?'🌿 Herb':'⚗ Secondary'} · click to add</div>
+      </div>
+      <span class="pg-qty-badge">${pgState.inventory[ing.id]}</span>
+    </div>`).join('');
+}
+
+function pgRenderShop() {
+  const list = document.getElementById('pg-shopList');
+  const visible = PG_SHOP.filter(s => s.reqLevel <= pgState.level + 10);
+  list.innerHTML = visible.map(item => {
+    const locked = pgState.level < item.reqLevel;
+    const canAfford = pgState.gp >= item.cost;
+    return `<div class="pg-shop-item ${locked?'pg-shop-locked':''}" onclick="${locked?'':''}" title="${locked?`Requires level ${item.reqLevel}`:`Buy for ${item.cost} GP`}">
+      <span class="pg-shop-emoji">${item.emoji}</span>
+      <div class="pg-shop-info">
+        <div class="pg-shop-name">${item.name}</div>
+        <div class="pg-shop-cost">${locked?`🔒 Lvl ${item.reqLevel}`:`${item.cost.toLocaleString()} GP`}</div>
+      </div>
+      ${!locked?`<button class="pg-shop-buy-btn" style="${!canAfford?'opacity:0.4':''}" onclick="event.stopPropagation();pgBuyItem('${item.id}')">Buy</button>`:''}
+    </div>`;
+  }).join('');
+}
+
+function pgRenderRecipes() {
+  const list = document.getElementById('pg-recipeList');
+  list.innerHTML = PG_RECIPES.map(r => {
+    const disc = pgState.discovered.has(r.id);
+    const canBrew = pgState.level >= r.level;
+    const herb = PG_INGREDIENTS.find(i => i.id === r.herb);
+    const sec  = PG_INGREDIENTS.find(i => i.id === r.secondary);
+    return `<div class="pg-recipe-item ${disc?'discovered':''} ${!canBrew?'locked-recipe':''}">
+      <div class="pg-recipe-name ${disc?'discovered-name':''}">${disc?'✓ ':canBrew?'':'🔒 '}${r.name}</div>
+      <div class="pg-recipe-ingredients">${disc||canBrew?`${herb?.emoji||'?'} ${herb?.name||'?'} + ${sec?.emoji||'?'} ${sec?.name||'?'}`:`Requires level ${r.level} Herblore`}</div>
+      <div class="pg-recipe-lvl">Lvl ${r.level} · <span class="pg-recipe-xp-val">${r.xp} XP</span> · ${r.gp.toLocaleString()} GP</div>
+    </div>`;
+  }).join('');
+}
+
+function pgShowToast(msg, type) {
+  const container = document.getElementById('pg-toast-container');
+  const toast = document.createElement('div');
+  toast.className = `pg-toast pg-toast-${type}`;
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 2400);
+}
+
+function pgBubbles() {
+  const cauldron = document.getElementById('pg-cauldronDrop');
+  for (let i = 0; i < 4; i++) {
+    setTimeout(() => {
+      const b = document.createElement('div');
+      b.className = 'pg-bubble';
+      const size = 6 + Math.random()*10;
+      const colors = ['rgba(142,68,173,0.6)','rgba(200,168,75,0.5)','rgba(26,188,156,0.5)'];
+      b.style.cssText = `width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*80+10}%;bottom:${10+Math.random()*20}%;position:absolute;`;
+      cauldron.appendChild(b);
+      setTimeout(() => b.remove(), 1500);
+    }, i*150);
+  }
+}
+
+function pgBigBubbles() {
+  const cauldron = document.getElementById('pg-cauldronDrop');
+  for (let i = 0; i < 12; i++) {
+    setTimeout(() => {
+      const b = document.createElement('div');
+      b.className = 'pg-bubble';
+      const size = 8 + Math.random()*16;
+      const colors = ['rgba(142,68,173,0.7)','rgba(200,168,75,0.6)','rgba(46,204,113,0.6)','rgba(52,152,219,0.6)'];
+      b.style.cssText = `width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*90+5}%;bottom:${5+Math.random()*30}%;position:absolute;animation-duration:${1+Math.random()*0.8}s;`;
+      cauldron.appendChild(b);
+      setTimeout(() => b.remove(), 1800);
+    }, i*80);
+  }
+}
+</script>
+</body>
+</html>
