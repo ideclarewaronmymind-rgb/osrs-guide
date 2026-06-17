@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cosmic Guides OSRS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  style.css
+</head>
+
+<body>
+
+<header>
+  <h2>Cosmic Guides OSRS</h2>
+</header>
+
+<!-- LOGIN -->
+<section id="login">
+  <div id="loginBox">
+    <input type="text" id="username" placeholder="Enter username">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div id="userInfo" style="display:none;">
+    Logged in as: <span id="currentUser"></span>
+    <button onclick="logout()">Logout</button>
+  </div>
+</section>
+
+<!-- CALCULATOR SUITE -->
+<section id="calculatorSuite">
+  <h2>OSRS Calculator Suite</h2>
+
+  <div class="tabs">
+    <button class="tab active" onclick="openTab('xp')">XP</button>
+    <button class="tab" onclick="openTab('time')">Time</button>
+    <button class="tab" onclick="openTab('profit')">Profit</button>
+  </div>
+
+  <!-- XP -->
+  <div id="xp" class="tab-content active">
+    <h3>XP Calculator</h3>
+    <input id="xpCurrent" type="number" placeholder="Current Level">
+    <input id="xpTarget" type="number" placeholder="Target Level">
+    <input id="xpRate" type="number" placeholder="XP per hour">
+    <button onclick="calcXP()">Calculate</button>
+    <p id="xpOut"></p>
+  </div>
+
+  <!-- TIME -->
+  <div id="time" class="tab-content">
+    <h3>Time Calculator</h3>
+    <input id="timeCurrent" type="number" placeholder="Current Level">
+    <input id="timeTarget" type="number" placeholder="Target Level">
+    <input id="timeRate" type="number" placeholder="XP per hour">
+    <button onclick="calcTime()">Calculate</button>
+    <p id="timeOut"></p>
+  </div>
+
+  <!-- PROFIT -->
+  <div id="profit" class="tab-content">
+    <h3>Profit Calculator</h3>
+    <input id="xpAction" placeholder="XP per action">
+    <input id="actionsHr" placeholder="Actions/hour">
+    <input id="cost" placeholder="Cost per action">
+    <input id="revenue" placeholder="Revenue per action">
+    <button onclick="calcProfit()">Calculate</button>
+    <p id="profitOut"></p>
+  </div>
+
+</section>
+
+app.jsscript>
+</body>
+</html>
